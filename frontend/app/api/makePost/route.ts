@@ -24,25 +24,31 @@ async function uploadImage(file: File) {
 
 export async function POST(request: NextRequest) {
     // Parse the JSON body from the request
-    const { title: title, body: content, tag: tag, images: images} = await request.json();
-    
-    // Get specific non user inputted data
-    const now = new Date();
-    const date = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
-    const user_id = "fbc72f17-b191-48a6-86ab-54ed20be6cf1"; // This should be dynamic later based on the current logged in user
+    const { title: title, body: content, tag: tag, images: images, passcode: passcode} = await request.json();
+    console.log(passcode)
+    if (passcode === "7135") {
+        // Get specific non user inputted data
+        const now = new Date();
+        const date = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
+        const user_id = "fbc72f17-b191-48a6-86ab-54ed20be6cf1"; // This should be dynamic later based on the current logged in user
 
-    // Avoid uplaoding empty files array
-    let image_urls = []
-    if (images && images.length > 0) image_urls = await Promise.all(images.map(uploadImage)); // need to specifically check length due to javascript being a trash language with truthy etc
-    // Use the supabase client to request the data
-    let { data, error } = await supabaseClient
-        .from('posts')
-        .insert([{ title: title, date: date, body: content, tag: tag, user_id: user_id, image_urls: image_urls }]); // Use 'content' here
+        // Avoid uploading empty files array
+        let image_urls = []
+        if (images && images.length > 0) image_urls = await Promise.all(images.map(uploadImage)); // need to specifically check length due to javascript being a trash language with truthy etc
+        // Use the supabase client to request the data
+        let { data, error } = await supabaseClient
+            .from('posts')
+            .insert([{ title: title, date: date, body: content, tag: tag, user_id: user_id, image_urls: image_urls }]); // Use 'content' here
 
-    if (error) {
-        console.error("Error fetching posts:", error);
-        return NextResponse.json({ error: error.message }, { status: 500 });
-    }
+        if (error) {
+            console.error("Error fetching posts:", error);
+            return NextResponse.json({ error: error.message }, { status: 500 });
+        }
 
-    return NextResponse.json(data);
+        return NextResponse.json(data);
+    } 
+
+    console.error("Incorrect passcode");
+    return NextResponse.json({ error: "Incorrect passcode" }, { status: 500 });
+
 }

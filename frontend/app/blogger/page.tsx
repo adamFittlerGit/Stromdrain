@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image';
 
 
-async function makePost(title: string, tag: string, body: string, images: File[]) {
+async function makePost(title: string, tag: string, body: string, images: File[], passcode: string) {
   const response = await fetch("/api/makePost", {
       method: "POST",
       headers: {
@@ -18,7 +18,8 @@ async function makePost(title: string, tag: string, body: string, images: File[]
           title,
           body, // Consider renaming this to 'content' to avoid confusion
           tag,
-          images // Include image_urls
+          images, // Include image_urls,
+          passcode
       })
   });
 
@@ -32,9 +33,9 @@ const Page = () => {
   const [title, setTitle] = useState('');
   const [tag, setTag] = useState('');
   const [content, setContent] = useState('');
-  const [imageUrls, setImageUrls] = useState<string[]>([])
-  const [imageFiles, setImageFiles] = useState<File[]>([])
-  const [imageSelected, setImageSelected] = useState<boolean>(false)
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
+  const [imageFiles, setImageFiles] = useState<File[]>([]);
+  const [passcode, setPasscode] = useState('');
 
   // Use router for changes pages
   const router = useRouter()
@@ -47,7 +48,7 @@ const Page = () => {
     e.preventDefault();
 
     try {
-        await makePost(title, tag, content, imageFiles); // Await the makePost function
+        await makePost(title, tag, content, imageFiles, passcode); // Await the makePost function
         router.push("/"); // Redirect only after the post has been made
     } catch (error) {
         console.error("Error making post:", error);
@@ -123,6 +124,15 @@ const Page = () => {
           color='primary'
           label="Content"
           onChange={(e) => {setContent(e.target.value)}} // Capture content input
+          fullWidth
+          required
+        />
+
+        <TextField
+          variant='outlined'
+          color='primary'
+          label="Passcode"
+          onChange={(e) => {setPasscode(e.target.value)}} // Capture passcode input
           fullWidth
           required
         />
