@@ -43,6 +43,7 @@ export default function Home() {
       {posts.map((postProps: any, index: any) => (
         <div key={index} className="col-span-1 p-4 m-4 bg-white rounded">
           <Image
+            className=" w-full h-auto"
             src={
               postProps.image_urls && 
               postProps.image_urls.length > 0 && 
@@ -50,8 +51,8 @@ export default function Home() {
                 ? postProps.image_urls[0] 
                 : "/storm.png"
             } 
-            width={200}
-            height={200}
+            width={300}
+            height={300}
             alt="Post Image"
           />
           <h1 className="text-lg font-bold">{postProps.title}</h1>
