@@ -7,7 +7,7 @@ export async function GET() {
     // Use the supabase client to request the data
     let { data, error } = await supabaseClient
         .from('posts')
-        .select("date, title, body, tag, image_urls")
+        .select("post_id, date, title, body, tag, image_urls")
         .order('date', { ascending: false });
 
     // Handle the error if the request fails 
@@ -16,6 +16,6 @@ export async function GET() {
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    // Return the posts data as JSON response
+    // Return the posts data as JSON response, we use next response ot package the data into the http request sent to the client otherwise we would have to do that ourselves
     return NextResponse.json(data);
 }
