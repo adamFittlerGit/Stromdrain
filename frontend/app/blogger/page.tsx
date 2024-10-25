@@ -2,12 +2,12 @@
 import React, { useState, useRef, ChangeEvent, useTransition } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { supabaseClient } from '@/supabase/client'; // Ensure this is the correct path
 import { useRouter } from 'next/navigation'
 import Image from 'next/image';
 
 
 async function makePost(title: string, tag: string, body: string, images: File[], passcode: string) {
+  console.log(`before api: ${images[0]}`)
   const response = await fetch("/api/makePost", {
       method: "POST",
       headers: {
@@ -33,9 +33,10 @@ const Page = () => {
   const [title, setTitle] = useState('');
   const [tag, setTag] = useState('');
   const [content, setContent] = useState('');
-  const [imageUrls, setImageUrls] = useState<string[]>([]);
-  const [imageFiles, setImageFiles] = useState<File[]>([]);
+  const [imageUrls, setImageUrls] = useState<string[]>([]); // For displaying locally
+  const [imageFiles, setImageFiles] = useState<File[]>([]); // For sending to the supabase storage
   const [passcode, setPasscode] = useState('');
+  const [isImageSelected, setisImageSelected] = useState(false)
 
   // Use router for changes pages
   const router = useRouter()
@@ -58,13 +59,16 @@ const Page = () => {
   // Handling the upload of mutliple files
   const handleUpload = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      const fileArray = Array.from(e.target.files)
+      console.log("sanity")
+      const newImageFiles = Array.from(e.target.files)
       console.log(e.target.files[0])
-      const newImageUrls = fileArray.map((file) => URL.createObjectURL(file))
+      const newImageUrls = newImageFiles.map((file) => URL.createObjectURL(file))
       
       setImageUrls([...imageUrls, ...newImageUrls])
-      setImageFiles([...imageFiles, ...fileArray])
+      setImageFiles([...imageFiles, ...newImageFiles])
       console.log(`imageurls: ${newImageUrls[0]}`)
+      console.log(`imageFiles: ${newImageFiles[0]}`)
+      setisImageSelected(true)
     }
   } 
 
@@ -83,7 +87,7 @@ const Page = () => {
           onChange={handleUpload}
         />
 
-        <Button variant="outlined" onClick={() => {imageInputRef.current?.click()}}>{imageFiles ? "Select Another Image" : "Select Image"}</Button>
+        <Button variant="outlined" onClick={() => {imageInputRef.current?.click()}}>{isImageSelected ? "Select Another Image" : "Select Image"}</Button>
         
         <div className='flex gap-4'>
           

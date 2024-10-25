@@ -25,7 +25,7 @@ async function uploadImage(file: File) {
 export async function POST(request: NextRequest) {
     // Parse the JSON body from the request
     const { title: title, body: content, tag: tag, images: images, passcode: passcode} = await request.json();
-    console.log(passcode)
+    console.log(`after api: ${images[0]}`)
     if (passcode === "7135") {
         // Get specific non user inputted data
         const now = new Date();
