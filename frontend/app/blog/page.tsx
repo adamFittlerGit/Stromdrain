@@ -37,14 +37,14 @@ export default function Home() {
     getData()
   }, [])
   
-  if (!isMounted) return <p>loading...</p>
+  if (!isMounted) return <div>loading...</div>
 
   return (
     <>
       <div className="grid grid-cols-3">
         {posts.map((postProps: any, index: any) => (
           <div key={index} className="col-span-1 p-4 m-4 bg-white rounded">
-            <Link href={`/posts/${postProps.post_id}`}> 
+            <Link href={`/blog/${postProps.post_id}`}> 
                 <Image
                 className=" w-full h-auto"
                 src={
