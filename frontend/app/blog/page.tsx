@@ -6,7 +6,7 @@ import Link from "next/link";
 
 // Need use client to do this convert this back to a use client component and apply the sue effect for the data laoding at the start
 async function fetchPosts() {
-  const response = await fetch("/api/getPosts", {
+  const response = await fetch("/api/getAllPosts", {
     method: "GET",
     headers: {
       Accept: "application/json"
@@ -19,7 +19,9 @@ async function fetchPosts() {
   }
 
   // Parse the JSON data from the response
+  console.log(response)
   const data = await response.json();
+  console.log(data)
   return data;
 }
 

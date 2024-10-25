@@ -10,6 +10,7 @@ export async function GET() {
         .select("post_id, date, title, body, tag, image_urls")
         .order('date', { ascending: false });
 
+    console.log(data)
     // Handle the error if the request fails 
     if (error) {
         console.error("Error fetching posts:", error);
