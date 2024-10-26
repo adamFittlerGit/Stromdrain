@@ -19,9 +19,7 @@ async function fetchPosts() {
   }
 
   // Parse the JSON data from the response
-  console.log(response)
-  const data = await response.json();
-  console.log(data)
+  const data = await response.json()
   return data;
 }
 
@@ -35,7 +33,6 @@ export default function Home() {
       setPosts(posts)
       setIsMounted(true)
     }
-
     getData()
   }, [])
   
@@ -43,27 +40,26 @@ export default function Home() {
 
   return (
     <>
-      <div className="grid grid-cols-3">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
         {posts.map((postProps: any, index: any) => (
           <div key={index} className="col-span-1 p-4 m-4 bg-white rounded">
             <Link href={`/blog/${postProps.post_id}`}> 
                 <Image
-                className=" w-full h-auto"
+                className="justify-self-center p-2"
                 src={
                     postProps.image_urls && 
                     postProps.image_urls.length > 0 && 
                     postProps.image_urls[0] 
                     ? postProps.image_urls[0] 
-                    : "/storm.png"
+                    : "/software-learning.png"
                 } 
-                width={300}
-                height={300}
+                width={100}
+                height={100}
                 alt="Post Image"
                 />
-                <h1 className="text-lg font-bold">{postProps.title}</h1>
-                <p className="text-base italic">{postProps.date}</p>
-                <p className="">[{postProps.tag}]</p>
-                <p className="text-sm">{postProps.body}</p>
+                <h1 className="text-lg font-bold text-center">{postProps.title}</h1>
+                <p className="text-base italic text-center">{postProps.date}</p>
+                <p className="text-center">[{postProps.tag}]</p>
             </Link>
           </div>
         ))}

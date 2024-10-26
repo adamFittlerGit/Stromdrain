@@ -57,15 +57,11 @@ const Page = () => {
   // Handling the upload of mutliple files
   const handleUpload = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      console.log("sanity")
       const newImageFiles = Array.from(e.target.files)
-      console.log(e.target.files[0])
       const newImageUrls = newImageFiles.map((file) => URL.createObjectURL(file))
       
       setImageUrls([...imageUrls, ...newImageUrls])
       setImageFiles([...imageFiles, ...newImageFiles])
-      console.log(`imageurls: ${newImageUrls[0]}`)
-      console.log(`imageFiles: ${newImageFiles[0]}`)
       setisImageSelected(true)
     }
   } 
