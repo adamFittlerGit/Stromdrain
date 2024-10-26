@@ -45,21 +45,14 @@ export default function Home() {
           <div key={index} className="col-span-1 p-4 m-4 bg-white rounded">
             <Link href={`/blog/${postProps.post_id}`}> 
                 <Image
-                className="justify-self-center p-2"
-                src={
-                    postProps.image_urls && 
-                    postProps.image_urls.length > 0 && 
-                    postProps.image_urls[0] 
-                    ? postProps.image_urls[0] 
-                    : "/software-learning.png"
-                } 
-                width={100}
-                height={100}
-                alt="Post Image"
+                  className="justify-self-center p-2"
+                  src={`/${postProps.tag}.png`}
+                  width={100}
+                  height={100}
+                  alt="Post Image"
                 />
                 <h1 className="text-lg font-bold text-center">{postProps.title}</h1>
                 <p className="text-base italic text-center">{postProps.date}</p>
-                <p className="text-center">[{postProps.tag}]</p>
             </Link>
           </div>
         ))}

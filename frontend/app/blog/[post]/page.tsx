@@ -49,23 +49,17 @@ const Post = () => {
   return (
     <div>
       {isMounted && params?.post ? (// create a post type to remove typescript error
-        <div className="grid p-4 mt-4 mr-40 ml-40 bg-white rounded">
+        <div className="grid p-4 m-4 bg-white rounded w-3/4 justify-self-center">
           <Image
-              className="justify-self-center"
-              src={
-                  post.image_urls && 
-                  post.image_urls.length > 0 && 
-                  post.image_urls[0] 
-                  ? post.image_urls[0] 
-                  : "/storm.png"
-              } 
+              className="justify-self-center m-2"
+              src={`/${post.tag}.png`} 
               width={200}
               height={200}
               alt="Post Image"
             />
             <h1 className="text-3xl font-bold text-center">{post.title}</h1>
             <p className="text-xl italic text-center">{post.date}</p>
-            <p className="text-center text-lg italic">[{post.tag}]</p>
+            <br></br>
             <p className="text-center text-lg">{post.body}</p>
         </div>
          // returns an array so need to ensure the useState is set to an empty array to get the typing or typescript will have a hissy fit

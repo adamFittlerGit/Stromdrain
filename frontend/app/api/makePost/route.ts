@@ -22,24 +22,7 @@ async function uploadImage(file: File) {
     return `${supabaseUrl}/storage/v1/object/public/images/${data.path}`
   }
 
-async function getSummary(data: string) {
-    const query = {"inputs": data}
-    const response = await fetch(
-        "https://api-inference.huggingface.co/models/facebook/bart-large-cnn",
-        {
-            headers: {
-                Authorization: "Bearer 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",
-                "Content-Type": "application/json",
-            },
-            method: "POST",
-            body: JSON.stringify(query),
-        }
-    );
-    const result = await response.json();
-    console.log(`result: ${result}`)
-    return result;
-}
-  
+
 
 export async function POST(request: NextRequest) {
     // Parse the JSON body from the request
@@ -51,15 +34,13 @@ export async function POST(request: NextRequest) {
         const date = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
         const user_id = "fbc72f17-b191-48a6-86ab-54ed20be6cf1"; // This should be dynamic later based on the current logged in user
 
-        // Get short summary of input
-        const summary = await getSummary(content);
         // Avoid uploading empty files array
         let image_urls = []
         if (images && images.length > 0) image_urls = await Promise.all(images.map(uploadImage)); // need to specifically check length due to javascript being a trash language with truthy etc
         // Use the supabase client to request the data
         let { data, error } = await supabaseClient
             .from('posts')
-            .insert([{ title: title, date: date, body: content, tag: tag, user_id: user_id, image_urls: image_urls, summary: summary }]); // Use 'content' here
+            .insert([{ title: title, date: date, body: content, tag: tag, user_id: user_id, image_urls: image_urls}]); // Use 'content' here
 
         if (error) {
             console.error("Error fetching posts:", error);
