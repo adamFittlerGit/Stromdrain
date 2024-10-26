@@ -21,7 +21,7 @@ const TopNav = () => {
             </Link>
           </div>
           <div className="flex justify-end col-span-5 items-center">
-            <Link className='px-4 mx-4' href="/blogger">
+            <Link className='px-4' href="/blogger">
                 <Image
                       className=""
                       src="/write.png"
@@ -30,8 +30,24 @@ const TopNav = () => {
                       alt="Post Image"
                 />
               </Link>
-              <Link className='px-4' href="/blog">Blog</Link>
-              <Link className='px-4' href="/projects">Projects</Link>
+              <Link className='px-4' href="/blog">
+                <Image
+                      className=""
+                      src="/blog.png"
+                      width={40}
+                      height={20}
+                      alt="Blog Image"
+                  />
+              </Link>
+              <Link className='px-4' href="/projects">
+                <Image
+                      className=""
+                      src="/projects.png"
+                      width={40}
+                      height={20}
+                      alt="Projects Image"
+                  />
+              </Link>
               <Link className='px-4' href="/about">
                 <Image
                       className=""
