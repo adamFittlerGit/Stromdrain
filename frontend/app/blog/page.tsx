@@ -40,22 +40,26 @@ export default function Home() {
 
   return (
     <>
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-        {posts.map((postProps: any, index: any) => (
-          <div key={index} className="col-span-1 p-4 m-4 bg-white rounded">
-            <Link href={`/blog/${postProps.post_id}`}> 
-                <Image
-                  className="justify-self-center p-2"
-                  src={`/${postProps.tag}.png`}
-                  width={100}
-                  height={100}
-                  alt="Post Image"
-                />
-                <h1 className="text-lg font-bold text-center">{postProps.title}</h1>
-                <p className="text-base italic text-center">{postProps.date}</p>
-            </Link>
-          </div>
-        ))}
+      <div className="w-3/4 justify-self-center">
+        <h1 className="text-5xl font-bold p-4 pt-6">MY BLOG</h1>
+        <p className="font-bold px-4">Description about my blog</p>
+        <div className="grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+          {posts.map((postProps: any, index: any) => (
+            <div key={index} className="col-span-1 p-4 m-4 bg-white rounded">
+              <Link href={`/blog/${postProps.post_id}`}> 
+                  <Image
+                    className="justify-self-center p-2"
+                    src={`/${postProps.tag}.png`}
+                    width={100}
+                    height={100}
+                    alt="Post Image"
+                  />
+                  <h1 className="text-lg font-bold text-center">{postProps.title}</h1>
+                  <p className="text-base italic text-center">{postProps.date}</p>
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

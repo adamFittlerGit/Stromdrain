@@ -67,7 +67,7 @@ const Page = () => {
   } 
 
   return (
-    <div className='bg-white mx-20 mt-5 p-5 rounded'>
+    <div className='bg-white w-3/4 mt-5 p-5 rounded justify-self-center'>
       <form className='space-y-4' onSubmit={handleSubmit}>
         <h2 className='text-3xl '>New Post</h2>
         <input 
