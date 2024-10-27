@@ -3,10 +3,19 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@mui/material'
-import { useState } from 'react'
+import { useState, useEffect} from 'react'
 
 const TopNav = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
+
+  const toggleMenu = () => {
+    if (mobileMenu) {
+      setMobileMenu(false)
+    } else {
+      setMobileMenu(true)
+    }
+  }
+
   return (
     <>
     <div className='w-full bg-[#535860]'>
@@ -108,13 +117,7 @@ const TopNav = () => {
             <h1 className="block sm:hidden text-3xl">STORMED</h1>
 
           </Link>
-          <Button className="px-4 ml-auto" onClick={() => {
-            if (mobileMenu) {
-              setMobileMenu(false)
-            } else {
-              setMobileMenu(true)
-            }
-          }}>
+          <Button className="px-4 ml-auto" onClick={toggleMenu}>
             <Image
               className=""
               src="/menu.png"
@@ -126,10 +129,42 @@ const TopNav = () => {
         </div>
       </div>
       {mobileMenu && (
-        <div className='w-3/4 justify-self-center bg-white p-6'>
-          <p>New Post</p>
-          <p>Blog</p>
-          <p>Projects</p>
+        <div className='w-3/4 justify-self-center bg-white bg-gray-500'>
+          <div className='hover:bg-gray-100'>
+            <Link href="/blogger" onClick={toggleMenu}>
+              <p className='text-lg'>New Post</p>
+            </Link>
+          </div>
+          <div className='hover:bg-gray-100'>
+            <Link href="/blog" onClick={toggleMenu}>
+              <p className='text-lg'>Blog</p>
+            </Link>
+          </div>
+          <div className='hover:bg-gray-100'>
+            <Link href="/history" onClick={toggleMenu}>
+              <p className='text-lg'>Work History</p>
+            </Link>
+          </div>
+          <div className='hover:bg-gray-100'>
+            <Link href="/projects" onClick={toggleMenu}>
+              <p className='text-lg'>My Projects</p>
+            </Link>
+          </div>
+          <div className='hover:bg-gray-100'>
+            <Link href="/habits" onClick={toggleMenu}>
+              <p className='text-lg'>Habit Tracker</p>
+            </Link>
+          </div>
+          <div className='hover:bg-gray-100'>
+            <Link href="/about" onClick={toggleMenu}>
+              <p className='text-lg'>About Me</p>
+            </Link>
+          </div>
+          <div className='hover:bg-gray-100'>
+            <Link href="/contact">
+              <p className='text-lg'>Contact Info</p>
+            </Link>
+          </div>
         </div>
       )}
     </>
