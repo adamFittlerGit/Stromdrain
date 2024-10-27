@@ -3,6 +3,13 @@ import { useParams } from "next/navigation";
 import React, { useEffect, useState } from 'react';
 import Image from "next/image";
 
+type post = {
+  title: string;
+  body: string;
+  tag: string;
+  date: string;  
+};
+
 async function fetchPost(post_id: string) {
   const response = await fetch("/api/getPost", {
     method: "POST",
@@ -30,7 +37,7 @@ async function fetchPost(post_id: string) {
 const Post = () => {
   const params = useParams();
   const [isMounted, setIsMounted] = useState(false);
-  const [post, setPost] = useState([]);
+  const [post, setPost] = useState<post>();
 
   useEffect(() => {
     const getData = async() => {
@@ -52,15 +59,15 @@ const Post = () => {
         <div className="grid p-4 m-4 bg-white rounded w-3/4 justify-self-center">
           <Image
               className="justify-self-center m-2"
-              src={`/${post.tag}.png`} 
+              src={`/${post?.tag}.png`} 
               width={200}
               height={200}
               alt="Post Image"
             />
-            <h1 className="text-3xl font-bold text-center">{post.title}</h1>
-            <p className="text-xl italic text-center">{post.date}</p>
+            <h1 className="text-3xl font-bold text-center">{post?.title}</h1>
+            <p className="text-xl italic text-center">{post?.date}</p>
             <br></br>
-            <p className="text-justify text-lg">{post.body}</p>
+            <p className="text-justify text-lg">{post?.body}</p>
         </div>
          // returns an array so need to ensure the useState is set to an empty array to get the typing or typescript will have a hissy fit
       ) : (
