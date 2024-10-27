@@ -18,8 +18,8 @@ const TopNav = () => {
 
   return (
     <>
-    <div className='w-full bg-[#535860]'>
-      <div className=' w-3/4 hidden xl:flex bg-[#535860] text-xl font-extrabold p-6 justify-self-center'>
+    <div className='w-full bg-gray-500'>
+      <div className=' w-3/4 hidden lg:flex text-xl font-extrabold p-6 justify-self-center'>
           <div className='flex items-center'>
             <Link className='' href="/">
                 <Image
@@ -35,7 +35,7 @@ const TopNav = () => {
             </Link>
           </div>
           <div className="flex ml-auto items-center">
-              <Link className='mx-4 p-1 bg-white rounded' href="/blogger">
+              <Link className='mx-4 p-1 bg-blue-400 rounded' href="/blogger">
                   <Image
                         className=""
                         src="/write.png"
@@ -44,34 +44,34 @@ const TopNav = () => {
                         alt="Post Image"
                   />
               </Link>
-              <Link className='mx-4 p-1 bg-white rounded' href="/blog">
+              <Link className='mx-4 p-1 bg-blue-400 rounded' href="/blog">
                 <Image
                       className=""
-                      src="/blog.png"
+                      src="/myblog.png"
                       width={40}
                       height={20}
                       alt="Blog Image"
                   />
               </Link>
-              <Link className='mx-4 p-1 bg-white rounded' href="/history">
+              <Link className='mx-4 p-1 bg-blue-400 rounded' href="/history">
                 <Image
                       className=""
-                      src="/timeline.png"
+                      src="/milestones.png"
                       width={40}
                       height={20}
                       alt="History Image"
                   />
               </Link>
-              <Link className='mx-4 p-1 bg-white rounded' href="/projects">
+              <Link className='mx-4 p-1 bg-blue-400 rounded' href="/projects">
                 <Image
                       className=""
-                      src="/project.png"
+                      src="/portfolio.png"
                       width={40}
                       height={20}
                       alt="Projects Image"
                   />
               </Link>
-              <Link className='mx-4 p-1 bg-white rounded' href="/habits">
+              <Link className=' hidden mx-4 p-1 bg-white rounded' href="/habits">
                 <Image
                       className=""
                       src="/checklist.png"
@@ -80,19 +80,19 @@ const TopNav = () => {
                       alt="Habit Image"
                   />
               </Link>
-              <Link className='mx-4 p-1 bg-white rounded' href="/about">
+              <Link className='mx-4 p-1 bg-blue-400 rounded' href="/about">
                 <Image
                       className=""
-                      src="/about.png"
+                      src="/hacker.png"
                       width={40}
                       height={20}
                       alt="About Image"
                 />
               </Link>
-              <Link className='mx-4 p-1 bg-white rounded' href="/contact">
+              <Link className='mx-4 p-1 bg-blue-400 rounded' href="/contact">
                 <Image
                       className=""
-                      src="/telephone.png"
+                      src="/telephone-call.png"
                       width={40}
                       height={20}
                       alt="Contact Image"
@@ -101,7 +101,7 @@ const TopNav = () => {
           </div>
       </div>
       </div>
-      <div className='flex w-full xl:hidden bg-[#535860] text-xl font-extrabold p-6 justify-center'>
+      <div className='flex w-full lg:hidden bg-gray-500 text-xl font-extrabold p-6 justify-center'>
         <div className='flex w-3/4 items-center'>
           <Link className='' href="/">
             <Image
@@ -129,40 +129,40 @@ const TopNav = () => {
         </div>
       </div>
       {mobileMenu && (
-        <div className='w-3/4 justify-self-center bg-white bg-gray-500'>
+        <div className='w-3/4 justify-self-center bg-gray-400 text-center font-bold text-lg rounded-b-lg'>
           <div className='hover:bg-gray-100'>
             <Link href="/blogger" onClick={toggleMenu}>
-              <p className='text-lg'>New Post</p>
+              <p>NEW POST</p>
             </Link>
           </div>
           <div className='hover:bg-gray-100'>
             <Link href="/blog" onClick={toggleMenu}>
-              <p className='text-lg'>Blog</p>
+              <p>MY BLOG</p>
             </Link>
           </div>
           <div className='hover:bg-gray-100'>
             <Link href="/history" onClick={toggleMenu}>
-              <p className='text-lg'>Work History</p>
+              <p>WORK HISTORY</p>
             </Link>
           </div>
           <div className='hover:bg-gray-100'>
             <Link href="/projects" onClick={toggleMenu}>
-              <p className='text-lg'>My Projects</p>
+              <p>MY PROJECTS</p>
             </Link>
           </div>
-          <div className='hover:bg-gray-100'>
+          <div className='hidden hover:bg-gray-100'>
             <Link href="/habits" onClick={toggleMenu}>
-              <p className='text-lg'>Habit Tracker</p>
+              <p>HABIT TRACKER</p>
             </Link>
           </div>
           <div className='hover:bg-gray-100'>
             <Link href="/about" onClick={toggleMenu}>
-              <p className='text-lg'>About Me</p>
+              <p>ABOUT ME</p>
             </Link>
           </div>
-          <div className='hover:bg-gray-100'>
+          <div className='hover:bg-gray-100 rounded-b-lg'>
             <Link href="/contact">
-              <p className='text-lg'>Contact Info</p>
+              <p>CONTACT INFO</p>
             </Link>
           </div>
         </div>
