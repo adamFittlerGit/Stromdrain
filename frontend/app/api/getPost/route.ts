@@ -6,14 +6,11 @@ import { NextRequest } from 'next/server';
 // Updated API route
 export async function POST(request: NextRequest) {
     const {post_id: post_id} = await request.json();
-    console.log(`post_id before query: ${post_id}` )
     // Use the supabase client to request the data
     let { data, error } = await supabaseClient
         .from('posts')
         .select("post_id, date, title, body, tag, image_urls")
         .eq("post_id", post_id)
-    console.log(data)
-    console.log(NextResponse.json(data))
     // Handle the error if the request fails 
     if (error) {
         console.error("Error fetching posts:", error);

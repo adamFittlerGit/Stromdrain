@@ -42,7 +42,7 @@ export default function Home() {
     <>
       <div className="w-3/4 justify-self-center">
         <h1 className="text-5xl font-bold p-4 pt-6 text-center">MY BLOG</h1>
-        <p className="font-bold px-4 text-lg hidden sm:block text-hustify">Welcome to my blog! Here, I’ll share a collection of my thoughts, lessons learned, and progress on various projects, university work, and personal interests. You’ll also find code snippets worth remembering, as well as posts about martial arts, fitness, and other topics that I am passionate about!</p>
+        <p className="font-bold px-4 text-lg hidden">Welcome to my blog! Here, I’ll share a collection of my thoughts, lessons learned, and progress on various projects, university work, and personal interests. You’ll also find code snippets worth remembering, as well as posts about martial arts, fitness, and other topics that I am passionate about!</p>
         <div className="grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {posts.map((postProps: any, index: any) => (
             <div key={index} className="col-span-1 p-4 m-4 bg-white rounded">

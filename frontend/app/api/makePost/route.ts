@@ -17,8 +17,6 @@ async function uploadImage(file: File) {
       console.error('Error uploading image:', error);
       return null;
     }
-    console.log(data)
-    console.log(data.path)
     return `${supabaseUrl}/storage/v1/object/public/images/${data.path}`
   }
 
