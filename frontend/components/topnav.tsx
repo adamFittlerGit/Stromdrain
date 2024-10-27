@@ -1,13 +1,17 @@
+'use client'
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@mui/material'
+import { useState } from 'react'
 
 const TopNav = () => {
+  const [mobileMenu, setMobileMenu] = useState(false)
   return (
     <>
-      <div className='hidden lg:grid grid-cols-8 bg-[#535860] text-xl font-extrabold p-6'>
-          <div className='flex justify-start col-span-3 items-center'>
+    <div className='w-full bg-[#535860]'>
+      <div className=' w-3/4 hidden xl:flex bg-[#535860] text-xl font-extrabold p-6 justify-self-center'>
+          <div className='flex items-center'>
             <Link className='' href="/">
                 <Image
                       className=""
@@ -21,7 +25,7 @@ const TopNav = () => {
                 <h1 className='text-3xl'>STORMDRAIN</h1>
             </Link>
           </div>
-          <div className="flex justify-end col-span-5 items-center">
+          <div className="flex ml-auto items-center">
               <Link className='mx-4 p-1 bg-white rounded' href="/blogger">
                   <Image
                         className=""
@@ -87,7 +91,8 @@ const TopNav = () => {
               </Link>
           </div>
       </div>
-      <div className='flex w-full lg:hidden bg-[#535860] text-xl font-extrabold p-6 justify-center'>
+      </div>
+      <div className='flex w-full xl:hidden bg-[#535860] text-xl font-extrabold p-6 justify-center'>
         <div className='flex w-3/4 items-center'>
           <Link className='' href="/">
             <Image
@@ -99,9 +104,17 @@ const TopNav = () => {
             />
           </Link>
           <Link className='px-4' href="/">
-            <h1 className='text-3xl'>STORMDRAIN</h1>
+            <h1 className="hidden sm:block text-3xl">STORMDRAIN</h1>
+            <h1 className="block sm:hidden text-3xl">STORMED</h1>
+
           </Link>
-          <Button className="px-4 ml-auto">
+          <Button className="px-4 ml-auto" onClick={() => {
+            if (mobileMenu) {
+              setMobileMenu(false)
+            } else {
+              setMobileMenu(true)
+            }
+          }}>
             <Image
               className=""
               src="/menu.png"
@@ -112,6 +125,13 @@ const TopNav = () => {
           </Button>
         </div>
       </div>
+      {mobileMenu && (
+        <div className='w-3/4 justify-self-center bg-white p-6'>
+          <p>New Post</p>
+          <p>Blog</p>
+          <p>Projects</p>
+        </div>
+      )}
     </>
   )
 }
