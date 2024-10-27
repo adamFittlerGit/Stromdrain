@@ -103,7 +103,7 @@ const TopNav = () => {
       </div>
       <div className='flex w-full lg:hidden bg-gray-500 text-xl font-extrabold p-6 justify-center'>
         <div className='flex w-3/4 items-center'>
-          <Link className='' href="/">
+          <Link className='hidden sm:block' href="/">
             <Image
               className=""
               src="/storm-drain.png"
