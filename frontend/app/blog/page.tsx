@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 // Need use client to do this convert this back to a use client component and apply the sue effect for the data laoding at the start
 async function fetchPosts() {
@@ -27,6 +28,7 @@ async function fetchPosts() {
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
   const [posts, setPosts] = useState([])
+  const router = useRouter()
 
   useEffect(() => {
     const getData = async () => {
@@ -35,6 +37,8 @@ export default function Home() {
     }
     getData()
     setIsMounted(true)
+
+    router.refresh(); //to ensure it actually refreshes each time to handle new posts and not cache as aggressively in prod
   }, [])
   
   if (!isMounted) return <div>loading...</div>
