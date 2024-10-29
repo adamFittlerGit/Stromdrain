@@ -31,7 +31,7 @@ const TopNav = () => {
                 />
             </Link>
             <Link className='px-4' href="/">
-                <h1 className='text-3xl'>STORMDRAIN</h1>
+                <h1 className='text-3xl'>STORM-DRAIN</h1>
             </Link>
           </div>
           <div className="flex ml-auto items-center">
