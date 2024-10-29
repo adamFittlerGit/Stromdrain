@@ -117,7 +117,7 @@ const TopNav = () => {
             <h1 className="block sm:hidden text-3xl">STORMED</h1>
 
           </Link>
-          <Button className="px-4 ml-auto" onClick={toggleMenu}>
+          <button className="px-4 ml-auto" onClick={toggleMenu}>
             <Image
               className=""
               src="/menu.png"
@@ -125,7 +125,7 @@ const TopNav = () => {
               height={20}
               alt="Menu Image"
             />
-          </Button>
+          </button>
         </div>
       </div>
       {mobileMenu && (
