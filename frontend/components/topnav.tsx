@@ -162,7 +162,7 @@ const TopNav = () => {
               </Link>
             </div>
             <div className='hover:bg-gray-100 rounded-b-lg'>
-              <Link href="/contact">
+              <Link href="/contact" onClick={toggleMenu}>
                 <p>CONTACT INFO</p>
               </Link>
             </div>
