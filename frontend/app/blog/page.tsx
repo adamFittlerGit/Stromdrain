@@ -10,7 +10,8 @@ async function fetchPosts() {
     method: "GET",
     headers: {
       Accept: "application/json"
-    }
+    },
+    cache: "no-store" // Ensures no caching of the data
   });
 
   // Handle error
