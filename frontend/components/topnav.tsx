@@ -47,7 +47,7 @@ const TopNav = () => {
               <Link className='mx-4 p-1 bg-blue-400 rounded' href="/blog">
                 <Image
                       className=""
-                      src="/myblog.png"
+                      src="/blog.png"
                       width={40}
                       height={20}
                       alt="Blog Image"
