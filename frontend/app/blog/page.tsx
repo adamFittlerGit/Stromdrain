@@ -45,21 +45,23 @@ export default function Home() {
   if (!isMounted) return <div>loading...</div>
 
   return (
-    <>
-      <div className="w-3/4 justify-self-center">
+    <div className="flex justify-center">
+      <div className="w-3/4">
         <h1 className="text-5xl font-bold p-4 pt-6 text-center">MY BLOG</h1>
         <p className="font-bold px-4 text-lg hidden">Welcome to my blog! Here, I’ll share a collection of my thoughts, lessons learned, and progress on various projects, university work, and personal interests. You’ll also find code snippets worth remembering, as well as posts about martial arts, fitness, and other topics that I am passionate about!</p>
         <div className="grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {posts.map((postProps: any, index: any) => (
             <div key={index} className="col-span-1 p-4 m-4 bg-white rounded">
               <Link href={`/blog/${postProps.post_id}`}> 
+                <div className="flex justify-center">
                   <Image
-                    className="justify-self-center p-2"
+                    className="p-2"
                     src={`/${postProps.tag}.png`}
                     width={100}
                     height={100}
                     alt="Post Image"
                   />
+                </div>
                   <h1 className="text-lg font-bold text-center">{postProps.title}</h1>
                   <p className="text-base italic text-center">{postProps.date}</p>
               </Link>
@@ -67,6 +69,6 @@ export default function Home() {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }

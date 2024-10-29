@@ -67,79 +67,81 @@ const Page = () => {
   } 
 
   return (
-    <div className='bg-white w-3/4 mt-5 p-5 rounded justify-self-center'>
-      <form className='space-y-4' onSubmit={handleSubmit}>
-        <h2 className='text-3xl '>New Post</h2>
-        <input 
-          hidden
-          ref = {imageInputRef}
-          type="file" 
-          id="image_uploads"
-          name="image_uploads"
-          accept=".jpg, .jpeg, .png"
-          multiple
-          onChange={handleUpload}
-        />
+    <div className='flex justify-center'>
+      <div className='bg-white w-3/4 mt-5 p-5 rounded'>
+        <form className='space-y-4' onSubmit={handleSubmit}>
+          <h2 className='text-3xl '>New Post</h2>
+          <input 
+            hidden
+            ref = {imageInputRef}
+            type="file" 
+            id="image_uploads"
+            name="image_uploads"
+            accept=".jpg, .jpeg, .png"
+            multiple
+            onChange={handleUpload}
+          />
 
-        <Button variant="outlined" onClick={() => {imageInputRef.current?.click()}}>{isImageSelected ? "Select Another Image" : "Select Image"}</Button>
-        
-        <div className='flex gap-4'>
+          <Button variant="outlined" onClick={() => {imageInputRef.current?.click()}}>{isImageSelected ? "Select Another Image" : "Select Image"}</Button>
           
-          {imageUrls.map((url, index) => (
+          <div className='flex gap-4'>
+            
+            {imageUrls.map((url, index) => (
+            
+              <Image
+                key={url}
+                src={url}
+                width={50}
+                height={50}
+                alt={`img-${index}`}
+              />
+            ))}
+          </div>
+
+          <TextField
+            type="text"
+            variant='outlined'
+            color='primary'
+            label="Post Title"
+            onChange={(e) => {setTitle(e.target.value)}} // Capture title input
+            fullWidth
+            required
+          />
           
-            <Image
-              key={url}
-              src={url}
-              width={50}
-              height={50}
-              alt={`img-${index}`}
-            />
-          ))}
-        </div>
+          <TextField
+            type="text"
+            variant='outlined'
+            color='primary'
+            label="Tag"
+            onChange={(e) => {setTag(e.target.value)}} // Capture tag input
+            required
+            fullWidth
+          />
+          
+          <TextField
+            variant='outlined'
+            color='primary'
+            label="Content"
+            onChange={(e) => {setContent(e.target.value)}} // Capture content input
+            fullWidth
+            required
+            multiline
+          />
 
-        <TextField
-          type="text"
-          variant='outlined'
-          color='primary'
-          label="Post Title"
-          onChange={(e) => {setTitle(e.target.value)}} // Capture title input
-          fullWidth
-          required
-        />
-        
-        <TextField
-          type="text"
-          variant='outlined'
-          color='primary'
-          label="Tag"
-          onChange={(e) => {setTag(e.target.value)}} // Capture tag input
-          required
-          fullWidth
-        />
-        
-        <TextField
-          variant='outlined'
-          color='primary'
-          label="Content"
-          onChange={(e) => {setContent(e.target.value)}} // Capture content input
-          fullWidth
-          required
-          multiline
-        />
-
-        <TextField
-          variant='outlined'
-          color='primary'
-          label="Passcode"
-          onChange={(e) => {setPasscode(e.target.value)}} // Capture passcode input
-          fullWidth
-          required
-        />
-        
-        <Button variant="contained" color="primary" type="submit">
-          Post
-        </Button>
-      </form>
+          <TextField
+            variant='outlined'
+            color='primary'
+            label="Passcode"
+            onChange={(e) => {setPasscode(e.target.value)}} // Capture passcode input
+            fullWidth
+            required
+          />
+          
+          <Button variant="contained" color="primary" type="submit">
+            Post
+          </Button>
+        </form>
+      </div>
     </div>
   );
 };

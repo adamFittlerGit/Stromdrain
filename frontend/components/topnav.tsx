@@ -18,8 +18,8 @@ const TopNav = () => {
 
   return (
     <>
-    <div className='w-full bg-gray-500'>
-      <div className=' w-3/4 hidden lg:flex text-xl font-extrabold p-6 justify-self-center'>
+    <div className='flex justify-center w-full bg-gray-500'>
+      <div className=' w-3/4 hidden lg:flex text-xl font-extrabold p-6'>
           <div className='flex items-center'>
             <Link className='' href="/">
                 <Image
@@ -129,41 +129,43 @@ const TopNav = () => {
         </div>
       </div>
       {mobileMenu && (
-        <div className='w-3/4 justify-self-center bg-gray-400 text-center font-bold text-lg rounded-b-lg'>
-          <div className='hover:bg-gray-100'>
-            <Link href="/blogger" onClick={toggleMenu}>
-              <p>NEW POST</p>
-            </Link>
-          </div>
-          <div className='hover:bg-gray-100'>
-            <Link href="/blog" onClick={toggleMenu}>
-              <p>MY BLOG</p>
-            </Link>
-          </div>
-          <div className='hover:bg-gray-100'>
-            <Link href="/history" onClick={toggleMenu}>
-              <p>WORK HISTORY</p>
-            </Link>
-          </div>
-          <div className='hover:bg-gray-100'>
-            <Link href="/projects" onClick={toggleMenu}>
-              <p>MY PROJECTS</p>
-            </Link>
-          </div>
-          <div className='hidden hover:bg-gray-100'>
-            <Link href="/habits" onClick={toggleMenu}>
-              <p>HABIT TRACKER</p>
-            </Link>
-          </div>
-          <div className='hover:bg-gray-100'>
-            <Link href="/about" onClick={toggleMenu}>
-              <p>ABOUT ME</p>
-            </Link>
-          </div>
-          <div className='hover:bg-gray-100 rounded-b-lg'>
-            <Link href="/contact">
-              <p>CONTACT INFO</p>
-            </Link>
+        <div className='flex justify-center'>
+          <div className='w-3/4 bg-gray-400 text-center font-bold text-lg rounded-b-lg'>
+            <div className='hover:bg-gray-100'>
+              <Link href="/blogger" onClick={toggleMenu}>
+                <p>NEW POST</p>
+              </Link>
+            </div>
+            <div className='hover:bg-gray-100'>
+              <Link href="/blog" onClick={toggleMenu}>
+                <p>MY BLOG</p>
+              </Link>
+            </div>
+            <div className='hover:bg-gray-100'>
+              <Link href="/history" onClick={toggleMenu}>
+                <p>WORK HISTORY</p>
+              </Link>
+            </div>
+            <div className='hover:bg-gray-100'>
+              <Link href="/projects" onClick={toggleMenu}>
+                <p>MY PROJECTS</p>
+              </Link>
+            </div>
+            <div className='hidden hover:bg-gray-100'>
+              <Link href="/habits" onClick={toggleMenu}>
+                <p>HABIT TRACKER</p>
+              </Link>
+            </div>
+            <div className='hover:bg-gray-100'>
+              <Link href="/about" onClick={toggleMenu}>
+                <p>ABOUT ME</p>
+              </Link>
+            </div>
+            <div className='hover:bg-gray-100 rounded-b-lg'>
+              <Link href="/contact">
+                <p>CONTACT INFO</p>
+              </Link>
+            </div>
           </div>
         </div>
       )}
