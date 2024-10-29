@@ -124,6 +124,7 @@ const Page = () => {
           onChange={(e) => {setContent(e.target.value)}} // Capture content input
           fullWidth
           required
+          multiline
         />
 
         <TextField

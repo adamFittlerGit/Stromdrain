@@ -67,7 +67,13 @@ const Post = () => {
             <h1 className="text-3xl font-bold text-center">{post?.title}</h1>
             <p className="text-xl italic text-center">{post?.date}</p>
             <br></br>
-            <p className="text-justify text-lg">{post?.body}</p>
+            {post?.body.split('\n').map((line, index) => (
+              <>
+                <p key={index}>{line}</p>
+                <br/>
+              </>
+            ))}
+            
         </div>
          // returns an array so need to ensure the useState is set to an empty array to get the typing or typescript will have a hissy fit
       ) : (

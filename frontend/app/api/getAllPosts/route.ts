@@ -10,7 +10,7 @@ export async function GET() {
         .select("post_id, date, title, body, tag, image_urls")
         .order('date', { ascending: false });
 
-    console.log(data)
+    // Get summaries of the content to put in the blog page summaries for concise posts, actually better if this is done when a post is added and it is stored in the db to make this process better
     // Handle the error if the request fails 
     if (error) {
         console.error("Error fetching posts:", error);
