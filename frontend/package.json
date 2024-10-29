@@ -16,6 +16,7 @@
     "@next/font": "^14.2.15",
     "@react-three/drei": "^9.114.3",
     "@react-three/fiber": "^8.17.10",
+    "@react-three/postprocessing": "^2.16.3",
     "@supabase/supabase-js": "^2.45.6",
     "@types/three": "^0.169.0",
     "dotenv": "^16.4.5",
