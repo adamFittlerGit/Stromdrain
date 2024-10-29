@@ -62,8 +62,8 @@ export default function Home() {
                     alt="Post Image"
                   />
                 </div>
-                  <h1 className="text-lg font-bold text-center">{postProps.title}</h1>
-                  <p className="text-base italic text-center">{postProps.date}</p>
+                  <h1 className="text-lg font-bold text-center text-black">{postProps.title}</h1>
+                  <p className="text-base italic text-center text-black">{postProps.date}</p>
               </Link>
             </div>
           ))}

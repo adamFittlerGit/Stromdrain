@@ -66,12 +66,12 @@ const Post = () => {
                   alt="Post Image"
                 />
             </div>
-            <h1 className="text-3xl font-bold text-center">{post?.title}</h1>
-            <p className="text-xl italic text-center">{post?.date}</p>
+            <h1 className="text-3xl font-bold text-center text-black">{post?.title}</h1>
+            <p className="text-xl italic text-center text-black">{post?.date}</p>
             <br></br>
             {post?.body.split('\n').map((line, index) => (
               <>
-                <p key={index}>{line}</p>
+                <p key={index} className="text-black">{line}</p>
                 <br/>
               </>
             ))}
