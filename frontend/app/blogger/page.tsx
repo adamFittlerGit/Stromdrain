@@ -70,7 +70,7 @@ const Page = () => {
     <div className='flex justify-center'>
       <div className='bg-white w-3/4 mt-5 p-5 rounded'>
         <form className='space-y-4' onSubmit={handleSubmit}>
-          <h2 className='text-3xl '>New Post</h2>
+          <h2 className='text-3xl text-black'>New Post</h2>
           <input 
             hidden
             ref = {imageInputRef}
