@@ -68,7 +68,7 @@ const Page = () => {
 
   return (
     <div className='flex justify-center'>
-      <div className='bg-white w-3/4 mt-5 p-5 rounded'>
+      <div className='bg-white w-3/4 mt-5 p-5 mb-5 rounded'>
         <form className='space-y-4' onSubmit={handleSubmit}>
           <h2 className='text-3xl text-black'>New Post</h2>
           <input 
