@@ -20,3 +20,5 @@ export async function GET() {
     // Return the posts data as JSON response, we use next response ot package the data into the http request sent to the client otherwise we would have to do that ourselves
     return NextResponse.json(data);
 }
+
+export const revalidate = 0; // to avoid caching and get new data each time
