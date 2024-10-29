@@ -12,7 +12,8 @@ async function fetchPosts() {
     headers: {
       Accept: "application/json"
     },
-    cache: "no-store" // Ensures no caching of the data
+    next: {revalidate: 0}
+     // Ensures no caching of the data
   });
 
   // Handle error
