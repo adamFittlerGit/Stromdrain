@@ -113,8 +113,8 @@ const TopNav = () => {
             />
           </Link>
           <Link className='px-4' href="/">
-            <h1 className="hidden sm:block text-3xl">STORMDRAIN</h1>
-            <h1 className="block sm:hidden text-3xl">STORMED</h1>
+            <h1 className="hidden sm:block text-3xl">STORM-DRAIN</h1>
+            <h1 className="block sm:hidden text-3xl">STORM-D</h1>
 
           </Link>
           <button className="px-4 ml-auto" onClick={toggleMenu}>
