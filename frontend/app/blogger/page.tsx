@@ -48,7 +48,7 @@ const Page = () => {
 
     try {
         await makePost(title, tag, content, imageFiles, passcode); // Await the makePost function
-        router.push("/blog"); // Redirect only after the post has been made
+        router.push("/diary"); // Redirect only after the post has been made
     } catch (error) {
         console.error("Error making post:", error);
     }

@@ -65,7 +65,7 @@ const TopNav = () => {
               <Link className='mx-4 p-1 bg-blue-400 rounded' href="/history">
                 <Image
                       className=""
-                      src="/history.png"
+                      src="/roadmap.png"
                       width={40}
                       height={20}
                       alt="History Image"
@@ -74,7 +74,7 @@ const TopNav = () => {
               <Link className='mx-4 p-1 bg-blue-400 rounded' href="/projects">
                 <Image
                       className=""
-                      src="/portfolio.png"
+                      src="/coding-projects.png"
                       width={40}
                       height={20}
                       alt="Projects Image"
@@ -137,8 +137,13 @@ const TopNav = () => {
               </Link>
             </div>
             <div className='hover:bg-gray-100'>
-              <Link href="/blog" onClick={toggleMenu}>
-                <p>MY BLOG</p>
+              <Link href="/diary" onClick={toggleMenu}>
+                <p>STORM'S DIARY</p>
+              </Link>
+            </div>
+            <div className='hover:bg-gray-100'>
+              <Link href="/habits" onClick={toggleMenu}>
+                <p>HABIT TRACKER</p>
               </Link>
             </div>
             <div className='hover:bg-gray-100'>
@@ -149,11 +154,6 @@ const TopNav = () => {
             <div className='hover:bg-gray-100'>
               <Link href="/projects" onClick={toggleMenu}>
                 <p>MY PROJECTS</p>
-              </Link>
-            </div>
-            <div className='hidden hover:bg-gray-100'>
-              <Link href="/habits" onClick={toggleMenu}>
-                <p>HABIT TRACKER</p>
               </Link>
             </div>
             <div className='hover:bg-gray-100'>
