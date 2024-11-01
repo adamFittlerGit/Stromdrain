@@ -21,4 +21,4 @@ export async function GET() {
     return NextResponse.json(data);
 }
 
-export const revalidate = 0; // to avoid caching and get new data each time
+export const revalidate = 0; // to avoid caching and get new data each time THIS IS IT!!!!!!! we fixed it whoop

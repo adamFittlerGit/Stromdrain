@@ -44,19 +44,28 @@ const TopNav = () => {
                         alt="Post Image"
                   />
               </Link>
-              <Link className='mx-4 p-1 bg-blue-400 rounded' href="/blog">
+              <Link className='mx-4 p-1 bg-blue-400 rounded' href="/diary">
                 <Image
                       className=""
-                      src="/blog.png"
+                      src="/diary.png"
                       width={40}
                       height={20}
-                      alt="Blog Image"
+                      alt="Diary Image"
+                  />
+              </Link>
+              <Link className='mx-4 p-1 bg-blue-400 rounded' href="/habits">
+                <Image
+                      className=""
+                      src="/habits.png"
+                      width={40}
+                      height={20}
+                      alt="Habit Image"
                   />
               </Link>
               <Link className='mx-4 p-1 bg-blue-400 rounded' href="/history">
                 <Image
                       className=""
-                      src="/milestones.png"
+                      src="/history.png"
                       width={40}
                       height={20}
                       alt="History Image"
@@ -71,19 +80,10 @@ const TopNav = () => {
                       alt="Projects Image"
                   />
               </Link>
-              <Link className=' hidden mx-4 p-1 bg-white rounded' href="/habits">
-                <Image
-                      className=""
-                      src="/checklist.png"
-                      width={40}
-                      height={20}
-                      alt="Habit Image"
-                  />
-              </Link>
               <Link className='mx-4 p-1 bg-blue-400 rounded' href="/about">
                 <Image
                       className=""
-                      src="/hacker.png"
+                      src="/me.png"
                       width={40}
                       height={20}
                       alt="About Image"
@@ -92,7 +92,7 @@ const TopNav = () => {
               <Link className='mx-4 p-1 bg-blue-400 rounded' href="/contact">
                 <Image
                       className=""
-                      src="/telephone-call.png"
+                      src="/contact.png"
                       width={40}
                       height={20}
                       alt="Contact Image"
@@ -130,7 +130,7 @@ const TopNav = () => {
       </div>
       {mobileMenu && (
         <div className='flex justify-center'>
-          <div className='w-3/4 bg-gray-400 text-center font-bold text-lg rounded-b-lg'>
+          <div className='w-3/4 bg-gray-400 text-center font-bold text-lg rounded-b-lg z-50'>
             <div className='hover:bg-gray-100'>
               <Link href="/blogger" onClick={toggleMenu}>
                 <p>NEW POST</p>
