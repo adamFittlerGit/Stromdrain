@@ -48,8 +48,7 @@ export default function Home() {
   return (
     <div className="flex justify-center">
       <div className="w-3/4">
-        <h1 className="text-5xl font-bold p-4 pt-6 text-center">STORM'S DIARY</h1>
-        <p className="font-bold px-4 text-lg hidden">Welcome to my blog! Here, I’ll share a collection of my thoughts, lessons learned, and progress on various projects, university work, and personal interests. You’ll also find code snippets worth remembering, as well as posts about martial arts, fitness, and other topics that I am passionate about!</p>
+        <h1 className="text-5xl font-bold pt-6 pb-12 text-center">STORM'S DIARY</h1>
         <div className="flex justify-center text-center">
           <select className="mx-1 rounded p-1 text-center text-black" id="tags" name="tags" onChange={(e) => {
             setTagType(e.target.value)
