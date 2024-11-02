@@ -23,7 +23,7 @@ function Stormdrain() {
   const ref = useRef()
 
   useFrame((state, delta) => {
-    ref.current.rotation.y += 0
+    ref.current.rotation.y += delta
   })
 
   function getRandomPointInCircle(radius) {
@@ -43,15 +43,13 @@ function Stormdrain() {
   // Initialize droplets once
   useEffect(() => {
     const newDropletList = [];
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 3000; i++) {
       const { y, z } = getRandomPointInCircle(0.2);
-      let x_pos 
+      let x_pos = (Math.random() * 0.3) + 1
       let y_pos = 1.5 + y;
       if (Math.random() < 0.5) {
-        x_pos = 1;
         y_pos = 1.5 + y
       } else {
-        x_pos= 1;
         y_pos = 0.5 + y
       }
       const z_pos = z;
@@ -63,7 +61,7 @@ function Stormdrain() {
   return (
     <group ref={ref} rotation={[0, -Math.PI / 8, 0]}>
       <Drain/>
-      {droplets.length === 20 && droplets.map((droplet) => {
+      {droplets.length != 0 && droplets.map((droplet) => {
         return (
           <WaterDroplet x_start={droplet.x_pos} y_start={droplet.y_pos} z_start={droplet.z_pos}/>
         )
@@ -108,10 +106,25 @@ function Drain() {
 function WaterDroplet({x_start, y_start, z_start}) {
   const ref = useRef()
 
+   // Initialize the velocity variable
+  const [yVelocity, setYVelocity] = useState(0); 
+
   useFrame((state, delta) => {
-    ref.current.position.x += delta 
-    ref.current.position.y -= delta
-  })
+    if (ref.current.position.y > -0.5) {
+      // Update x position for horizontal movement
+      ref.current.position.x +=  3 * delta;
+
+      // Update y position and apply gravity-like acceleration
+      ref.current.position.y += yVelocity * delta;
+      setYVelocity((prevVelocity) => prevVelocity - 9.8 * delta); // Simulate gravity
+
+    } else {
+      // Reset droplet position and velocity once it goes below the threshold
+      ref.current.position.x = x_start;
+      ref.current.position.y = y_start;
+      setYVelocity(0); // Reset velocity for a new drop
+    }
+  });
 
   return (
     <>
