@@ -13,7 +13,7 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
       screens: {
-        'lg': '1120px',
+        'lg': '1330px',
         'sm': '560px'
         // => @media (min-width: 992px) { ... }
       },

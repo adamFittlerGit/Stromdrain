@@ -47,7 +47,7 @@ const TopNav = () => {
               <Link className='mx-4 p-1 bg-blue-400 rounded' href="/diary">
                 <Image
                       className=""
-                      src="/diary.png"
+                      src="/my-diary.png"
                       width={40}
                       height={20}
                       alt="Diary Image"
@@ -74,10 +74,19 @@ const TopNav = () => {
               <Link className='mx-4 p-1 bg-blue-400 rounded' href="/projects">
                 <Image
                       className=""
-                      src="/coding-projects.png"
+                      src="/briefcase.png"
                       width={40}
                       height={20}
                       alt="Projects Image"
+                  />
+              </Link>
+              <Link className='mx-4 p-1 bg-blue-400 rounded' href="/readings">
+                <Image
+                      className=""
+                      src="/reading-list.png"
+                      width={40}
+                      height={20}
+                      alt="Reading Image"
                   />
               </Link>
               <Link className='mx-4 p-1 bg-blue-400 rounded' href="/about">
@@ -103,7 +112,7 @@ const TopNav = () => {
       </div>
       <div className='flex w-full lg:hidden bg-gray-500 text-xl font-extrabold p-6 justify-center'>
         <div className='flex w-3/4 items-center'>
-          <Link className='hidden sm:block' href="/">
+          <Link className='block' href="/">
             <Image
               className=""
               src="/storm-drain.png"
@@ -114,8 +123,6 @@ const TopNav = () => {
           </Link>
           <Link className='px-4' href="/">
             <h1 className="hidden sm:block text-3xl">STORM-DRAIN</h1>
-            <h1 className="block sm:hidden text-3xl">STORM-D</h1>
-
           </Link>
           <button className="px-4 ml-auto" onClick={toggleMenu}>
             <Image
