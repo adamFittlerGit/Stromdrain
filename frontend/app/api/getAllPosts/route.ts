@@ -16,6 +16,14 @@ export async function POST(request: NextRequest) {
             .select("post_id, date, title, body, tag, image_urls")
             .order('date', { ascending: false })
         );
+    } else if (tag === "software-engineering") {
+        // Fetch posts filtered by the specific tag wrap it in () to ensure it does an assignment expression not a block
+        ({ data, error } = await supabaseClient
+            .from('posts')
+            .select("post_id, date, title, body, tag, image_urls")
+            .order('date', { ascending: false })
+            .in('tag', ['frontend-learning', 'backend-learning', 'cloud-learning', 'machine-learning', 'azure-data-engineer'])
+        );
     } else {
         // Fetch posts filtered by the specific tag wrap it in () to ensure it does an assignment expression not a block
         ({ data, error } = await supabaseClient
