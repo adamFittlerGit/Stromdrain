@@ -1,10 +1,7 @@
 'use client';
 import * as THREE from 'three';
-import { useMemo, useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Trail, Float, Line, Sphere, Stars } from '@react-three/drei';
-import { EffectComposer, Bloom } from '@react-three/postprocessing';
-import { Water } from 'three/examples/jsm/Addons.js';
 
 export default function App() {
   return (

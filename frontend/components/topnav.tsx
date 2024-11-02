@@ -35,7 +35,7 @@ const TopNav = () => {
             </Link>
           </div>
           <div className="flex ml-auto items-center">
-              <Link className='mx-4 p-1 bg-blue-400 rounded' href="/blogger">
+              <Link className='mx-4 p-1 bg-blue-400 rounded' href="/new">
                   <Image
                         className=""
                         src="/write.png"
