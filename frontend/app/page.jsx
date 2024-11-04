@@ -107,7 +107,7 @@ function WaterDroplet({x_start, y_start, z_start}) {
   const [yVelocity, setYVelocity] = useState(0); 
 
   useFrame((state, delta) => {
-    if (ref.current.position.y > -0.5) {
+    if (ref.current.position.y > -0.1) {
       // Update x position for horizontal movement
       ref.current.position.x +=  3 * delta;
 
