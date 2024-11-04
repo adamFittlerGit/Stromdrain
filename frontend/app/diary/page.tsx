@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 // Need use client to do this convert this back to a use client component and apply the sue effect for the data laoding at the start
 async function fetchPosts(tagType: string) {
@@ -31,6 +33,16 @@ export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
   const [posts, setPosts] = useState([])
   const [tagType, setTagType] = useState("all")
+  const skeletons = [];
+
+  // Create 20 instances of the component
+  for (let i = 0; i < 20; i++) {
+    skeletons.push(
+      <div key={i} className="flex justify-center col-span-1 p-4 m-4 bg-gray-600 rounded h-[200px] opacity-80">
+        <div className="bg-gray-500 w-3/4 h-[90px] my-2 opacity-50"></div>
+      </div>
+    );
+  }
 
   useEffect(() => {
     const getData = async () => {
@@ -42,8 +54,6 @@ export default function Home() {
 
   }, [tagType])
   
-  
-  if (!isMounted) return <div>loading...</div>
 
   return (
     <div className="flex justify-center">
@@ -64,7 +74,7 @@ export default function Home() {
           </select>
         </div>
         <div className="grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-          {posts.map((postProps: any, index: any) => (
+          {isMounted ? posts.map((postProps: any, index: any) => (
             <div key={index} className="col-span-1 p-4 m-4 bg-white rounded">
               <Link href={`/diary/${postProps.post_id}`}> 
                 <div className="flex justify-center">
@@ -80,7 +90,7 @@ export default function Home() {
                   <p className="text-base italic text-center text-black">{postProps.date}</p>
               </Link>
             </div>
-          ))}
+          )) : skeletons }
         </div>
       </div>
     </div>
