@@ -15,7 +15,7 @@ const TopNav = () => {
   return (
     <>
     <div className='flex justify-center w-full bg-gray-500'>
-      <div className=' w-3/4 hidden lg:flex text-xl font-extrabold p-6'>
+      <div className=' w-3/4 hidden text-xl font-extrabold p-6'>
           <div className='flex items-center'>
             <Link className='' href="/">
                 <Image
@@ -106,7 +106,7 @@ const TopNav = () => {
           </div>
       </div>
       </div>
-      <div className='flex w-full lg:hidden bg-gray-500 text-xl font-extrabold p-6 justify-center'>
+      <div className='flex w-full bg-gray-500 text-xl font-extrabold p-6 justify-center'>
         <div className='flex w-3/4 items-center'>
           <Link className='block' href="/">
             <Image
@@ -133,7 +133,7 @@ const TopNav = () => {
         </div>
       </div>
       {mobileMenu && (
-        <div className='flex lg:hidden justify-center'>
+        <div className='flex justify-center'>
           <div className='flex w-3/4 justify-end'>
             <div className='absolute z-50 bg-gray-500 text-center font-bold text-lg rounded-b-lg opacity-90' >
               <div className='hover:bg-gray-100 p-1 hover:text-black text-white'>
