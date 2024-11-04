@@ -31,7 +31,7 @@ const TopNav = () => {
             </Link>
           </div>
           <div className="flex ml-auto items-center">
-              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-[#d9dcdb]' href="/new">
+              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-gray-300' href="/new">
                   <Image
                         className=""
                         src="/write.png"
@@ -40,7 +40,7 @@ const TopNav = () => {
                         alt="Post Image"
                   />
               </Link>
-              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-[#d9dcdb]' href="/diary">
+              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-gray-300' href="/diary">
                 <Image
                       className=""
                       src="/my-diary.png"
@@ -49,7 +49,7 @@ const TopNav = () => {
                       alt="Diary Image"
                   />
               </Link>
-              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-[#d9dcdb]' href="/habits">
+              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-gray-300' href="/habits">
                 <Image
                       className=""
                       src="/habits.png"
@@ -58,7 +58,7 @@ const TopNav = () => {
                       alt="Habit Image"
                   />
               </Link>
-              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-[#d9dcdb]' href="/history">
+              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-gray-300' href="/history">
                 <Image
                       className=""
                       src="/roadmap.png"
@@ -67,7 +67,7 @@ const TopNav = () => {
                       alt="History Image"
                   />
               </Link>
-              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-[#d9dcdb]' href="/projects">
+              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-gray-300' href="/projects">
                 <Image
                       className=""
                       src="/briefcase.png"
@@ -76,7 +76,7 @@ const TopNav = () => {
                       alt="Projects Image"
                   />
               </Link>
-              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-[#d9dcdb]' href="/readings">
+              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-gray-300' href="/readings">
                 <Image
                       className=""
                       src="/reading-list.png"
@@ -85,7 +85,7 @@ const TopNav = () => {
                       alt="Reading Image"
                   />
               </Link>
-              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-[#d9dcdb]' href="/about">
+              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-gray-300' href="/about">
                 <Image
                       className=""
                       src="/me.png"
@@ -94,7 +94,7 @@ const TopNav = () => {
                       alt="About Image"
                 />
               </Link>
-              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-[#d9dcdb]' href="/contact">
+              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-gray-300' href="/contact">
                 <Image
                       className=""
                       src="/contact.png"

@@ -35,7 +35,7 @@ export default function Home() {
   const [tagType, setTagType] = useState("all")
   const skeletons = [];
 
-  // Create 20 instances of the component
+  // Create 20 instances of the component, cheeky way of making skeletons in react if not using map make them here.
   for (let i = 0; i < 20; i++) {
     skeletons.push(
       <div key={i} className="flex justify-center col-span-1 p-4 m-4 bg-gray-600 rounded h-[200px] opacity-80">
@@ -75,7 +75,7 @@ export default function Home() {
         </div>
         <div className="grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {isMounted ? posts.map((postProps: any, index: any) => (
-            <div key={index} className="col-span-1 p-4 m-4 bg-white rounded">
+            <div key={index} className="col-span-1 p-4 m-4 bg-gray-300 rounded hover:bg-white">
               <Link href={`/diary/${postProps.post_id}`}> 
                 <div className="flex justify-center">
                   <Image
