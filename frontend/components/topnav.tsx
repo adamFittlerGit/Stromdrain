@@ -9,11 +9,7 @@ const TopNav = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
 
   const toggleMenu = () => {
-    if (mobileMenu) {
-      setMobileMenu(false)
-    } else {
-      setMobileMenu(true)
-    }
+    setMobileMenu(prev => !prev) // optimised and cleaner code to do the same thing!
   }
 
   return (
@@ -127,7 +123,7 @@ const TopNav = () => {
           <button className="px-4 ml-auto" onClick={toggleMenu}>
             <Image
               className=""
-              src="/menu.png"
+              src= {mobileMenu ? "/closed.png" : "/menu.png"}
               width={40}
               height={20}
               alt="Menu Image"
@@ -137,41 +133,104 @@ const TopNav = () => {
       </div>
       {mobileMenu && (
         <div className='flex justify-center'>
-          <div className='w-3/4 bg-gray-400 text-center font-bold text-lg rounded-b-lg z-50'>
-            <div className='hover:bg-gray-100'>
-              <Link href="/blogger" onClick={toggleMenu}>
-                <p>NEW POST</p>
-              </Link>
-            </div>
-            <div className='hover:bg-gray-100'>
-              <Link href="/diary" onClick={toggleMenu}>
-                <p>STORM'S DIARY</p>
-              </Link>
-            </div>
-            <div className='hover:bg-gray-100'>
-              <Link href="/habits" onClick={toggleMenu}>
-                <p>HABIT TRACKER</p>
-              </Link>
-            </div>
-            <div className='hover:bg-gray-100'>
-              <Link href="/history" onClick={toggleMenu}>
-                <p>WORK HISTORY</p>
-              </Link>
-            </div>
-            <div className='hover:bg-gray-100'>
-              <Link href="/projects" onClick={toggleMenu}>
-                <p>MY PROJECTS</p>
-              </Link>
-            </div>
-            <div className='hover:bg-gray-100'>
-              <Link href="/about" onClick={toggleMenu}>
-                <p>ABOUT ME</p>
-              </Link>
-            </div>
-            <div className='hover:bg-gray-100 rounded-b-lg'>
-              <Link href="/contact" onClick={toggleMenu}>
-                <p>CONTACT INFO</p>
-              </Link>
+          <div className='flex w-3/4 justify-end'>
+            <div className='absolute z-50 bg-gray-400 text-center font-bold text-lg rounded-b-lg opacity-90' >
+              <div className='hover:bg-gray-100 px-1'>
+                <Link className="flex items-center" href="/new" onClick={toggleMenu}>
+                  <Image
+                        className="px-1 m-1"
+                        src="/write.png"
+                        width={40}
+                        height={20}
+                        alt="Post Image"
+                  />
+                  <p>NEW POST</p>
+                </Link>
+              </div>
+              <div className='hover:bg-gray-100 px-1'>
+                <Link className="flex items-center" href="/diary" onClick={toggleMenu}>
+                  <Image
+                        className="px-1 m-1"
+                        src="/my-diary.png"
+                        width={40}
+                        height={20}
+                        alt="Diary Image"
+                    />
+                  <p>DIARY</p>
+                </Link>
+              </div>
+              <div className='hover:bg-gray-100 px-1'>
+                <Link className="flex items-center" href="/habits" onClick={toggleMenu}>
+                  <Image
+                        className="px-1 m-1"
+                        src="/habits.png"
+                        width={40}
+                        height={20}
+                        alt="Habit Image"
+                  />
+                  <p>HABITS</p>
+                </Link>
+              </div>
+              <div className='hover:bg-gray-100 px-1 py-1'>
+                <Link className="flex items-center" href="/history" onClick={toggleMenu}>
+                  <Image
+                          className="px-1 m-1"
+                          src="/roadmap.png"
+                          width={40}
+                          height={20}
+                          alt="History Image"
+                      />
+                  <p>HISTORY</p>
+                </Link>
+              </div>
+              <div className='hover:bg-gray-100 px-1'>
+                <Link className="flex items-center" href="/projects" onClick={toggleMenu}>
+                <Image
+                        className="px-1 m-1"
+                        src="/briefcase.png"
+                        width={40}
+                        height={20}
+                        alt="Projects Image"
+                  />
+                  <p>PROJECTS</p>
+                </Link>
+              </div>
+              <div className='hover:bg-gray-100 px-1'>
+                <Link className="flex items-center" href="/readings" onClick={toggleMenu}>
+                <Image
+                        className="px-1 m-1"
+                        src="/reading-list.png"
+                        width={40}
+                        height={20}
+                        alt="Readings Image"
+                  />
+                  <p>READINGS</p>
+                </Link>
+              </div>
+              <div className='hover:bg-gray-100 px-1 py-1'>
+                <Link className="flex items-center" href="/about" onClick={toggleMenu}>
+                  <Image
+                          className="px-1 m-1"
+                          src="/me.png"
+                          width={40}
+                          height={30}
+                          alt="About Image"
+                  />
+                  <p>ABOUT ME</p>
+                </Link>
+              </div>
+              <div className='hover:bg-gray-100 rounded-b-lg px-1 pt-1'>
+                <Link className="flex items-center" href="/contact" onClick={toggleMenu}>
+                <Image
+                        className="px-1 m-1"
+                        src="/contact.png"
+                        width={40}
+                        height={30}
+                        alt="Contact Image"
+                  />
+                  <p>CONTACT</p>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
