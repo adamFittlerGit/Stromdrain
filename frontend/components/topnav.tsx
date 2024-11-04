@@ -133,7 +133,7 @@ const TopNav = () => {
         </div>
       </div>
       {mobileMenu && (
-        <div className='flex justify-center'>
+        <div className='flex lg:hidden justify-center'>
           <div className='flex w-3/4 justify-end'>
             <div className='absolute z-50 bg-gray-400 text-center font-bold text-lg rounded-b-lg opacity-90' >
               <div className='hover:bg-gray-100 p-1'>
