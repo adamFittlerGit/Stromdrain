@@ -27,7 +27,7 @@ const TopNav = () => {
                 />
             </Link>
             <Link className='px-4' href="/">
-                <h1 className='text-3xl'>STORM-DRAIN</h1>
+                <h1 className='text-3xl text-white'>STORM-DRAIN</h1>
             </Link>
           </div>
           <div className="flex ml-auto items-center">
@@ -118,8 +118,8 @@ const TopNav = () => {
             />
           </Link>
           <Link className='px-4' href="/">
-            <h1 className="hidden sm:block text-3xl">STORM-DRAIN</h1>
-            <h1 className="block sm:hidden text-3xl">STORMED</h1>
+            <h1 className="hidden sm:block text-3xl text-white">STORM-DRAIN</h1>
+            <h1 className="block sm:hidden text-3xl text-white">STORMED</h1>
           </Link>
           <button className="px-4 ml-auto" onClick={toggleMenu}>
             <Image
@@ -135,8 +135,8 @@ const TopNav = () => {
       {mobileMenu && (
         <div className='flex lg:hidden justify-center'>
           <div className='flex w-3/4 justify-end'>
-            <div className='absolute z-50 bg-gray-400 text-center font-bold text-lg rounded-b-lg opacity-90' >
-              <div className='hover:bg-gray-100 p-1'>
+            <div className='absolute z-50 bg-gray-500 text-center font-bold text-lg rounded-b-lg opacity-90' >
+              <div className='hover:bg-gray-100 p-1 hover:text-black text-white'>
                 <Link className="flex items-center m-1" href="/new" onClick={toggleMenu}>
                   <Image
                         className="pr-1 mr-2"
@@ -148,7 +148,7 @@ const TopNav = () => {
                   <p>NEW POST</p>
                 </Link>
               </div>
-              <div className='hover:bg-gray-100 p-1'>
+              <div className='hover:bg-gray-100 p-1 hover:text-black text-white'>
                 <Link className="flex items-center m-1" href="/diary" onClick={toggleMenu}>
                   <Image
                         className="pr-1 mr-2"
@@ -160,7 +160,7 @@ const TopNav = () => {
                   <p className=''>DIARY</p>
                 </Link>
               </div>
-              <div className='hover:bg-gray-100 p-1'>
+              <div className='hover:bg-gray-100 p-1 hover:text-black text-white'>
                 <Link className="flex items-center m-1" href="/habits" onClick={toggleMenu}>
                   <Image
                         className="pr-1 mr-2"
@@ -172,7 +172,7 @@ const TopNav = () => {
                   <p>HABITS</p>
                 </Link>
               </div>
-              <div className='hover:bg-gray-100 p-1'>
+              <div className='hover:bg-gray-100 p-1 hover:text-black text-white'>
                 <Link className="flex items-center m-1" href="/history" onClick={toggleMenu}>
                   <Image
                           className="pr-1 mr-2"
@@ -184,7 +184,7 @@ const TopNav = () => {
                   <p>HISTORY</p>
                 </Link>
               </div>
-              <div className='hover:bg-gray-100 p-1'>
+              <div className='hover:bg-gray-100 p-1 hover:text-black text-white'>
                 <Link className="flex items-center m-1" href="/projects" onClick={toggleMenu}>
                 <Image
                         className="pr-1 mr-2"
@@ -196,7 +196,7 @@ const TopNav = () => {
                   <p>PROJECTS</p>
                 </Link>
               </div>
-              <div className='hover:bg-gray-100 p-1'>
+              <div className='hover:bg-gray-100 p-1 hover:text-black text-white'>
                 <Link className="flex items-center m-1" href="/readings" onClick={toggleMenu}>
                 <Image
                         className="pr-1 mr-2"
@@ -208,7 +208,7 @@ const TopNav = () => {
                   <p>READINGS</p>
                 </Link>
               </div>
-              <div className='hover:bg-gray-100 p-1'>
+              <div className='hover:bg-gray-100 p-1 hover:text-black text-white'>
                 <Link className="flex items-center m-1" href="/about" onClick={toggleMenu}>
                   <Image
                           className="pr-1 mr-2"
@@ -220,7 +220,7 @@ const TopNav = () => {
                   <p>ABOUT ME</p>
                 </Link>
               </div>
-              <div className='hover:bg-gray-100 rounded-b-lg p-1'>
+              <div className='hover:bg-gray-100 rounded-b-lg p-1 hover:text-black text-white' >
                 <Link className="flex items-center m-1 mt-0" href="/contact" onClick={toggleMenu}>
                 <Image
                         className="pr-1 mr-2"
