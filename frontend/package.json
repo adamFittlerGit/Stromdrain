@@ -24,6 +24,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-loading-skeleton": "^3.5.0",
+    "react-parallax-tilt": "^1.7.252",
     "supabase": "^1.207.9",
     "three": "^0.169.0",
     "three-js": "^79.0.0"

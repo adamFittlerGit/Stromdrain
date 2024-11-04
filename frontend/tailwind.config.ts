@@ -17,6 +17,9 @@ const config: Config = {
         'sm': '560px'
         // => @media (min-width: 992px) { ... }
       },
+      width: {
+        '128': '32rem',
+      }
     },
   },
   plugins: [],

@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import Tilt from 'react-parallax-tilt';
 
 // Need use client to do this convert this back to a use client component and apply the sue effect for the data laoding at the start
 async function fetchPosts(tagType: string) {
@@ -75,21 +75,23 @@ export default function Home() {
         </div>
         <div className="grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {isMounted ? posts.map((postProps: any, index: any) => (
-            <div key={index} className="col-span-1 p-4 m-4 bg-gray-300 rounded hover:bg-white">
-              <Link href={`/diary/${postProps.post_id}`}> 
-                <div className="flex justify-center">
-                  <Image
-                    className="p-2"
-                    src={`/${postProps.tag}.png`}
-                    width={100}
-                    height={100}
-                    alt="Post Image"
-                  />
-                </div>
-                  <h1 className="text-lg font-bold text-center text-black">{postProps.title}</h1>
-                  <p className="text-base italic text-center text-black">{postProps.date}</p>
-              </Link>
-            </div>
+            <Tilt>
+              <div key={index} className="col-span-1 p-4 m-4 bg-white rounded hover:border-sky-400 border-2 border-black h-5/6">
+                <Link href={`/diary/${postProps.post_id}`}> 
+                  <div className="flex justify-center">
+                    <Image
+                      className="p-2"
+                      src={`/${postProps.tag}.png`}
+                      width={100}
+                      height={100}
+                      alt="Post Image"
+                    />
+                  </div>
+                    <h1 className="text-lg font-bold text-center text-black">{postProps.title}</h1>
+                    <p className="text-base italic text-center text-black">{postProps.date}</p>
+                </Link>
+              </div>
+            </Tilt>
           )) : skeletons }
         </div>
       </div>

@@ -56,7 +56,7 @@ const Post = () => {
   return (
     <div className="flex justify-center">
       {isMounted && params?.post ? (// create a post type to remove typescript error
-        <div className="grid p-4 m-4 bg-gray-300 rounded w-3/4 r">
+        <div className="grid p-4 m-4 bg-white border-2 border-black hover:border-sky-400  rounded  w-3/4 sm:w-128 ">
             <div className="flex justify-center">
               <Image
                   className="m-2"
