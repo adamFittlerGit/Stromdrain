@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/navigation'
 import Image from 'next/image';
+import Link from 'next/link';
 
 async function makePost(title: string, tag: string, body: string, images: File[], passcode: string) {
   const response = await fetch("/api/makePost", {
@@ -141,6 +142,15 @@ const Page = () => {
             Post
           </Button>
         </form>
+        <br></br>
+        <Link href="/diary">
+              <Image
+                src="/back-button.png"
+                alt="back-button"
+                width={30}
+                height={30}
+              />
+        </Link>
       </div>
     </div>
   );
