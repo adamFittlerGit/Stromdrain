@@ -32,7 +32,7 @@ async function fetchPosts(tagType: string) {
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
   const [posts, setPosts] = useState([])
-  const [tagType, setTagType] = useState("all")
+  const [tagType, setTagType] = useState("software-engineering")
   const skeletons = [];
 
   // Create 20 instances of the component, cheeky way of making skeletons in react if not using map make them here.
@@ -65,7 +65,7 @@ export default function Home() {
           }}>
             <option className="text-center text-black" value="all">All Tags</option>
             <option className="text-center text-black" value="university">University</option>
-            <option className="text-center text-black" value="software-engineering">Software Engineering</option>
+            <option className="text-center text-black" value="software-engineering" selected>Software Engineering</option>
             <option className="text-center text-black" value="project-progress">Project Progress</option>
             <option className="text-center text-black" value="fitness">Fitness</option>
             <option className="text-center text-black" value="martial-arts">Martial Arts</option>

@@ -1,8 +1,8 @@
 'use client'
+
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Button } from '@mui/material'
 import { useState, useEffect} from 'react'
 
 const TopNav = () => {
@@ -12,11 +12,16 @@ const TopNav = () => {
     setMobileMenu(prev => !prev) // optimised and cleaner code to do the same thing!
   }
 
+  const closeMenu = () => {
+    setMobileMenu(false)
+    console.log(mobileMenu)
+  }
+
   return (
     <>
     <div className='flex justify-center w-full bg-gray-500'>
       <div className=' w-3/4 hidden text-xl font-extrabold p-6'>
-          <div className='flex items-center'>
+          <div className='flex items-center' >
             <Link className='' href="/">
                 <Image
                       className=""
@@ -26,7 +31,7 @@ const TopNav = () => {
                       alt="Post Image"
                 />
             </Link>
-            <Link className='px-4' href="/">
+            <Link className='px-4' href="/" onClick={closeMenu}>
                 <h1 className='text-3xl text-white'>STORM-DRAIN</h1>
             </Link>
           </div>
