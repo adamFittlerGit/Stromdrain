@@ -2,6 +2,7 @@
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from 'react';
 import Image from "next/image";
+import Link from "next/link";
 
 type post = {
   title: string;
@@ -76,6 +77,14 @@ const Post = () => {
                 <br/>
               </>
             ))}
+            <Link href="/diary">
+              <Image
+                src="/back-button.png"
+                alt="back-button"
+                width={30}
+                height={30}
+              />
+            </Link>
             
         </div> 
       ) : ( //Adding in the page skeleton here
