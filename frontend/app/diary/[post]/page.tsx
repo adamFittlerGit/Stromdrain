@@ -81,7 +81,7 @@ const Post = () => {
       ) : ( //Adding in the page skeleton here
         <div className="">
           <div className="flex justify-center p-4 m-4 bg-gray-600 rounded opacity-80  w-80 sm:w-128 h-132">
-            <div className="bg-gray-500 w-2/3 h-64 my-2 opacity-50"></div>
+            <div className="bg-gray-500 w-2/3 h-64 sm:h-48 my-2 opacity-50"></div>
           </div>    
         </div> 
       )}
