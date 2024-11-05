@@ -19,98 +19,6 @@ const TopNav = () => {
 
   return (
     <>
-    <div className='flex justify-center w-full bg-gray-500'>
-      <div className=' w-3/4 hidden text-xl font-extrabold p-6'>
-          <div className='flex items-center' >
-            <Link className='' href="/">
-                <Image
-                      className=""
-                      src="/storm-drain.png"
-                      width={40}
-                      height={20}
-                      alt="Post Image"
-                />
-            </Link>
-            <Link className='px-4' href="/" onClick={closeMenu}>
-                <h1 className='text-3xl text-white'>STORM-DRAIN</h1>
-            </Link>
-          </div>
-          <div className="flex ml-auto items-center">
-              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-gray-300' href="/new">
-                  <Image
-                        className=""
-                        src="/write.png"
-                        width={40}
-                        height={20}
-                        alt="Post Image"
-                  />
-              </Link>
-              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-gray-300' href="/diary">
-                <Image
-                      className=""
-                      src="/my-diary.png"
-                      width={40}
-                      height={20}
-                      alt="Diary Image"
-                  />
-              </Link>
-              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-gray-300' href="/habits">
-                <Image
-                      className=""
-                      src="/habits.png"
-                      width={40}
-                      height={20}
-                      alt="Habit Image"
-                  />
-              </Link>
-              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-gray-300' href="/history">
-                <Image
-                      className=""
-                      src="/roadmap.png"
-                      width={40}
-                      height={20}
-                      alt="History Image"
-                  />
-              </Link>
-              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-gray-300' href="/projects">
-                <Image
-                      className=""
-                      src="/briefcase.png"
-                      width={40}
-                      height={20}
-                      alt="Projects Image"
-                  />
-              </Link>
-              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-gray-300' href="/readings">
-                <Image
-                      className=""
-                      src="/reading-list.png"
-                      width={40}
-                      height={20}
-                      alt="Reading Image"
-                  />
-              </Link>
-              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-gray-300' href="/about">
-                <Image
-                      className=""
-                      src="/me.png"
-                      width={40}
-                      height={20}
-                      alt="About Image"
-                />
-              </Link>
-              <Link className='mx-4 p-1 hover:bg-blue-400 rounded bg-gray-300' href="/contact">
-                <Image
-                      className=""
-                      src="/contact.png"
-                      width={40}
-                      height={20}
-                      alt="Contact Image"
-                />
-              </Link>
-          </div>
-      </div>
-      </div>
       <div className='flex w-full bg-gray-500 text-xl font-extrabold p-6 justify-center'>
         <div className='flex w-3/4 items-center'>
           <Link className='block' href="/">
@@ -141,7 +49,7 @@ const TopNav = () => {
         <div className='flex justify-center'>
           <div className='flex w-3/4 justify-end'>
             <div className='absolute z-50 bg-gray-500 text-center font-bold text-lg rounded-b-lg opacity-90' >
-              <div className='hover:bg-gray-100 p-1 hover:text-black text-white'>
+              <div className='hidden hover:bg-gray-100 p-1 hover:text-black text-white'>
                 <Link className="flex items-center m-1" href="/new" onClick={toggleMenu}>
                   <Image
                         className="pr-1 mr-2"

@@ -59,6 +59,20 @@ export default function Home() {
     <div className="flex justify-center">
       <div className="w-3/4">
         <h1 className="text-5xl font-bold pt-6 pb-12 text-center text-white">MY DIARY</h1>
+        <div className="flex justify-center">
+          <button>
+            <Link className="flex items-center mb-6 justify-center font-bold text-white" href="/new">
+                <Image
+                    className="pr-1 mr-2"
+                    src="/write.png"
+                    width={40}
+                    height={20}
+                    alt="Post Image"
+                />
+                <p>NEW POST</p>
+            </Link>
+          </button>
+        </div>
         <div className="flex justify-center text-center">
           <select className="mx-1 rounded p-1 text-center text-black" id="tags" name="tags" onChange={(e) => {
             setTagType(e.target.value)
