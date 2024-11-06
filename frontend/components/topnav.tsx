@@ -49,16 +49,16 @@ const TopNav = () => {
         <div className='flex justify-center'>
           <div className='flex w-3/4 justify-end'>
             <div className='absolute z-50 bg-gray-500 text-center font-bold text-lg rounded-b-lg opacity-90' >
-              <div className='hidden hover:bg-gray-100 p-1 hover:text-black text-white'>
-                <Link className="flex items-center m-1" href="/new" onClick={toggleMenu}>
+              <div className='hover:bg-gray-100 p-1 hover:text-black text-white'>
+                <Link className="flex items-center m-1" href="/stormai" onClick={toggleMenu}>
                   <Image
                         className="pr-1 mr-2"
-                        src="/write.png"
+                        src="/storm-ai.png"
                         width={40}
                         height={20}
-                        alt="Post Image"
+                        alt="Habit Image"
                   />
-                  <p>NEW POST</p>
+                  <p>STORM AI</p>
                 </Link>
               </div>
               <div className='hover:bg-gray-100 p-1 hover:text-black text-white'>
