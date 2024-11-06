@@ -40,6 +40,7 @@ const Post = () => {
   const params = useParams();
   const [isMounted, setIsMounted] = useState(false);
   const [post, setPost] = useState<post>();
+  const [summary, setSummary] = useState("");
   const [showSummary, setShowSummary] = useState(false)
 
   useEffect(() => {
@@ -62,12 +63,13 @@ const Post = () => {
       {isMounted && params?.post ? (// create a post type to remove typescript error
         <div className="grid p-4 m-4 bg-white border-2 border-black rounded  w-3/4 sm:w-128 ">
             <div >
-              <button className="border-2 border-black rounded-full p-1 bg-gray-500 hover:border-sky-400">
+              <button className="border-2 border-black rounded-full p-1 bg-gray-300 hover:bg-sky-400">
                 <Image
-                  src="/storm-ai.png"
-                  alt="Storm AI Logo"
+                  src={`/${showSummary ? "me" : "storm-ai"}.png`}
+                  alt="Logo"
                   width={30}
                   height={30}
+                  onClick={() => {setShowSummary(!showSummary)}}
                 />
               </button>
             </div>
@@ -101,20 +103,34 @@ const Post = () => {
                 />
             </div>
             <div className="text-black flex items-center justify-center my-2">
-            <Image
-                  src="/me.png"
+              <Image
+                  src={`/${showSummary ? "storm-ai" : "me"}.png`}
                   alt="Me Logo"
                   width={60}
                   height={60}
-                   // Ensures the image keeps its size
-            />
+              />
             </div>
-            {post?.body.split('\n').map((line, index) => (
-              <>
-                <p key={index} className="text-black">{line}</p>
-                <br/>
-              </>
-            ))}
+            {showSummary ? (
+              <TypeAnimation 
+                  sequence={[
+                    "Here is an example summary of the text within this post for the user to checkout if they have less time", 
+                  ]}
+                  cursor={true}
+                  repeat={1}
+                  speed={80}
+                  className="p-2 m-2"
+              />
+            ) : (
+              <div className="p-2 mx-2 mb-2">
+                {post?.body.split('\n').map((line, index) => (
+                  <>
+                    <p key={index} className="text-black">{line}</p>
+                    <br/>
+                  </>
+                ))}
+              </div>
+            )}
+          
             <Link href="/diary">
               <Image
                 src="/back-button.png"

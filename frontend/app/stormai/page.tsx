@@ -59,7 +59,7 @@ export default function Home() {
               />
               <TypeAnimation 
                   sequence={[
-                    "What can I help with today?", 
+                    "What can I help with?", 
                   ]}
                   cursor={true}
                   repeat={1}
@@ -74,21 +74,15 @@ export default function Home() {
             }}
             className="w-full"
           >
-            <div className="grid grid-cols-8">
+            <div className="flex justify-center items-center">
               <input
                 value={queries[-1]}
                 onChange={(e) => setQueries(e.target.value)} // Update query as user types
                 placeholder="What would you like to learn?"
-                className="col-span-8 sm:col-span-7 bg-gray-200 rounded-lg p-3 border-2 border-black"
+                className="bg-gray-200 rounded-lg p-3 border-2 border-black w-2/3 sm:w-96"
               />
-              <button type="submit" className="hover:bg-sky-400 bg-gray-500 ml-2 p-2 text-white h-full rounded-lg col-span-1 border-black border-2 hidden sm:block">
+              <button type="submit" className="hover:bg-sky-400 bg-gray-500 ml-2 p-3 text-white h-full rounded-lg border-black border-2">
                 Ask
-              </button>
-            </div>
-            <br></br>
-            <div className="flex justify-center">
-              <button type="submit" className="bg-gray-500 ml-2 p-2 text-white h-full rounded-lg col-span-1 border-black border-2 block sm:hidden hover:bg-sky-400">
-                  Ask
               </button>
             </div>
           </form>
