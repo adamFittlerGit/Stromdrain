@@ -81,7 +81,7 @@ export default function Home() {
                 placeholder="What would you like to learn?"
                 className="col-span-8 sm:col-span-7 bg-gray-200 rounded-lg p-3 border-2 border-black"
               />
-              <button type="submit" className="bg-gray-500 ml-2 p-2 text-white h-full rounded-lg col-span-1 border-black border-2 hidden sm:block">
+              <button type="submit" className="hover:bg-sky-400 bg-gray-500 ml-2 p-2 text-white h-full rounded-lg col-span-1 border-black border-2 hidden sm:block">
                 Ask
               </button>
             </div>
