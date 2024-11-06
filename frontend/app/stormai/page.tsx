@@ -87,7 +87,7 @@ export default function Home() {
           </div>
           <br></br>
           <div className="flex justify-center">
-            <button type="submit" className="bg-gray-500 ml-2 p-2 text-white h-full rounded-lg col-span-1 border-black border-2 block sm:hidden">
+            <button type="submit" className="bg-gray-500 ml-2 p-2 text-white h-full rounded-lg col-span-1 border-black border-2 block sm:hidden hover:bg-sky-400">
                 Ask
             </button>
           </div>
