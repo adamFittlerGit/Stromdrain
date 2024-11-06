@@ -28,7 +28,7 @@ export default function Home() {
 
   return (
     <div className="items-center justify-items-center min-h-screen p-2 mt-5">
-      <main className="flex flex-col gap-8 row-start-2 items-center w-1/3">
+      <main className="flex flex-col gap-8 row-start-2 items-center w-3/4 sm:w-128">
         {response && (
             <div className="flex items-start">
               <Image
@@ -64,7 +64,7 @@ export default function Home() {
                 cursor={true}
                 repeat={1}
                 className="text-2xl font-bold p-2 m-2 text-white"
-              />
+            />
           </div>
         )}
         <form
@@ -79,10 +79,16 @@ export default function Home() {
               value={query}
               onChange={(e) => setQuery(e.target.value)} // Update query as user types
               placeholder="What would you like to learn?"
-              className="col-span-7 bg-gray-200 rounded-lg p-3 border-2 border-black"
+              className="col-span-8 sm:col-span-7 bg-gray-200 rounded-lg p-3 border-2 border-black"
             />
-            <button type="submit" className="bg-gray-500 ml-2 p-2 text-white h-full rounded-lg col-span-1 border-black border-2">
+            <button type="submit" className="bg-gray-500 ml-2 p-2 text-white h-full rounded-lg col-span-1 border-black border-2 hidden sm:block">
               Ask
+            </button>
+          </div>
+          <br></br>
+          <div className="flex justify-center">
+            <button type="submit" className="bg-gray-500 ml-2 p-2 text-white h-full rounded-lg col-span-1 border-black border-2 block sm:hidden">
+                Ask
             </button>
           </div>
         </form>
