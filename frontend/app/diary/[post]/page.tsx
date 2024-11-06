@@ -62,66 +62,42 @@ const Post = () => {
     <div className="flex justify-center">
       {isMounted && params?.post ? (// create a post type to remove typescript error
         <div className="grid p-4 m-4 bg-white border-2 border-black rounded  w-3/4 sm:w-128 ">
-            <div >
-              <button className="border-2 border-black rounded-full p-1 bg-gray-300 hover:bg-sky-400">
-                <Image
-                  src={`/${showSummary ? "me" : "storm-ai"}.png`}
-                  alt="Logo"
-                  width={30}
-                  height={30}
-                  onClick={() => {setShowSummary(!showSummary)}}
-                />
-              </button>
-            </div>
-            <div className="flex justify-center">
+          <div className="flex justify-start absolute z-50 opacity-50">
+            <button className={`border-2 border-black rounded-full p-1 bg-gray-300 ${!showSummary ? "hover:bg-sky-400": ""}`}>
               <Image
-                  className="m-2"
-                  src={`/${post?.tag}.png`} 
-                  width={200}
-                  height={200}
-                  alt="Post Image"
-                />
-            </div>
+                src={`/${showSummary ? post?.tag : "storm-ai"}.png`}
+                alt="Logo"
+                width={30}
+                height={30}
+                onClick={() => {setShowSummary(!showSummary)}}
+              />
+            </button>
+          </div>
+          <div className="px-10">
             <h1 className="text-3xl font-bold text-center text-black">{post?.title}</h1>
             <p className="text-xl italic text-center text-black">{post?.date}</p>
             <br></br>
-            <div className=" hidden text-black inline-flex items-center justify-center">
-                <Image
-                  src="/storm-ai.png"
-                  alt="Storm AI Logo"
-                  width={30}
-                  height={30}
-                  className="flex-shrink-0" // Ensures the image keeps its size
-                />
-                <TypeAnimation 
-                  sequence={[
-                    "Would you like a summary?", 
-                  ]}
-                  cursor={true}
-                  repeat={1}
-                  className="text-lg font-bold p-2 m-2"
-                />
-            </div>
             <div className="text-black flex items-center justify-center my-2">
               <Image
-                  src={`/${showSummary ? "storm-ai" : "me"}.png`}
+                  src={`/${showSummary ? "storm-ai" : post?.tag}.png`}
                   alt="Me Logo"
                   width={60}
                   height={60}
               />
             </div>
             {showSummary ? (
-              <TypeAnimation 
-                  sequence={[
-                    "Here is an example summary of the text within this post for the user to checkout if they have less time", 
-                  ]}
-                  cursor={true}
-                  repeat={1}
-                  speed={80}
-                  className="p-2 m-2"
-              />
+              <div className="mb-2">
+                <TypeAnimation 
+                    sequence={[
+                      "Here is an example summary of the text within this post for the user to checkout if they have less time", 
+                    ]}
+                    cursor={true}
+                    repeat={1}
+                    speed={80}
+                />
+              </div>
             ) : (
-              <div className="p-2 mx-2 mb-2">
+              <div className="mb-2">
                 {post?.body.split('\n').map((line, index) => (
                   <>
                     <p key={index} className="text-black">{line}</p>
@@ -130,7 +106,6 @@ const Post = () => {
                 ))}
               </div>
             )}
-          
             <Link href="/diary">
               <Image
                 src="/back-button.png"
@@ -139,7 +114,7 @@ const Post = () => {
                 height={30}
               />
             </Link>
-            
+          </div>
         </div> 
       ) : ( //Adding in the page skeleton here
         <div className="">

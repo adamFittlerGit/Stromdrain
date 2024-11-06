@@ -79,7 +79,7 @@ export default function Home() {
                 value={queries[-1]}
                 onChange={(e) => setQueries(e.target.value)} // Update query as user types
                 placeholder="What would you like to learn?"
-                className="bg-gray-200 rounded-lg p-3 border-2 border-black w-2/3 sm:w-96"
+                className="bg-white rounded-lg p-3 border-2 border-black w-2/3 sm:w-96 hover:border-sky-400"
               />
               <button type="submit" className="hover:bg-sky-400 bg-gray-500 ml-2 p-3 text-white h-full rounded-lg border-black border-2">
                 Ask

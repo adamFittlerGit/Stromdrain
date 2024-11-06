@@ -32,8 +32,9 @@ async function fetchPosts(tagType: string) {
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
   const [posts, setPosts] = useState([])
-  const [tagType, setTagType] = useState("software-engineering")
+  const [tagType, setTagType] = useState("all")
   const skeletons = [];
+  const [query, setQuery] = useState("");
 
   // Create 20 instances of the component, cheeky way of making skeletons in react if not using map make them here.
   for (let i = 0; i < 20; i++) {
@@ -59,9 +60,9 @@ export default function Home() {
     <div className="flex justify-center">
       <div className="w-3/4">
         <h1 className="text-5xl font-bold pt-6 pb-12 text-center text-white">MY DIARY</h1>
-        <div className="flex justify-center">
+        <div className="flex justify-center hidden">
           <button>
-            <Link className="flex items-center mb-6 justify-center font-bold text-white" href="/new">
+            <Link className="flex items-center mb-4 justify-center font-bold text-white" href="/new">
                 <Image
                     className="pr-1 mr-2"
                     src="/write.png"
@@ -73,13 +74,13 @@ export default function Home() {
             </Link>
           </button>
         </div>
-        <div className="flex justify-center text-center">
+        <div className="hidden flex justify-center text-center">
           <select className="mx-1 rounded p-1 text-center text-black" id="tags" name="tags" onChange={(e) => {
             setTagType(e.target.value)
           }}>
-            <option className="text-center text-black" value="all">All Tags</option>
+            <option className="text-center text-black" value="all" selected>All Tags</option>
             <option className="text-center text-black" value="university">University</option>
-            <option className="text-center text-black" value="software-engineering" selected>Software Engineering</option>
+            <option className="text-center text-black" value="software-engineering">Software Engineering</option>
             <option className="text-center text-black" value="project-progress">Project Progress</option>
             <option className="text-center text-black" value="fitness">Fitness</option>
             <option className="text-center text-black" value="martial-arts">Martial Arts</option>
@@ -87,7 +88,39 @@ export default function Home() {
             <option className="text-center text-black" value="thoughts">Thoughts</option>
           </select>
         </div>
+        <div className="flex justify-center items-center my-4">
+          <Image
+              src="/storm-ai.png" // path to the image in the public folder
+              alt="Storm AI Logo"
+              width={50} // Adjust the width
+              height={50} // Adjust the height
+              className="mr-4"
+          />
+          <p className="pr-4 text-3xl fold-bold text-black">:</p>
+          <input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)} // Update query as user types
+            placeholder="Search for a post!"
+            className="bg-white rounded-lg p-3 border-2 border-black w-2/3 sm:w-96 hover:border-sky-400"
+          />
+        </div>
         <div className="grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+          <Tilt>
+              <div  className="flex justify-center items-center col-span-1 p-4 m-4 bg-white rounded hover:border-sky-400 border-2 border-black h-5/6">
+                <Link href="/new"> 
+                  <div className="flex justify-center">
+                    <Image
+                      className="p-2"
+                      src="/write.png"
+                      width={100}
+                      height={100}
+                      alt="Post Image"
+                    />
+                  </div>
+                    <h1 className="text-lg font-bold text-center text-black">New Post</h1>
+                </Link>
+              </div>
+            </Tilt>
           {isMounted ? posts.map((postProps: any, index: any) => (
             <Tilt>
               <div key={index} className="col-span-1 p-4 m-4 bg-white rounded hover:border-sky-400 border-2 border-black h-5/6">
