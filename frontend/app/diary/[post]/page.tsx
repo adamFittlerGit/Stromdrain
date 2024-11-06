@@ -3,6 +3,7 @@ import { useParams } from "next/navigation";
 import React, { useEffect, useState } from 'react';
 import Image from "next/image";
 import Link from "next/link";
+import { TypeAnimation } from 'react-type-animation';
 
 type post = {
   title: string;
@@ -39,6 +40,7 @@ const Post = () => {
   const params = useParams();
   const [isMounted, setIsMounted] = useState(false);
   const [post, setPost] = useState<post>();
+  const [showSummary, setShowSummary] = useState(false)
 
   useEffect(() => {
     const getData = async() => {
@@ -58,7 +60,17 @@ const Post = () => {
   return (
     <div className="flex justify-center">
       {isMounted && params?.post ? (// create a post type to remove typescript error
-        <div className="grid p-4 m-4 bg-white border-2 border-black hover:border-sky-400  rounded  w-3/4 sm:w-128 ">
+        <div className="grid p-4 m-4 bg-white border-2 border-black rounded  w-3/4 sm:w-128 ">
+            <div >
+              <button className="border-2 border-black rounded-full p-1 bg-gray-500 hover:border-sky-400">
+                <Image
+                  src="/storm-ai.png"
+                  alt="Storm AI Logo"
+                  width={30}
+                  height={30}
+                />
+              </button>
+            </div>
             <div className="flex justify-center">
               <Image
                   className="m-2"
@@ -71,6 +83,32 @@ const Post = () => {
             <h1 className="text-3xl font-bold text-center text-black">{post?.title}</h1>
             <p className="text-xl italic text-center text-black">{post?.date}</p>
             <br></br>
+            <div className=" hidden text-black inline-flex items-center justify-center">
+                <Image
+                  src="/storm-ai.png"
+                  alt="Storm AI Logo"
+                  width={30}
+                  height={30}
+                  className="flex-shrink-0" // Ensures the image keeps its size
+                />
+                <TypeAnimation 
+                  sequence={[
+                    "Would you like a summary?", 
+                  ]}
+                  cursor={true}
+                  repeat={1}
+                  className="text-lg font-bold p-2 m-2"
+                />
+            </div>
+            <div className="text-black flex items-center justify-center my-2">
+            <Image
+                  src="/me.png"
+                  alt="Me Logo"
+                  width={60}
+                  height={60}
+                   // Ensures the image keeps its size
+            />
+            </div>
             {post?.body.split('\n').map((line, index) => (
               <>
                 <p key={index} className="text-black">{line}</p>
