@@ -28,7 +28,7 @@ export default function Home() {
 
   return (
     <div className={`flex ${response ? "items-center" : ""} justify-center mt-10 h-screen pb-20`}>
-        <main className="flex items-end flex-col gap-8 row-start-2 items-center w-3/4 sm:w-128">
+        <main className="flex items-end flex-col gap-8 row-start-2 items-center w-full sm:w-128">
           {response && (
               <div className="flex items-start">
                 <Image
@@ -60,7 +60,7 @@ export default function Home() {
               />
               <TypeAnimation 
                   sequence={[
-                    "What can I help with?", 
+                    "How can I help?", 
                   ]}
                   cursor={true}
                   repeat={1}
@@ -79,7 +79,7 @@ export default function Home() {
               <input
                 value={queries[-1]}
                 onChange={(e) => setQueries(e.target.value)} // Update query as user types
-                placeholder="What would you like to learn?"
+                placeholder="Ask me anything?"
                 className="bg-white rounded-lg p-3 border-2 border-black w-2/3 sm:w-96 hover:border-sky-400"
               />
               <button type="submit" className="hover:bg-sky-400 bg-gray-500 ml-2 p-3 text-white h-full rounded-lg border-black border-2">
