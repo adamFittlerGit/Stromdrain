@@ -2,9 +2,11 @@ import React from 'react'
 
 const About = () => {
   return (
-    <>
-    <p>Hello my name is Adam Fittler an aspiring software engineer who loves coding and solving complex and challenging problems.  </p>
-    </>
+    <div className="flex justify-center">
+      <div className="w-3/4">
+        <h1 className="text-5xl font-bold pt-6 pb-12 text-center text-white">About Me</h1>
+      </div>
+    </div>
   )
 }
 

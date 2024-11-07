@@ -2,7 +2,11 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div>reading list</div>
+    <div className="flex justify-center">
+      <div className="w-3/4">
+        <h1 className="text-5xl font-bold pt-6 pb-12 text-center text-white">Reading List</h1>
+      </div>
+    </div>
   )
 }
 
