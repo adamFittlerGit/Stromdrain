@@ -2,21 +2,27 @@
 
 import Tilt from 'react-parallax-tilt';
 
+type Status = {
+  name: string;
+  color: string;
+}
+
 type Project = {
   index: string;
   name: string;
+  status: Status;
   description: string;
   tags: string[];
   image: string;
   source_code_link: string;
 }
 
-const ProjectCard = ({index, name, description, tags, image, source_code_link}: Project) => {
+const ProjectCard = ({index, name, status, description, tags, image, source_code_link}: Project) => {
 
   return (
-    <div >
+    <div key={index}>
       <Tilt
-        className="col-span-1 p-6 bg-white rounded-lg hover:border-sky-400 border-4 border-black h-full"> 
+        className={`col-span-1 p-6 bg-white rounded-lg hover:border-${status.color}-400 border-2 border-black h-full`}> 
         <div className="relative w-full h-[230px]">
           <img 
             src={image}
@@ -38,6 +44,7 @@ const ProjectCard = ({index, name, description, tags, image, source_code_link}: 
         </div>
         <div className="mt-5">
           <h3 className="text-black font-bold text-[24px]">{name}</h3>
+          <h4 className={`text-${status.color}-400 opacity-75`}>{status.name}</h4>
           <p className="mt-2 text-secondary text-[14px] text-black">{description}</p>
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
@@ -54,18 +61,35 @@ const ProjectCard = ({index, name, description, tags, image, source_code_link}: 
 
 
 const page = () => {
+  const completed: Status = {
+    name: "Completed",
+    color: "green"
+  }
+
+  const development: Status = {
+    name: "In Development",
+    color: "orange"
+  }
+
+  const planning: Status = {
+    name: "Planning",
+    color: "gray"
+  }
+
   const fft: Project = {
     index: "001",
     name: "Reef Habitat Visualiser",
+    status: completed,
     description: "Collaborated with Flying Fish Technologies to build a Visualisation of Hawaiian Reef Strips within a team.  My focus on was machine learning and computer vision utilising YOLOv8 and Roboflow. ",
     tags: ["NextJS", "Supabase", "YOLOv8"],
     image: "/fft.png",
-    source_code_link: "https://fft-ai.vercel.app/app",
+    source_code_link: "https://github.com/jarrodmann/DECO3801",
   } 
 
   const OpenStat: Project = {
     index: "002",
     name: "Open Stat",
+    status: development,
     description: "I built a web application that visualises and predicts the future lifts of top powerlifters from around the world leveraging there open source data and api.  I attempted to predict using GradientBoosting but now realise a Seq-2-Seq model would have been much better.",
     tags: ["NextJS", "Supabase", "XGBoost"],
     image: "/openstat.png",
@@ -75,15 +99,17 @@ const page = () => {
   const OASIS: Project = {
     index: "003",
     name: "OASIS StyleGAN2",
+    status: completed,
     description: "Used NVIDIA StyleGAN2 paper to recreate architecture and train on OASIS brain image dataset in order to create realistic generated images of brain scans.  Use of adverseral networks was challenging and I had to learn linux, slurm and training on a HPC.",
     tags: ["Pytorch", "CNN", "GAN"],
     image: "/oasis.png",
-    source_code_link: "https://fft-ai.vercel.app/app",
+    source_code_link: "https://github.com/adamFittlerUQ/PatternAnalysis-2023/tree/topic-recognition/recognition/OASIS-Style-GAN2-s4696807",
   } 
 
   const RAGPaper: Project = {
     index: "004",
     name: "RAG Research",
+    status: completed,
     description: "I performed research with different types of Retrieval Systems and different open source LLM generators from huggingface.  This project exposed me more to utilising AWS compute as well as renting GPUS.  I compared the results using BERT score, METEOR and ROUGE as well as on a per query basis with interesting results. ",
     tags: ["llama", "Huggingface", "AWS"],
     image: "/llama.png",
@@ -93,6 +119,7 @@ const page = () => {
   const thesis: Project = {
     index: "001",
     name: "Multimodal Risk",
+    status: development,
     description: "My goal is to research the use of deep learning models in order to classify and jsutify risk classification from an image.  In order to do this I am leveraging, computer vision models such as YOLOv11 as well as NLP generative models such as llama 3.2.  The goal is to test different technqiues and see what works best.",
     tags: ["llama 3.2", "YOLOv11", "CVAT"],
     image: "/thesis.png",
@@ -102,12 +129,13 @@ const page = () => {
   const MLreport: Project = {
     index: "001",
     name: "ML Report",
+    status: completed,
     description: "I applied a variety of machine learning and feature engineering techniques to a statistical dataset in order to explore and identify possible relationships.  I compared the use of multiple models inclusing Decison Trees, Gradient Boosters as well as Fully Connected Neural Networks in order to see which had the best results on both classification and regression problems for the dataset.",
     tags: ["XGBoost", "Pandas", "Pytorch"],
-    image: "/ml-report.png",
+    image: "/ml.png",
     source_code_link: "https://github.com/adamFittlerGit/DataReport",
   } 
-  const projects: Project[] = [thesis, fft, RAGPaper, OpenStat, OASIS, MLreport]
+  const projects: Project[] = [thesis, OpenStat, fft, RAGPaper, OASIS, MLreport]
 
   return (
     <>

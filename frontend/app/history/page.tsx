@@ -6,9 +6,6 @@ import { useInView } from "react-intersection-observer";
 
 
 const History = () => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-  });
 
   return (
     <>
