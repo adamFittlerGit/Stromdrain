@@ -88,7 +88,7 @@ export default function Home() {
             <option className="text-center text-black" value="thoughts">Thoughts</option>
           </select>
         </div>
-        <div className="flex justify-center items-center my-4">
+        <div className="hidden flex justify-center items-center my-4">
           <Image
               src="/storm-ai.png" // path to the image in the public folder
               alt="Storm AI Logo"
@@ -109,7 +109,7 @@ export default function Home() {
         </div>
         <div className="grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           <Tilt>
-              <div  className="flex justify-center items-center col-span-1 p-4 m-4 bg-white rounded hover:border-sky-400 border-2 border-black h-5/6">
+              <div  className="flex justify-center items-center col-span-1 p-4 m-4 bg-white rounded-lg  h-5/6">
                 <Link href="/new"> 
                   <div className="flex justify-center">
                     <Image
@@ -126,7 +126,7 @@ export default function Home() {
             </Tilt>
           {isMounted ? posts.map((postProps: any, index: any) => (
             <Tilt>
-              <div key={index} className="col-span-1 p-4 m-4 bg-white rounded hover:border-sky-400 border-2 border-black h-5/6">
+              <div key={index} className="col-span-1 p-4 m-4 bg-white rounded-lg hover:border-sky-400 border-2 border-black h-5/6">
                 <Link href={`/diary/${postProps.post_id}`}> 
                   <div className="flex justify-center">
                     <Image

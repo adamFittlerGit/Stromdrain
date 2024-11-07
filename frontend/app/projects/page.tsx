@@ -16,7 +16,7 @@ const ProjectCard = ({index, name, description, tags, image, source_code_link}: 
   return (
     <div >
       <Tilt
-        className="col-span-1 p-6 bg-white rounded hover:border-sky-400 border-2 border-black h-full"> 
+        className="col-span-1 p-6 bg-white rounded-lg hover:border-sky-400 border-4 border-black h-full"> 
         <div className="relative w-full h-[230px]">
           <img 
             src={image}
@@ -105,9 +105,9 @@ const page = () => {
     description: "I applied a variety of machine learning and feature engineering techniques to a statistical dataset in order to explore and identify possible relationships.  I compared the use of multiple models inclusing Decison Trees, Gradient Boosters as well as Fully Connected Neural Networks in order to see which had the best results on both classification and regression problems for the dataset.",
     tags: ["XGBoost", "Pandas", "Pytorch"],
     image: "/ml-report.png",
-    source_code_link: "https://fft-ai.vercel.app/app",
+    source_code_link: "https://github.com/adamFittlerGit/DataReport",
   } 
-  const projects: Project[] = [fft, OpenStat, OASIS, RAGPaper, thesis, MLreport]
+  const projects: Project[] = [thesis, fft, RAGPaper, OpenStat, OASIS, MLreport]
 
   return (
     <>
@@ -117,7 +117,7 @@ const page = () => {
         </div>
       </div>
       <div className='flex justify-center'>
-        <div className="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  m-10 gap-10 w-3/4">
+        <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 m-10 gap-10 w-3/4">
             {projects.map((project, index) => (
               <ProjectCard key={index} {...project} />
             ))}

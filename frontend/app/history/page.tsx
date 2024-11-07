@@ -2,8 +2,13 @@
 
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
+import { useInView } from "react-intersection-observer";
+
 
 const History = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+  });
 
   return (
     <>
@@ -14,7 +19,7 @@ const History = () => {
       </div>
       <div className='flex justify-center'>
         <div>
-          <VerticalTimeline animate={false}>
+          <VerticalTimeline>
             <VerticalTimelineElement
               className="m-10"
               contentArrowStyle={{ borderRight: '7px solid white' }}
