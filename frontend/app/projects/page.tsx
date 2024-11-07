@@ -38,7 +38,7 @@ const ProjectCard = ({index, name, description, tags, image, source_code_link}: 
         </div>
         <div className="mt-5">
           <h3 className="text-black font-bold text-[24px]">{name}</h3>
-          <p className="mt-2 text-secondary text-[14px]">{description}</p>
+          <p className="mt-2 text-secondary text-[14px] text-black">{description}</p>
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
           {tags.map((tag) => (
