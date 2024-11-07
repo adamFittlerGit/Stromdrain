@@ -21,7 +21,7 @@ const History = () => {
               date="August - November 2024"
               dateClassName="mx-4 text-white text-lg"
               iconStyle={{ background: 'gray', color: '#fff' }}
-              icon={<div className='flex justify-center pt-2'><img src="/ul.png" width={50} height={50} className='rounded-lg'/></div>}
+              icon={<div className='flex justify-center pt-1'><img src="/ul.png" width={50} height={50} className='rounded-full'/></div>}
             >
               <h3 className="text-xl">Computer Vision Engineer</h3>
               <h4 className="text-md text-gray-400">Flying Fish Technologies</h4>
@@ -81,7 +81,7 @@ const History = () => {
               date="Feburary 2023 - November 2023"
               dateClassName="mx-4 text-white text-lg"
               iconStyle={{ background: 'gray', color: '#fff' }}
-              icon={<div className='flex justify-center pt-2'><img src="/gyw.png" width={50}  className='rounded-lg'/></div>}
+              icon={<div className='flex justify-center pt-1'><img src="/gyw.png" width={50}  className='rounded-full'/></div>}
             >
               <h3 className="text-xl">Web Developer and Data Entry</h3>
               <h4 className="text-md text-gray-400">Grow Your Wealth</h4>
