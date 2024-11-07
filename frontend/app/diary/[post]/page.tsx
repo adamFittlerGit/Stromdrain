@@ -73,7 +73,7 @@ const Post = () => {
               />
             </button>
           </div>
-          <div className="px-10">
+          <div className="px-12">
             <h1 className="text-3xl font-bold text-center text-black">{post?.title}</h1>
             <p className="text-xl italic text-center text-black">{post?.date}</p>
             <br></br>

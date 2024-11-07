@@ -36,8 +36,9 @@ export default function Home() {
                   alt="Storm AI logo"
                   width={25} // Adjust the width
                   height={25} // Adjust the height
+                  className="mr-2"
                 />
-                <p>:&nbsp;&nbsp;</p> 
+                <p className="text-white">:&nbsp;&nbsp;</p> 
                 <TypeAnimation
                   sequence={[
                     response, 

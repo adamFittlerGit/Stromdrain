@@ -99,7 +99,10 @@ export default function Home() {
           <p className="pr-4 text-3xl fold-bold text-black">:</p>
           <input
             value={query}
-            onChange={(e) => setQuery(e.target.value)} // Update query as user types
+            onChange={(e) => {
+              setQuery(e.target.value)  
+              console.log(query)
+            }} // Update query as user types
             placeholder="Search for a post!"
             className="bg-white rounded-lg p-3 border-2 border-black w-2/3 sm:w-96 hover:border-sky-400"
           />
