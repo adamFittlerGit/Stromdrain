@@ -69,7 +69,7 @@ const page = () => {
     description: "I built a web application that visualises and predicts the future lifts of top powerlifters from around the world leveraging there open source data and api.  I attempted to predict using GradientBoosting but now realise a Seq-2-Seq model would have been much better.",
     tags: ["NextJS", "Supabase", "XGBoost"],
     image: "/openstat.png",
-    source_code_link: "https://fft-ai.vercel.app/app",
+    source_code_link: "https://github.com/adamFittlerGit/OpenStat",
   } 
 
   const OASIS: Project = {
@@ -87,7 +87,7 @@ const page = () => {
     description: "I performed research with different types of Retrieval Systems and different open source LLM generators from huggingface.  This project exposed me more to utilising AWS compute as well as renting GPUS.  I compared the results using BERT score, METEOR and ROUGE as well as on a per query basis with interesting results. ",
     tags: ["llama", "Huggingface", "AWS"],
     image: "/llama.png",
-    source_code_link: "https://fft-ai.vercel.app/app",
+    source_code_link: "https://github.com/adamFittlerGit/RAG-Multihop",
   } 
 
   const thesis: Project = {
@@ -96,7 +96,7 @@ const page = () => {
     description: "My goal is to research the use of deep learning models in order to classify and jsutify risk classification from an image.  In order to do this I am leveraging, computer vision models such as YOLOv11 as well as NLP generative models such as llama 3.2.  The goal is to test different technqiues and see what works best.",
     tags: ["llama 3.2", "YOLOv11", "CVAT"],
     image: "/thesis.png",
-    source_code_link: "https://fft-ai.vercel.app/app",
+    source_code_link: "https://github.com/adamFittlerGit/IDM",
   } 
 
   const MLreport: Project = {
