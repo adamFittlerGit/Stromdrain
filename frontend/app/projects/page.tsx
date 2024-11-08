@@ -111,7 +111,7 @@ const page = () => {
     status: completed,
     description: "I performed research with different types of Retrieval Systems and different open source LLM generators from huggingface.  This project exposed me more to utilising AWS compute as well as renting GPUS.  I compared the results using BERT score, METEOR and ROUGE as well as on a per query basis with interesting results. ",
     tags: ["llama", "Huggingface", "AWS"],
-    image: "/llama.png",
+    image: "/llama3.png",
     source_code_link: "https://github.com/adamFittlerGit/RAG-Multihop",
   } 
 
