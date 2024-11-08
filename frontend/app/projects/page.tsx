@@ -21,7 +21,7 @@ const ProjectCard = ({index, name, status, description, tags, image, source_code
   return (
     <div key={index}>
       <Tilt
-        className={`col-span-1 p-6 bg-white rounded-lg hover:border-${status.color}-400 border-2 border-black h-full`}> 
+        className={`col-span-1 p-6 bg-white rounded-lg  border-2 border-black h-full`}> 
         <div className="relative w-full h-[230px]">
           <img 
             src={image}
@@ -43,7 +43,7 @@ const ProjectCard = ({index, name, status, description, tags, image, source_code
         </div>
         <div className="mt-5">
           <h3 className="text-black font-bold text-[24px]">{name}</h3>
-          <h4 className={`text-${status.color}-400 opacity-75`}>{status.name}</h4>
+          <h4 className={`text-green-400 opacity-75`}>{status.name}</h4>
           <p className="mt-2 text-secondary text-[14px] text-black">{description}</p>
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
