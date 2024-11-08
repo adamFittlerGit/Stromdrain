@@ -1,5 +1,4 @@
 'use client';
-
 import Tilt from 'react-parallax-tilt';
 
 type Status = {
