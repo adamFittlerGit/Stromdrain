@@ -116,8 +116,8 @@ const TopNav = () => {
                   <p>PROJECTS</p>
                 </Link>
               </div>
-              <div className='hidden hover:bg-gray-100 p-1 hover:text-black text-white'>
-                <Link className="flex items-center m-1" href="/readings" onClick={toggleMenu}>
+              <div className='hover:bg-gray-100 p-1 hover:text-black text-white'>
+                <Link className="flex items-center m-1" href="/education" onClick={toggleMenu}>
                 <Image
                         className="pr-1 mr-2"
                         src="/reading-list.png"
@@ -125,7 +125,7 @@ const TopNav = () => {
                         height={20}
                         alt="Readings Image"
                   />
-                  <p>READING</p>
+                  <p>EDUCATION</p>
                 </Link>
               </div>
               <div className='hover:bg-gray-100 rounded-b-lg p-1 hover:text-black text-white' >
