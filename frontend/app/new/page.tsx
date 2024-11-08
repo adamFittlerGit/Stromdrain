@@ -49,7 +49,7 @@ const Page = () => {
 
     try {
         await makePost(title, tag, content, imageFiles, passcode); // Await the makePost function
-        router.push("/diary"); // Redirect only after the post has been made
+        router.push("/blog"); // Redirect only after the post has been made
     } catch (error) {
         console.error("Error making post:", error);
     }
@@ -143,7 +143,7 @@ const Page = () => {
           </Button>
         </form>
         <br></br>
-        <Link href="/diary">
+        <Link href="/blog">
               <Image
                 src="/back-button.png"
                 alt="back-button"

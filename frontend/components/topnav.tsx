@@ -12,11 +12,6 @@ const TopNav = () => {
     setMobileMenu(prev => !prev) // optimised and cleaner code to do the same thing!
   }
 
-  const closeMenu = () => {
-    setMobileMenu(false)
-    console.log(mobileMenu)
-  }
-
   return (
     <>
       <div className='flex w-full bg-gray-500 text-xl font-extrabold p-6 justify-center'>
@@ -50,6 +45,18 @@ const TopNav = () => {
           <div className='flex w-3/4 justify-end'>
             <div className='absolute z-50 bg-gray-500 text-center font-bold text-lg rounded-b-lg opacity-90' >
               <div className='hover:bg-gray-100 p-1 hover:text-black text-white'>
+                <Link className="flex items-center m-1" href="/about" onClick={toggleMenu}>
+                  <Image
+                          className="pr-1 mr-2"
+                          src="/me.png"
+                          width={40}
+                          height={30}
+                          alt="About Image"
+                  />
+                  <p>ABOUT ME</p>
+                </Link>
+              </div>
+              <div className='hidden hover:bg-gray-100 p-1 hover:text-black text-white'>
                 <Link className="flex items-center m-1" href="/stormai" onClick={toggleMenu}>
                   <Image
                         className="pr-1 mr-2"
@@ -62,7 +69,7 @@ const TopNav = () => {
                 </Link>
               </div>
               <div className='hover:bg-gray-100 p-1 hover:text-black text-white'>
-                <Link className="flex items-center m-1" href="/diary" onClick={toggleMenu}>
+                <Link className="flex items-center m-1" href="/blog" onClick={toggleMenu}>
                   <Image
                         className="pr-1 mr-2"
                         src="/my-diary.png"
@@ -70,10 +77,10 @@ const TopNav = () => {
                         height={20}
                         alt="Diary Image"
                     />
-                  <p className=''>DIARY</p>
+                  <p className=''>BLOG</p>
                 </Link>
               </div>
-              <div className='hover:bg-gray-100 p-1 hover:text-black text-white'>
+              <div className='hidden hover:bg-gray-100 p-1 hover:text-black text-white'>
                 <Link className="flex items-center m-1" href="/habits" onClick={toggleMenu}>
                   <Image
                         className="pr-1 mr-2"
@@ -109,7 +116,7 @@ const TopNav = () => {
                   <p>PROJECTS</p>
                 </Link>
               </div>
-              <div className='hover:bg-gray-100 p-1 hover:text-black text-white'>
+              <div className='hidden hover:bg-gray-100 p-1 hover:text-black text-white'>
                 <Link className="flex items-center m-1" href="/readings" onClick={toggleMenu}>
                 <Image
                         className="pr-1 mr-2"
@@ -118,19 +125,7 @@ const TopNav = () => {
                         height={20}
                         alt="Readings Image"
                   />
-                  <p>READINGS</p>
-                </Link>
-              </div>
-              <div className='hover:bg-gray-100 p-1 hover:text-black text-white'>
-                <Link className="flex items-center m-1" href="/about" onClick={toggleMenu}>
-                  <Image
-                          className="pr-1 mr-2"
-                          src="/me.png"
-                          width={40}
-                          height={30}
-                          alt="About Image"
-                  />
-                  <p>ABOUT ME</p>
+                  <p>READING</p>
                 </Link>
               </div>
               <div className='hover:bg-gray-100 rounded-b-lg p-1 hover:text-black text-white' >

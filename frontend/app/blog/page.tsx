@@ -59,7 +59,7 @@ export default function Home() {
   return (
     <div className="flex justify-center">
       <div className="w-3/4">
-        <h1 className="text-5xl font-bold pt-6 pb-12 text-center text-white">MY DIARY</h1>
+        <h1 className="text-5xl font-bold pt-6 pb-12 text-center text-white">MY BLOG</h1>
         <div className="flex justify-center hidden">
           <button>
             <Link className="flex items-center mb-4 justify-center font-bold text-white" href="/new">
@@ -127,7 +127,7 @@ export default function Home() {
           {isMounted ? posts.map((postProps: any, index: any) => (
             <Tilt>
               <div key={index} className="col-span-1 p-4 m-4 bg-white rounded-lg hover:border-sky-400 border-2 border-black h-5/6">
-                <Link href={`/diary/${postProps.post_id}`}> 
+                <Link href={`/blog/${postProps.post_id}`}> 
                   <div className="flex justify-center">
                     <Image
                       className="p-2"

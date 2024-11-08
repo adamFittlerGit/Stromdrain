@@ -106,7 +106,7 @@ const Post = () => {
                 ))}
               </div>
             )}
-            <Link href="/diary">
+            <Link href="/blog">
               <Image
                 src="/back-button.png"
                 alt="back-button"
