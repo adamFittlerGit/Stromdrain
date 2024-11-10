@@ -75,6 +75,26 @@ const page = () => {
     color: "gray"
   }
 
+  const stormai: Project = {
+    index: "001",
+    name: "Storm AI Assistant",
+    status: development,
+    description: "My goal for this project is to create a personal AI assistant without the use of openai's gpt tokens as I want to have this self hosted to reduce the overall cost and give me more understanding of self hositing a ML model for training and inference.  I want it to be able to learn about me and things I am studying using RAG, for example giving it a textbook and It giving me bitsized lessions on it.  I want it to have ongoing memory and be able to learn over time maybe I need a custom datastructure for it to learn and store and then reload from...",
+    tags: ["LLM", "Finetuning", "RAG"],
+    image: "/storm-ai.png",
+    source_code_link: "",
+  } 
+
+  const nvidiaStock: Project = {
+    index: "001",
+    name: "Nvidia Stock Price Forecaster",
+    status: development,
+    description: "This project leverages a transformer-based machine learning model to forecast Nvidia’s stock prices, providing insights into potential future trends. By training on historical stock data and technical indicators, the model predicts future price movements, which are then visualized on the frontend using Three.js. The 3D visualization presents actual versus predicted prices in an interactive format, allowing users to explore how well the model captures market trends over time. This blend of advanced forecasting and interactive visualization offers a unique, engaging way to analyze and understand stock market predictions.",
+    tags: ["Forecasting", "Transformers", "Quant Finance"],
+    image: "/nvidia.png",
+    source_code_link: "",
+  } 
+
   const fft: Project = {
     index: "001",
     name: "Reef Habitat Visualiser",
@@ -88,7 +108,7 @@ const page = () => {
   const OpenStat: Project = {
     index: "002",
     name: "Open Stat",
-    status: development,
+    status: completed,
     description: "I built a web application that visualises and predicts the future lifts of top powerlifters from around the world leveraging there open source data and api.  I attempted to predict using GradientBoosting but now realise a Seq-2-Seq model would have been much better.",
     tags: ["NextJS", "Supabase", "XGBoost"],
     image: "/openstat.png",
@@ -134,7 +154,7 @@ const page = () => {
     image: "/ml.png",
     source_code_link: "https://github.com/adamFittlerGit/DataReport",
   } 
-  const projects: Project[] = [thesis, OpenStat, fft, RAGPaper, OASIS, MLreport]
+  const projects: Project[] = [nvidiaStock, stormai, thesis, OpenStat, fft, RAGPaper, OASIS, MLreport]
 
   return (
     <>
