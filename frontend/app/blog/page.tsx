@@ -63,7 +63,7 @@ export default function Home() {
     setIsLoggedIn(!!jwt);
 
 
-  }, [tagType])
+  }, [tagType, isLoggedIn])
   
 
   return (
