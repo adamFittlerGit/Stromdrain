@@ -55,6 +55,10 @@ const About = () => {
         <div className="text-center">
           <h2 className="text-2xl font-semibold text-white pb-4">Explore More</h2>
           <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/" className="flex items-center bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-100 hover:text-black transition duration-300">
+              <Image src="/stormdrain.png" width={20} height={20} alt="Stormdrain Image" className="mr-2" />
+              3D Fun
+            </Link>
             <Link href="/blog" className="flex items-center bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-100 hover:text-black transition duration-300">
               <Image src="/my-diary.png" width={20} height={20} alt="Blog Image" className="mr-2" />
               Blog
