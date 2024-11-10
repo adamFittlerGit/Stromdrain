@@ -42,7 +42,7 @@ const Page = () => {
   return (
     <div className="flex justify-center items-center pt-10">
       <form onSubmit={handleLogin} className="flex flex-col w-80 gap-4 p-6 bg-white shadow-md rounded-lg">
-        <h2 className="text-2xl font-semibold text-center">Login</h2>
+        <h2 className="text-2xl font-semibold text-center text-black">Login</h2>
         
         <TextField
           type="text"
