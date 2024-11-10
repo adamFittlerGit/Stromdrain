@@ -15,7 +15,7 @@ export default function App() {
   );
 }
 
-function Stormdrain() {
+export function Stormdrain() {
   const [droplets, setDroplets] = useState([])
   const ref = useRef()
 
