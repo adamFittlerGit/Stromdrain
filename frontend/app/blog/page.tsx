@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import 'react-loading-skeleton/dist/skeleton.css';
 import Tilt from 'react-parallax-tilt';
+import Cookies from 'js-cookie';
 
 // Need use client to do this convert this back to a use client component and apply the sue effect for the data laoding at the start
 async function fetchPosts(tagType: string) {
@@ -30,6 +31,7 @@ async function fetchPosts(tagType: string) {
 }
 
 export default function Home() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [posts, setPosts] = useState([])
   const [tagType, setTagType] = useState("all")
@@ -51,7 +53,15 @@ export default function Home() {
       setPosts(posts)
     }
     getData()
+
+    // Check if we have mounted for the data and skeleton to make sure we have all data before displaying stuff
     setIsMounted(true)
+
+    // Check if we have a valid cookie for new post button
+    const jwt = Cookies.get('auth_token');
+    console.log(jwt)
+    setIsLoggedIn(!!jwt);
+
 
   }, [tagType])
   
@@ -108,6 +118,7 @@ export default function Home() {
           />
         </div>
         <div className="grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+          {isLoggedIn && 
           <Tilt>
               <div  className="flex justify-center items-center col-span-1 p-4 m-4 bg-white rounded-lg  h-5/6">
                 <Link href="/new"> 
@@ -124,6 +135,7 @@ export default function Home() {
                 </Link>
               </div>
             </Tilt>
+          }
           {isMounted ? posts.map((postProps: any, index: any) => (
             <Tilt>
               <div key={index} className="col-span-1 p-4 m-4 bg-white rounded-lg hover:border-sky-400 border-2 border-black h-5/6">

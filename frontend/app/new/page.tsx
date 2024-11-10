@@ -1,10 +1,11 @@
 'use client';
-import React, { useState, useRef, ChangeEvent, useTransition } from 'react';
+import React, { useState, useRef, ChangeEvent, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/navigation'
 import Image from 'next/image';
 import Link from 'next/link';
+import Cookies from 'js-cookie';
 
 async function makePost(title: string, tag: string, body: string, images: File[], passcode: string) {
   const response = await fetch("/api/makePost", {
@@ -66,6 +67,15 @@ const Page = () => {
       setisImageSelected(true)
     }
   } 
+
+  useEffect(() => {
+    const jwt = Cookies.get('auth_token');
+
+    // Redirect to the login page if no JWT is found
+    if (!jwt) {
+      router.push('/login');
+    }
+  }, [router]);
 
   return (
     <div className='flex justify-center'>

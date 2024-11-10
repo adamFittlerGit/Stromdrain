@@ -19,8 +19,11 @@
     "@react-three/postprocessing": "^2.16.3",
     "@supabase/supabase-js": "^2.45.6",
     "@types/three": "^0.169.0",
+    "crypto-js": "^4.2.0",
     "dotenv": "^16.4.5",
     "framer-motion": "^11.11.11",
+    "js-cookie": "^3.0.5",
+    "jsonwebtoken": "^9.0.2",
     "next": "14.2.15",
     "react": "^18",
     "react-dom": "^18",
@@ -34,6 +37,9 @@
     "three-js": "^79.0.0"
   },
   "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
+    "@types/js-cookie": "^3.0.6",
+    "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
