@@ -19,18 +19,18 @@ const Contact = () => {
               <span className="sr-only">GitHub</span>
             </a>
             {/* LinkedIn */}
-            <a href="https://linkedin.com/in/your-linkedin-username" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:text-blue-900 transition duration-300">
+            <a href="https://www.linkedin.com/in/adam-fittler-5a0346251/" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:text-blue-900 transition duration-300">
               <FaLinkedin size={40} />
               <span className="sr-only">LinkedIn</span>
             </a>
             {/* Email */}
-            <a href="mailto:your-email@example.com" className="text-red-600 hover:text-red-800 transition duration-300">
+            <a href="mailto:fittleradam@gmail.com" className="text-red-600 hover:text-red-800 transition duration-300">
               <FaEnvelope size={40} />
               <span className="sr-only">Email</span>
             </a>
           </div>
 
-          <form className="space-y-4">
+          <form className=" hidden space-y-4">
             <input type="text" placeholder="Your Name" className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500" />
             <input type="email" placeholder="Your Email" className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500" />
             <textarea placeholder="Your Message" rows={5} className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500"></textarea>

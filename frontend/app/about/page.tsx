@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { TypeAnimation } from 'react-type-animation';
 
 const About = () => {
+
   return (
     <div className="flex justify-center min-h-screen">
       <div className="w-3/4 md:w-1/2 px-6 py-12">
@@ -21,7 +22,34 @@ const About = () => {
             speed={60} // Fast typing speed
             cursor={true}
             repeat={0}
-            className="text-lg leading-relaxed whitespace-pre-line" // Preserve line breaks
+            className="hidden xl:block text-lg leading-relaxed whitespace-pre-line" // Preserve line breaks
+          />
+
+        <TypeAnimation
+            sequence={[
+              `I'm Adam, \n 
+              A software engineering student specialising in machine learning, cybersecurity, and full-stack development.\n
+              With experience in defence, AI, and security applications, I’m passionate about creating intelligent systems to solve real-world challenges.\n
+              Currently, my thesis focuses on risk classification with computer vision and NLP, and my internship at Rheinmetall Defence Australia solidified my skills in software engineering and algorithm design.\n
+              Recognised for my academic achievements, including the Australian Defence Force Future Innovator Award, I’m driven to make meaningful contributions in machine learning and cybersecurity.
+            `]}
+            speed={60} // Fast typing speed
+            cursor={true}
+            repeat={0}
+            className="hidden md:block xl:hidden text-lg leading-relaxed whitespace-pre-line" // Preserve line breaks
+          />
+
+          <TypeAnimation
+            sequence={[
+              `I'm Adam, \n 
+              A software engineering student focused on machine learning, cybersecurity, and full-stack development.\n
+              My thesis on risk classification and an internship with Rheinmetall Defence Australia have deepened my skills in AI and defence applications.\n
+              Honoured with awards like the Australian Defence Force Future Innovator, I'm committed to impactful work in tech.
+              `]}
+            speed={60} // Fast typing speed
+            cursor={true}
+            repeat={0}
+            className="block md:hidden text-lg leading-relaxed whitespace-pre-line" // Preserve line breaks
           />
         </div>
         <div className="text-center">
