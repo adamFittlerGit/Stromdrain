@@ -32,7 +32,7 @@ const CourseCard = ({index, name, provider, description, achieved, completed, im
           <h4 className={`text-gray-400 opacity-75`}>{provider}</h4>
           <p className="mt-2 text-secondary text-[14px] text-black">{description}</p>
           <br></br>
-          <p><span className='font-bold'>Result: </span><span className={`text-green-500 opacity-70`}>{achieved}</span></p>
+          <p><span className='font-bold text-black'>Result: </span><span className={`text-green-500 opacity-70`}>{achieved}</span></p>
         </div>
       </Tilt>
     </div>

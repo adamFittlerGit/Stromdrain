@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image';
 import Link from 'next/link';
 
-async function makePost(title: string, tag: string, body: string, images: File[], passcode: string) {
+async function makePost(title: string, tag: string, body: string, images: File[]) {
   const response = await fetch("/api/makePost", {
       method: "POST",
       headers: {
@@ -18,7 +18,6 @@ async function makePost(title: string, tag: string, body: string, images: File[]
           body, // Consider renaming this to 'content' to avoid confusion
           tag,
           images, // Include image_urls,
-          passcode
       })
   });
 
@@ -48,7 +47,7 @@ const Page = () => {
     e.preventDefault();
 
     try {
-        await makePost(title, tag, content, imageFiles, passcode); // Await the makePost function
+        await makePost(title, tag, content, imageFiles); // Await the makePost function
         router.push("/blog"); // Redirect only after the post has been made
     } catch (error) {
         console.error("Error making post:", error);
@@ -129,15 +128,6 @@ const Page = () => {
             multiline
           />
 
-          <TextField
-            variant='outlined'
-            color='primary'
-            label="Passcode"
-            onChange={(e) => {setPasscode(e.target.value)}} // Capture passcode input
-            fullWidth
-            required
-          />
-          
           <Button variant="contained" color="primary" type="submit">
             Post
           </Button>

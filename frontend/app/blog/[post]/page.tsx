@@ -86,7 +86,7 @@ const Post = () => {
               />
             </div>
             {showSummary ? (
-              <div className="mb-2">
+              <div className="mb-2 text-black">
                 <TypeAnimation 
                     sequence={[
                       "Here is an example summary of the text within this post for the user to checkout if they have less time", 
