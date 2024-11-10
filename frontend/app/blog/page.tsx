@@ -48,22 +48,28 @@ export default function Home() {
   }
 
   useEffect(() => {
+    const checkAuth = async () => {
+      const res = await fetch("/api/checkAuth", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include" // Ensures cookies are included in the request
+      });
+      
+      const data = await res.json();
+      setIsLoggedIn(data.loggedIn);
+    };
+
     const getData = async () => {
       const posts = await fetchPosts(tagType);
-      setPosts(posts)
-    }
-    getData()
+      setPosts(posts);
+    };
 
-    // Check if we have mounted for the data and skeleton to make sure we have all data before displaying stuff
-    setIsMounted(true)
-
-    // Check if we have a valid cookie for new post button
-    const jwt = Cookies.get('auth_token');
-    console.log(jwt)
-    setIsLoggedIn(!!jwt);
-
-
-  }, [tagType, isLoggedIn])
+    checkAuth(); // Call auth check on mount
+    getData();
+    setIsMounted(true);
+  }, [tagType]);
   
 
   return (

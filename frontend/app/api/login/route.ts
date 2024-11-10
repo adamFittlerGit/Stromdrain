@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import CryptoJS from 'crypto-js';
-import jwt from 'jsonwebtoken';
+import { SignJWT } from 'jose';
 
 export async function POST(request: Request) {
   const { username, password } = await request.json();
@@ -16,7 +16,11 @@ export async function POST(request: Request) {
   // Check if the credentials match the stored values
   if (username === storedUsername && password === hashedPassword) {
     // Generate a JWT token
-    const token = jwt.sign({ username }, jwtSecret!, { expiresIn: '1h' });
+    const token = await new SignJWT({ username })
+      .setProtectedHeader({ alg: 'HS256' })
+      .setIssuedAt()
+      .setExpirationTime('1h')
+      .sign(new TextEncoder().encode(jwtSecret));
 
     // Set the JWT as an HTTP-only cookie
     const response = NextResponse.json({ success: true, message: 'Login successful' });
