@@ -4,7 +4,7 @@ type ResponseData = {
   message: string
 }
  
-export default function handler(
+export default function PUT(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
