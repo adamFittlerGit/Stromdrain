@@ -9,7 +9,7 @@ const About = () => {
   return (
     <div className="flex justify-center min-h-screen">
       <div className="w-3/4 md:w-1/2 px-6 py-12">
-        <h1 className="text-5xl font-extrabold text-center text-white pb-8">About Me</h1>
+        <h1 className="text-5xl font-extrabold text-center text-white pb-8">About <a href="/login">Me </a></h1>
         <div className="bg-white text-gray-800 border border-gray-300 rounded-lg shadow-lg p-8 mb-8">
           <TypeAnimation
             sequence={[

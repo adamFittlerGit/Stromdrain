@@ -2,6 +2,7 @@
 import * as THREE from 'three';
 import { useRef, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
+import Link from 'next/link';
 
 export default function App() {
   return (
@@ -9,7 +10,7 @@ export default function App() {
     <div className="h-screen w-screen overflow-hidden">
       <Canvas camera={[]} className="h-full w-full">
         <directionalLight position={[-2, 3, 4]}/>
-          <Stormdrain />
+            <Stormdrain />
       </Canvas>
     </div>
   );
