@@ -18,7 +18,7 @@ const About = () => {
               I am honoured to have received recognition for my academic and professional achievements, including the Australian Defence Force Future Innovator Award. My commitment to excellence has been further acknowledged through multiple academic excellence awards, reflecting my dedication to advancing in the fields of machine learning and cybersecurity. These accolades motivate me to continue striving for high standards in all my work.\n
               I am committed to lifelong learning and contributing to impactful projects that address critical technological challenges. My goal is to join a forward-thinking organisation where I can apply my skills in machine learning and cybersecurity to make meaningful contributions and continue growing as a professional in a collaborative, high-stakes environment.`
             ]}
-            speed={90} // Fast typing speed
+            speed={60} // Fast typing speed
             cursor={true}
             repeat={0}
             className="text-lg leading-relaxed whitespace-pre-line" // Preserve line breaks
