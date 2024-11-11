@@ -75,6 +75,46 @@ const page = () => {
     color: "gray"
   }
 
+  const myllm: Project = {
+    index: "001",
+    name: "My LLM",
+    status: development,
+    description: "My goal for this project is to create an train a small LLM from scratch by reimplementing the attention is all you need paper on transformers and training on google collab.  I will implement it in pytroch and this will give me a lot of insight into the model innerworking and I will fail and learn so much about LLM's",
+    tags: ["Attention", "Pytorch", "transformer"],
+    image: "/storm-ai.png",
+    source_code_link: "",
+  } 
+
+  const cnn_from_scratch: Project = {
+    index: "001",
+    name: "CNN from scratch",
+    status: development,
+    description: "This is an ambitous project, My goal is to develop a convolutional neural network model from scratch using only numpy and I am not allowed to use pytorch as all.  This will be a true test of my understanding and an amazing project to show off for MLE interviews as wll as data engineering interviews. ",
+    tags: ["CNN", "Applied Algebra", "Numpy"],
+    image: "/storm-ai.png",
+    source_code_link: "",
+  } 
+
+  const powerforge: Project = {
+    index: "001",
+    name: "Powerforge",
+    status: development,
+    description: "My goal is to build a fullstack web app powered by AI that allows tayla and I to track our workouts and control them via the application, We should be able to track lifts overtime with metrics and have an AI coach we can customise to help us plana dnd create workouts.",
+    tags: ["LLM", "Finetuning", "RAG"],
+    image: "/storm-ai.png",
+    source_code_link: "",
+  } 
+
+  const TadamBlog: Project = {
+    index: "001",
+    name: "Tadam Blog",
+    status: development,
+    description: "My goal for this project is to build a fullstack web application that allows tayla and I to upload images and descriptions of our dates, I will also make it so that only her and I are able to login to add dates but anyone can view our dates online if they wanted too! ",
+    tags: ["NextJS", "Blog", "Supabase"],
+    image: "/storm-ai.png",
+    source_code_link: "",
+  } 
+
   const stormai: Project = {
     index: "001",
     name: "Storm AI Assistant",
@@ -154,7 +194,7 @@ const page = () => {
     image: "/ml.png",
     source_code_link: "https://github.com/adamFittlerGit/DataReport",
   } 
-  const projects: Project[] = [nvidiaStock, stormai, thesis, OpenStat, fft, RAGPaper, OASIS, MLreport]
+  const projects: Project[] = [myllm, cnn_from_scratch, nvidiaStock, stormai, thesis, OpenStat, fft, RAGPaper, OASIS, MLreport]
 
   return (
     <>
