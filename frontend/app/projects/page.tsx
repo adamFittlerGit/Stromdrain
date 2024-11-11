@@ -85,6 +85,16 @@ const page = () => {
     source_code_link: "",
   } 
 
+  const RAGTutor: Project = {
+    index: "001",
+    name: "RAG Tutor",
+    status: development,
+    description: "My Goal is to develop a systemt that leverages a vector database as well as an LLM like LLAMA3.2 3B instruct in order to ingest textbooks or other articles and summarise them and answer my questions based off of information in the collective knowledge bank, so the idea is that I can keepy adding more and more texbooks etc and leverage all of that knowledge to answer a question instantly, mahbe even with the ability to choose which data sources the system uses to answer a question",
+    tags: ["Huggingface", "PGVector", "Postgress"],
+    image: "/RAG-tutor.png",
+    source_code_link: "",
+  } 
+
   const cnn_from_scratch: Project = {
     index: "001",
     name: "CNN from scratch",
@@ -111,7 +121,7 @@ const page = () => {
     status: development,
     description: "My goal for this project is to build a fullstack web application that allows tayla and I to upload images and descriptions of our dates, I will also make it so that only her and I are able to login to add dates but anyone can view our dates online if they wanted too! ",
     tags: ["NextJS", "Blog", "Supabase"],
-    image: "/storm-ai.png",
+    image: "/date-blog.png",
     source_code_link: "",
   } 
 
@@ -194,7 +204,7 @@ const page = () => {
     image: "/ml.png",
     source_code_link: "https://github.com/adamFittlerGit/DataReport",
   } 
-  const projects: Project[] = [myllm, cnn_from_scratch, nvidiaStock, stormai, thesis, OpenStat, fft, RAGPaper, OASIS, MLreport]
+  const projects: Project[] = [TadamBlog, RAGTutor, thesis, OpenStat, fft, RAGPaper, OASIS, MLreport]
 
   return (
     <>
