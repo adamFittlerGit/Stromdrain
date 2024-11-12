@@ -11,9 +11,12 @@ export async function middleware(request: NextRequest) {
   const encodedKey = new TextEncoder().encode(jwtSecret)
 
   // Define the path that needs authentication
-  const protectedPath = '/new';
+  const protectedPaths = ['/blog/new', '/stormai', '/habits'];
 
-  if (request.nextUrl.pathname === protectedPath) {
+  const isProtectedPath = protectedPaths.some(path => path === request.nextUrl.pathname);
+
+
+  if (isProtectedPath) {
     if (!token) {
       // Redirect to login if there's no token
       return NextResponse.redirect(new URL('/login', request.url));

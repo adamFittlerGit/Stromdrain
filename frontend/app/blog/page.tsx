@@ -69,6 +69,7 @@ export default function Home() {
   const startIdx = (page - 1) * postsPerPage;
   const endIdx = startIdx + postsPerPage;
   const paginatedPosts = posts.slice(startIdx, endIdx);
+  const pageTotal = Math.ceil(posts.length / postsPerPage);
 
   const handleNextPage = () => {
     if (endIdx < posts.length) {
@@ -87,47 +88,49 @@ export default function Home() {
       <div className="w-3/4">
         <h1 className="text-5xl font-bold pt-6 pb-12 text-center text-white">MY BLOG</h1>
 
-        {/* This is for the AI Search and RAG Feature*/}
-        <div className="hidden flex justify-center items-center my-4">
-          <Image
-              src="/storm-ai.png" // path to the image in the public folder
-              alt="Storm AI Logo"
-              width={50} // Adjust the width
-              height={50} // Adjust the height
-              className="mr-4"
-          />
-          <p className="pr-4 text-3xl fold-bold text-black">:</p>
-          <input
-            value={query}
-            onChange={(e) => {
-              setQuery(e.target.value)  
-              console.log(query)
-            }} // Update query as user types
-            placeholder="Search for a post!"
-            className="bg-white rounded-lg p-3 border-2 border-black w-2/3 sm:w-96 hover:border-sky-400"
-          />
-        </div>
+        
 
-        {/* New Post Section */}
+        {/* New Post Section and AI RAG Search Bar*/}
         {isLoggedIn && 
-        <div className="flex justify-center">
-          <Tilt className="w-64">
-              <div  className="flex justify-center items-center col-span-1 p-4 m-4 bg-white rounded-lg border-2 border-black h-5/6">
-                <Link href="/new"> 
-                  <div className="flex justify-center">
-                    <Image
-                      className="p-2"
-                      src="/write.png"
-                      width={100}
-                      height={100}
-                      alt="Post Image"
-                    />
-                  </div>
-                    <h1 className="text-lg font-bold text-center text-black">New Post</h1>
-                </Link>
-              </div>
-            </Tilt>
+        <>
+          <div className="flex justify-center">
+            <Tilt className="w-64">
+                <div  className="flex justify-center items-center col-span-1 p-4 m-4 bg-white rounded-lg border-2 border-black ">
+                  <Link href="/blog/new"> 
+                    <div className="flex justify-center">
+                      <Image
+                        className="p-2"
+                        src="/write.png"
+                        width={100}
+                        height={100}
+                        alt="Post Image"
+                      />
+                    </div>
+                      <h1 className="text-lg font-bold text-center text-black">New Post</h1>
+                  </Link>
+                </div>
+              </Tilt>
           </div>
+          <div className=" hidden flex justify-center items-center my-4">
+            <Image
+                src="/storm-ai.png" // path to the image in the public folder
+                alt="Storm AI Logo"
+                width={50} // Adjust the width
+                height={50} // Adjust the height
+                className="mr-4"
+            />
+            <p className="pr-4 text-3xl fold-bold text-black">:</p>
+            <input
+              value={query}
+              onChange={(e) => {
+                setQuery(e.target.value)  
+                console.log(query)
+              }} // Update query as user types
+              placeholder="Search for a post!"
+              className="bg-white rounded-lg p-3 border-2 border-black w-2/3 sm:w-96 hover:border-sky-400"
+            />
+          </div>
+        </>
         }
 
         {/* Pagination Controls */}
@@ -139,7 +142,7 @@ export default function Home() {
           >
             Prev
           </button>
-          <span className="text-white">Page {page}</span>
+          <span className="text-white">Page {page} of {pageTotal}</span>
           <button
             onClick={handleNextPage}
             disabled={endIdx >= posts.length}

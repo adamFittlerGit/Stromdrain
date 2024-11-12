@@ -33,7 +33,6 @@ const Page = () => {
   const [content, setContent] = useState('');
   const [imageUrls, setImageUrls] = useState<string[]>([]); // For displaying locally
   const [imageFiles, setImageFiles] = useState<File[]>([]); // For sending to the supabase storage
-  const [passcode, setPasscode] = useState('');
   const [isImageSelected, setisImageSelected] = useState(false)
 
   // Use router for changes pages
@@ -82,7 +81,7 @@ const Page = () => {
             onChange={handleUpload}
           />
 
-          <Button hidden variant="outlined" onClick={() => {imageInputRef.current?.click()}}>{isImageSelected ? "Select Another Image" : "Select Image"}</Button>
+          {/*<Button className="hidden" variant="outlined" onClick={() => {imageInputRef.current?.click()}}>{isImageSelected ? "Select Another Image" : "Select Image"}</Button> */}
           
           <div className='flex gap-4'>
             
