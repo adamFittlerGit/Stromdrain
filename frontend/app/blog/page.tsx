@@ -6,7 +6,7 @@ import Link from "next/link";
 import 'react-loading-skeleton/dist/skeleton.css';
 import Tilt from 'react-parallax-tilt';
 
-async function fetchPosts(tagType) {
+async function fetchPosts(tagType: any) {
   const response = await fetch("/api/getAllPosts", {
     method: "POST",
     headers: {
@@ -106,7 +106,7 @@ export default function Home() {
         </div>
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {isMounted
-            ? paginatedPosts.map((postProps, index) => (
+            ? paginatedPosts.map((postProps:any, index) => (
                 <Tilt key={index}>
                   <div className="col-span-1 p-4 m-4 bg-white rounded-lg hover:border-sky-400 border-2 border-black h-5/6">
                     <Link href={`/blog/${postProps.post_id}`}>
