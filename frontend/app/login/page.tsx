@@ -32,6 +32,7 @@ const Page = () => {
 
     if (data.success) {
       setSuccess('Login successful!'); // Set success message
+      router.refresh()
       setTimeout(() => router.back(), 2000); // Redirect after a short delay
     } else {
       setError('Invalid username or password. Please try again.'); // Set error message
