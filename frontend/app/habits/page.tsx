@@ -123,7 +123,7 @@ export default function HabitTracker() {
         </div>
 
         {/* Multi-Step Habits Section */}
-        <div className=" p-4 rounded-lg shadow-md">
+        <div className=" p-4 rounded-lg">
           <h2 className="text-2xl font-bold text-white mb-4">Progressive Habits</h2>
           <div className="bg-gray-200 p-6 rounded-lg shadow-inner">
             {multiStepHabits.length > 0 ? (
