@@ -84,7 +84,7 @@ export default function HabitTracker() {
         {/* New Habit Button */}
         <div className="flex justify-start mb-4 mx-4">
           <button
-            onClick={() => router.push('/new-habit')}
+            onClick={() => router.push('/habits/new')}
             className="bg-sky-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600"
           >
             + New Habit
