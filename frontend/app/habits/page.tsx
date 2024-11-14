@@ -150,7 +150,7 @@ export default function HabitTracker() {
                           const inputValue = parseInt(e.target.value);
                           updateHabitCompletion(habit.hid, inputValue);
                         }}
-                        className="w-24 p-2 border border-gray-300 rounded-md text-center"
+                        className="w-24 p-2 border border-gray-300 rounded-md text-center text-black"
                       />
 
                       <input
@@ -162,7 +162,7 @@ export default function HabitTracker() {
                           const inputValue = parseInt(e.target.value);
                           updateHabitCompletion(habit.hid, inputValue);
                         }}
-                        className="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer"
+                        className="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer text-black"
                       />
                     </div>
                   </div>
