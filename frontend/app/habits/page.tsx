@@ -50,18 +50,6 @@ export default function HabitTracker() {
       ? Math.min((currentValue / habit.goal) * 100, 100)  // Cap at 100%
       : currentValue === 100 ? 100 : 0; // Binary completion
 
-    try {
-       await fetch('/api/updateHabits', {
-         method: 'POST',
-         headers: {
-           'Content-Type': 'application/json',
-         },
-         body: JSON.stringify({ hid, date, percent_completion: percentCompletion }),
-       });
-     } catch (error) {
-       console.error('Error updating habit completion:', error);
-    }
-
     // Update the local state for percent_completion
     setHabits(prevHabits =>
       prevHabits.map(habit =>
@@ -71,6 +59,20 @@ export default function HabitTracker() {
       )
     );
   };
+
+  const submitHabits = async () => {
+    try {
+      await fetch('/api/updateHabits', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(habits),
+      });
+    } catch (error) {
+      console.error('Error updating habit completion:', error);
+   }
+  }
 
   // Separate habits by type
   const binaryHabits = habits.filter(habit => habit.goal === 1);
@@ -172,6 +174,12 @@ export default function HabitTracker() {
               <p className="text-center text-gray-500">No progressive habits available.</p>
             )}
           </div>
+        </div>
+        {/* Submit Button Section */}
+        <div className='m-5'>
+          <button  className="rounded-lg p-3 bg-sky-300 hover:bg-sky-500" onClick={submitHabits}>
+            <p className='text-white font-bold'>Update</p>
+          </button>
         </div>
       </div>
     </div>
