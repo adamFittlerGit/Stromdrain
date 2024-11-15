@@ -79,18 +79,28 @@ const page = () => {
     index: "001",
     name: "My LLM",
     status: development,
-    description: "My goal for this project is to create an train a small LLM from scratch by reimplementing the attention is all you need paper on transformers and training on google collab.  I will implement it in pytroch and this will give me a lot of insight into the model innerworking and I will fail and learn so much about LLM's",
+    description: "My goal for this project is to create an train a small LLM from scratch by reimplementing the attention is all you need paper on transformers and training on google collab.  I will implement it in pytroch and this will give me a lot of insight into the model innerworking and I will fail and learn so much about LLM's. I think a basic seq-2-seq model focusing on text summarization",
     tags: ["Attention", "Pytorch", "transformer"],
     image: "/storm-ai.png",
     source_code_link: "",
   } 
 
-  const RAGTutor: Project = {
+  const FinetuneLLM: Project = {
     index: "001",
-    name: "RAG Tutor",
+    name: "PT LLM",
     status: development,
-    description: "My Goal is to develop a systemt that leverages a vector database as well as an LLM like LLAMA3.2 3B instruct in order to ingest textbooks or other articles and summarise them and answer my questions based off of information in the collective knowledge bank, so the idea is that I can keepy adding more and more texbooks etc and leverage all of that knowledge to answer a question instantly, mahbe even with the ability to choose which data sources the system uses to answer a question",
-    tags: ["Huggingface", "PGVector", "Postgress"],
+    description: "Fine tune Llama as a personal trainer and fitness coach to help me further down the line in my own power forge application for creating and tracking my workout training for Tayla and I. I will try to first understand all relevant papers for finetuning the models, the first step will be understanding LORA or low rank adaptation for the finetuning. ",
+    tags: ["Attention", "Pytorch", "transformer"],
+    image: "/storm-ai.png",
+    source_code_link: "",
+  } 
+
+  const TAXRAG: Project = {
+    index: "001",
+    name: "TAX RAG",
+    status: development,
+    description: "My Goal is to develop a systemt that leverages a vector database as well as an LLM like LLAMA3.2 3B instruct in order to read in all documents on Australian Tax and provide insights into specific laws allowing users to quickly solve tax problems and align with legislation",
+    tags: ["Huggingface", "PGVector", "Langchain"],
     image: "/RAG-tutor.png",
     source_code_link: "",
   } 
@@ -105,7 +115,7 @@ const page = () => {
     source_code_link: "",
   } 
 
-  const powerforge: Project = {
+  const Powerforge: Project = {
     index: "001",
     name: "Powerforge",
     status: development,
@@ -204,7 +214,7 @@ const page = () => {
     image: "/ml.png",
     source_code_link: "https://github.com/adamFittlerGit/DataReport",
   } 
-  const projects: Project[] = [TadamBlog, RAGTutor, thesis, OpenStat, fft, RAGPaper, OASIS, MLreport]
+  const projects: Project[] = [FinetuneLLM, TadamBlog, TAXRAG, thesis, OpenStat, fft, RAGPaper, OASIS, MLreport]
 
   return (
     <>
