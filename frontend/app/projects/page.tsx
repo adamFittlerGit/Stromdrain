@@ -91,7 +91,7 @@ const page = () => {
     status: development,
     description: "Fine tune Llama as a personal trainer and fitness coach to help me further down the line in my own power forge application for creating and tracking my workout training for Tayla and I. I will try to first understand all relevant papers for finetuning the models, the first step will be understanding LORA or low rank adaptation for the finetuning. ",
     tags: ["Attention", "Pytorch", "transformer"],
-    image: "/storm-ai.png",
+    image: "/trainer.png",
     source_code_link: "",
   } 
 
@@ -101,7 +101,7 @@ const page = () => {
     status: development,
     description: "My Goal is to develop a systemt that leverages a vector database as well as an LLM like LLAMA3.2 3B instruct in order to read in all documents on Australian Tax and provide insights into specific laws allowing users to quickly solve tax problems and align with legislation",
     tags: ["Huggingface", "PGVector", "Langchain"],
-    image: "/RAG-tutor.png",
+    image: "/tax.png",
     source_code_link: "",
   } 
 
