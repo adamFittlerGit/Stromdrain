@@ -150,6 +150,18 @@ const TopNav = () => {
                   <p>EDUCATION</p>
                 </Link>
               </div>
+              <div className='hover:bg-gray-100 p-1 hover:text-black text-white'>
+                <Link className="flex items-center m-1" href="/readings" onClick={toggleMenu}>
+                <Image
+                        className="pr-1 mr-2"
+                        src="/research.png"
+                        width={40}
+                        height={20}
+                        alt="Readings Image"
+                  />
+                  <p>READING LIST</p>
+                </Link>
+              </div>
               <div className='hover:bg-gray-100 rounded-b-lg p-1 hover:text-black text-white' >
                 <Link className="flex items-center m-1 mt-0" href="/contact" onClick={toggleMenu}>
                 <Image
