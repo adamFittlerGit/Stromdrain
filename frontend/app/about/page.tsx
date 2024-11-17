@@ -14,7 +14,7 @@ const About = () => {
           <TypeAnimation
             sequence={[
               `I'm Adam, \n 
-              A software engineering student specialising in machine learning, cybersecurity, and full-stack development. With hands-on experience across diverse technical domains, I am passionate about leveraging technology to solve real-world challenges. As I progress through my studies, my primary focus is to create robust, intelligent systems that extend the frontiers of technology, particularly in defence, AI, and security applications.\n
+              A software engineering student specialising in machine learning, data engineering, and full-stack development. With hands-on experience across diverse technical domains, I am passionate about leveraging technology to solve real-world challenges. As I progress through my studies, my primary focus is to create robust, intelligent systems that extend the frontiers of technology, particularly in defence, AI, and security applications.\n
               My academic and professional journey has been enriched by key projects and internships that allowed me to put my skills into practice. Currently, my thesis focuses on risk classification and justification using computer vision and natural language processing, which has deepened my expertise in algorithms and model optimisation. An internship with Rheinmetall Defence Australia further solidified my knowledge in software engineering, algorithm design, and C++ development, while adhering to the high standards required in defence applications.\n
               I am honoured to have received recognition for my academic and professional achievements, including the Australian Defence Force Future Innovator Award. My commitment to excellence has been further acknowledged through multiple academic excellence awards, reflecting my dedication to advancing in the fields of machine learning and cybersecurity. These accolades motivate me to continue striving for high standards in all my work.\n
               I am committed to lifelong learning and contributing to impactful projects that address critical technological challenges. My goal is to join a forward-thinking organisation where I can apply my skills in machine learning and cybersecurity to make meaningful contributions and continue growing as a professional in a collaborative, high-stakes environment.`
@@ -28,7 +28,7 @@ const About = () => {
         <TypeAnimation
             sequence={[
               `I'm Adam, \n 
-              A software engineering student specialising in machine learning, cybersecurity, and full-stack development.\n
+              A software engineering student specialising in machine learning, data engineering, and full-stack development.\n
               With experience in defence, AI, and security applications, I’m passionate about creating intelligent systems to solve real-world challenges.\n
               Currently, my thesis focuses on risk classification with computer vision and NLP, and my internship at Rheinmetall Defence Australia solidified my skills in software engineering and algorithm design.\n
               Recognised for my academic achievements, including the Australian Defence Force Future Innovator Award, I’m driven to make meaningful contributions in machine learning and cybersecurity.
@@ -42,7 +42,7 @@ const About = () => {
           <TypeAnimation
             sequence={[
               `I'm Adam, \n 
-              A software engineering student focused on machine learning, cybersecurity, and full-stack development.\n
+              A software engineering student focused on machine learning, data engineering, and full-stack development.\n
               My thesis on risk classification and an internship with Rheinmetall Defence Australia have deepened my skills in AI and defence applications.\n
               Honoured with awards like the Australian Defence Force Future Innovator, I'm committed to impactful work in tech.
               `]}
