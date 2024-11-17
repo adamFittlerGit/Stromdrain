@@ -85,6 +85,16 @@ const page = () => {
     source_code_link: "",
   } 
 
+  const stormdrain: Project = {
+    index: "001",
+    name: "Stormdrain",
+    status: development,
+    description: "My personal hub, blog and portfolio site, I will constantly be updating and upgrading its capabilities in order to develop my skills in Fullstack Web Development and maybe even add in some AI integrations.  The purpose is to provide a hub to track what I am learning and developing for myself as well as other to see what I am passionate about.",
+    tags: ["NextJS", "Supabase", "Tailwind"],
+    image: "/storm-drain.png",
+    source_code_link: "https://github.com/adamFittlerGit/stormdrain",
+  } 
+
   const FinetuneLLM: Project = {
     index: "001",
     name: "PT LLM",
@@ -100,9 +110,9 @@ const page = () => {
     name: "TAX RAG",
     status: development,
     description: "My Goal is to develop a systemt that leverages a vector database as well as an LLM like LLAMA3.2 3B instruct in order to read in all documents on Australian Tax and provide insights into specific laws allowing users to quickly solve tax problems and align with legislation",
-    tags: ["Huggingface", "PGVector", "Langchain"],
-    image: "/tax.png",
-    source_code_link: "",
+    tags: ["Openai", "PGVector", "Langchain"],
+    image: "/happyhg.png",
+    source_code_link: "https://github.com/adamFittlerGit/tax-rag",
   } 
 
   const cnn_from_scratch: Project = {
@@ -197,10 +207,10 @@ const page = () => {
 
   const thesis: Project = {
     index: "001",
-    name: "Multimodal Risk",
+    name: "Multimodal Risk Analysis",
     status: development,
-    description: "My goal is to research the use of deep learning models in order to classify and jsutify risk classification from an image.  In order to do this I am leveraging, computer vision models such as YOLOv11 as well as NLP generative models such as llama 3.2.  The goal is to test different technqiues and see what works best.",
-    tags: ["llama 3.2", "YOLOv11", "CVAT"],
+    description: "My goal is to research the use of deep learning models in order to classify and jsutify risk classification from an image.  In order to do this I am leveraging, computer vision models such as YOLOv11 as well as VLm models models such as Llava.  The goal is to test different technqiues and see what works best. ",
+    tags: ["Finetuning", "YOLOv11", "Llava"],
     image: "/thesis.png",
     source_code_link: "https://github.com/adamFittlerGit/IDM",
   } 
@@ -214,7 +224,7 @@ const page = () => {
     image: "/ml.png",
     source_code_link: "https://github.com/adamFittlerGit/DataReport",
   } 
-  const projects: Project[] = [FinetuneLLM, TadamBlog, TAXRAG, thesis, OpenStat, fft, RAGPaper, OASIS, MLreport]
+  const projects: Project[] = [stormdrain, TAXRAG, thesis, OpenStat, fft, RAGPaper, OASIS, MLreport]
 
   return (
     <>
