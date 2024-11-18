@@ -21,6 +21,7 @@ export default function HabitTracker() {
 
   // State for the list of habits and their instances
   const [habits, setHabits] = useState<Habit[]>([]);
+  const [loading, setLoading] = useState(false);
 
   // Fetch habits and instances on load
   useEffect(() => {
@@ -61,6 +62,7 @@ export default function HabitTracker() {
   };
 
   const submitHabits = async () => {
+    setLoading(true);
     try {
       await fetch('/api/updateHabits', {
         method: 'POST',
@@ -69,9 +71,12 @@ export default function HabitTracker() {
         },
         body: JSON.stringify(habits),
       });
+
+      alert('Habits updated successfully!'); //This is cool didn't realise this was a thing!
     } catch (error) {
       console.error('Error updating habit completion:', error);
    }
+   setLoading(false);
   }
 
   // Separate habits by type
@@ -83,13 +88,16 @@ export default function HabitTracker() {
       <div className="w-3/4 max-w-3xl mb-10">
         <h1 className="text-4xl font-bold pt-6 pb-4 text-center text-white">Daily Habit Tracker</h1>
         
-        {/* New Habit Button */}
-        <div className="flex justify-start mb-4 mx-4">
+        {/* New Habit Button and Update Habits Button*/}
+        <div className="flex justify-between mb-4 mx-4">
           <button
             onClick={() => router.push('/habits/new')}
-            className="bg-sky-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600"
+            className="bg-gray-400 text-white font-bold py-2 px-4 rounded hover:bg-sky-300"
           >
             + New Habit
+          </button>
+          <button  className="rounded p-3 bg-gray-400 hover:bg-orange-300 text-white" onClick={submitHabits} disabled={loading}>
+            <p className='font-bold'>Update</p>
           </button>
         </div>
 
@@ -164,7 +172,7 @@ export default function HabitTracker() {
                           const inputValue = parseInt(e.target.value);
                           updateHabitCompletion(habit.hid, inputValue);
                         }}
-                        className="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer text-black"
+                        className="w-full h-2 rounded-lg cursor-pointer text-black"
                       />
                     </div>
                   </div>
@@ -174,12 +182,6 @@ export default function HabitTracker() {
               <p className="text-center text-gray-500">No progressive habits available.</p>
             )}
           </div>
-        </div>
-        {/* Submit Button Section */}
-        <div className='m-5'>
-          <button  className="rounded-lg p-3 bg-sky-300 hover:bg-sky-500" onClick={submitHabits}>
-            <p className='text-white font-bold'>Update</p>
-          </button>
         </div>
       </div>
     </div>

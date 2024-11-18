@@ -53,7 +53,7 @@ const NewHabit = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto p-8 bg-white shadow-md rounded-lg m-10 relative">
+    <div className="max-w-lg mx-auto p-8 bg-white shadow-md rounded-lg m-10 relative text-black">
       <h1 className="text-3xl font-bold text-center mb-6">Add a New Habit</h1>
       
       {error && (

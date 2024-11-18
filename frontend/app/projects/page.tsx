@@ -90,7 +90,7 @@ const page = () => {
     name: "Stormdrain",
     status: development,
     description: "My personal hub, blog and portfolio site, I will constantly be updating and upgrading its capabilities in order to develop my skills in Fullstack Web Development and maybe even add in some AI integrations.  The purpose is to provide a hub to track what I am learning and developing for myself as well as other to see what I am passionate about.",
-    tags: ["NextJS", "Supabase", "Tailwind"],
+    tags: ["NextJS", "Supabase", "SQL"],
     image: "/storm-drain.png",
     source_code_link: "https://github.com/adamFittlerGit/stormdrain",
   } 
