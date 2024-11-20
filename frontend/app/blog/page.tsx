@@ -6,7 +6,7 @@ import Link from "next/link";
 import 'react-loading-skeleton/dist/skeleton.css';
 import Tilt from 'react-parallax-tilt';
 
-async function fetchPosts(tagType: any) {
+async function fetchPosts(tagType: any, ) {
   const response = await fetch("/api/getAllPosts", {
     method: "POST",
     headers: {
@@ -133,6 +133,22 @@ export default function Home() {
         </>
         }
 
+        {/* Currently hidden tag selector*/}
+        <div className="flex justify-center text-center">
+            <select className="mx-1 rounded p-1 text-center text-black" id="tags" name="tags" onChange={(e) => {
+              setTagType(e.target.value)
+            }}>
+              <option className="text-center text-black" value="all" selected>All Tags</option>
+              <option className="text-center text-black" value="university">University</option>
+              <option className="text-center text-black" value="software-engineering">Software Engineering</option>
+              <option className="text-center text-black" value="project-progress">Project Progress</option>
+              <option className="text-center text-black" value="fitness">Fitness</option>
+              <option className="text-center text-black" value="martial-arts">Martial Arts</option>
+              <option className="text-center text-black" value="general-learning">General</option>
+              <option className="text-center text-black" value="thoughts">Thoughts</option>
+            </select>
+        </div>
+
         {/* Pagination Controls */}
         <div className="flex justify-center items-center mt-6 space-x-4">
           <button
@@ -150,22 +166,6 @@ export default function Home() {
           >
             Next
           </button>
-        </div>
-
-        {/* Currently hidden tag selector*/}
-        <div className="hidden flex justify-center text-center">
-            <select className="mx-1 rounded p-1 text-center text-black" id="tags" name="tags" onChange={(e) => {
-              setTagType(e.target.value)
-            }}>
-              <option className="text-center text-black" value="all" selected>All Tags</option>
-              <option className="text-center text-black" value="university">University</option>
-              <option className="text-center text-black" value="software-engineering">Software Engineering</option>
-              <option className="text-center text-black" value="project-progress">Project Progress</option>
-              <option className="text-center text-black" value="fitness">Fitness</option>
-              <option className="text-center text-black" value="martial-arts">Martial Arts</option>
-              <option className="text-center text-black" value="general-learning">General</option>
-              <option className="text-center text-black" value="thoughts">Thoughts</option>
-            </select>
         </div>
 
         {/* Section for the blog posts */}
