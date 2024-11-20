@@ -5,14 +5,16 @@ import Image from "next/image";
 import Link from "next/link";
 import 'react-loading-skeleton/dist/skeleton.css';
 import Tilt from 'react-parallax-tilt';
+import { start } from "repl";
+import internal from "stream";
 
-async function fetchPosts(tagType: any, ) {
+async function fetchPosts(tagType: any, start: any, end: any) {
   const response = await fetch("/api/getAllPosts", {
     method: "POST",
     headers: {
       Accept: "application/json"
     },
-    body: JSON.stringify({ tagType })
+    body: JSON.stringify({ tagType, start, end })
   });
 
   if (!response.ok) {
@@ -32,6 +34,8 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const postsPerPage = 10; // Number of posts per page]
   const skeletons = [];
+  const [range, setRange] = useState({start: 0, end: 9})
+  const [end, setEnd] = useState(false)
 
   for (let i = 0; i < 10; i++) {
     skeletons.push(
@@ -40,6 +44,11 @@ export default function Home() {
       </div>
     );
   }
+
+  const getData = async (start: any, end: any) => {
+    const allPosts = await fetchPosts(tagType, start, end);
+    setPosts(allPosts); // Fetch all posts at once
+  };
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -54,30 +63,24 @@ export default function Home() {
       const data = await res.json();
       setIsLoggedIn(data.loggedIn);
     };
-
-    const getData = async () => {
-      const allPosts = await fetchPosts(tagType);
-      setPosts(allPosts); // Fetch all posts at once
-    };
-
+    console.log(range)
     checkAuth();
-    getData();
+    getData(range.start, range.end);
     setIsMounted(true);
   }, [tagType]);
 
-  // Calculate start and end indices for pagination
-  const startIdx = (page - 1) * postsPerPage;
-  const endIdx = startIdx + postsPerPage;
-  const paginatedPosts = posts.slice(startIdx, endIdx);
-  const pageTotal = Math.ceil(posts.length / postsPerPage);
 
-  const handleNextPage = () => {
-    if (endIdx < posts.length) {
-      setPage((prevPage) => prevPage + 1);
-    }
+  const handleNextPage = async () => {
+    setRange({
+      start: range.end + 1,
+      end: range.end + postsPerPage
+    })
+    console.log(range)
+
+    getData(range.end + 1, range.end + postsPerPage)
   };
 
-  const handlePrevPage = () => {
+  const handlePrevPage = async () => {
     if (page > 1) {
       setPage((prevPage) => prevPage - 1);
     }
@@ -158,10 +161,10 @@ export default function Home() {
           >
             Prev
           </button>
-          <span className="text-white">Page {page} of {pageTotal}</span>
+          <span className="text-white">Page {page}</span>
           <button
             onClick={handleNextPage}
-            disabled={endIdx >= posts.length}
+            disabled={end}
             className="bg-gray-500 text-white px-4 py-2 rounded disabled:opacity-50"
           >
             Next
@@ -171,7 +174,7 @@ export default function Home() {
         {/* Section for the blog posts */}
         <div className="grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {isMounted
-            ? paginatedPosts.map((postProps:any, index) => (
+            ? posts.map((postProps:any, index) => (
                 <Tilt key={index}>
                   <div className="col-span-1 p-4 m-4 bg-white rounded-lg hover:border-sky-400 border-2 border-black h-5/6">
                     <Link href={`/blog/${postProps.post_id}`}>
