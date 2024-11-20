@@ -35,7 +35,6 @@ export default function Home() {
   const postsPerPage = 10; // Number of posts per page]
   const skeletons = [];
   const [range, setRange] = useState({start: 0, end: 9})
-  const [end, setEnd] = useState(false)
 
   for (let i = 0; i < 10; i++) {
     skeletons.push(
@@ -78,12 +77,18 @@ export default function Home() {
     console.log(range)
 
     getData(range.end + 1, range.end + postsPerPage)
+    setPage((page) => page + 1)
   };
 
   const handlePrevPage = async () => {
-    if (page > 1) {
-      setPage((prevPage) => prevPage - 1);
-    }
+    setRange({
+      start: range.start - postsPerPage,
+      end: range.start - 1
+    })
+    console.log(range)
+
+    getData(range.start - postsPerPage, range.start - 1)
+    setPage((page) => page - 1)
   };
 
   return (
@@ -156,7 +161,7 @@ export default function Home() {
         <div className="flex justify-center items-center mt-6 space-x-4">
           <button
             onClick={handlePrevPage}
-            disabled={page === 1}
+            disabled={range.end < 10}
             className="bg-gray-500 text-white px-4 py-2 rounded disabled:opacity-50"
           >
             Prev
@@ -164,7 +169,7 @@ export default function Home() {
           <span className="text-white">Page {page}</span>
           <button
             onClick={handleNextPage}
-            disabled={end}
+            disabled={posts.length < 10}
             className="bg-gray-500 text-white px-4 py-2 rounded disabled:opacity-50"
           >
             Next
