@@ -13,6 +13,10 @@ const TopNav = () => {
     setMobileMenu(prev => !prev) // optimised and cleaner code to do the same thing!
   }
 
+  const closeMenu = () => {
+    setMobileMenu(false)
+  }
+
   useEffect(() => {
     const checkAuth = async () => {
       const res = await fetch("/api/checkAuth", {
@@ -33,8 +37,8 @@ const TopNav = () => {
   return (
     <>
       <div className='flex w-full bg-gray-500 text-xl font-extrabold p-6 justify-center'>
-        <div className='flex w-3/4 items-center'>
-          <Link className='block' href="/">
+        <div className='flex w-3/4 items-center' >
+          <Link className='block' href="/" onClick={closeMenu}>
             <Image
               className=""
               src="/storm-drain.png"
@@ -43,8 +47,8 @@ const TopNav = () => {
               alt="Post Image"
             />
           </Link>
-          <Link className='px-4' href="/">
-            <h1 className="hidden sm:block text-3xl text-white">STORM-DRAIN</h1>
+          <Link className='px-4' href="/" onClick={closeMenu}>
+            <h1 className="hidden sm:block text-3xl text-white">STORMDRAIN</h1>
             <h1 className="block sm:hidden text-3xl text-white">STORMED</h1>
           </Link>
           <button className="px-4 ml-auto" onClick={toggleMenu}>
@@ -62,7 +66,7 @@ const TopNav = () => {
         <div className='flex justify-center'>
           <div className='flex w-3/4 justify-end'>
             <div className='absolute z-50 bg-gray-500 text-center font-bold text-lg rounded-b-lg opacity-90' >
-            {isLoggedIn && 
+            { 
               <>
                 <div className='hover:bg-gray-100 p-1 hover:text-black text-white bg-sky-400'>
                     <Link className="flex items-center m-1" href="/stormai" onClick={toggleMenu}>
