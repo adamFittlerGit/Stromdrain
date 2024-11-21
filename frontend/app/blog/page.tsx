@@ -5,8 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import 'react-loading-skeleton/dist/skeleton.css';
 import Tilt from 'react-parallax-tilt';
-import { start } from "repl";
-import internal from "stream";
 
 async function fetchPosts(tagType: any, start: any, end: any) {
   const response = await fetch("/api/getAllPosts", {
@@ -27,7 +25,6 @@ async function fetchPosts(tagType: any, start: any, end: any) {
 
 export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
   const [posts, setPosts] = useState([]);
   const [tagType, setTagType] = useState("all");
   const [page, setPage] = useState(1); // Current page state
@@ -143,7 +140,7 @@ export default function Home() {
             <select className="mx-1 rounded p-1 text-center text-black" id="tags" name="tags" onChange={(e) => {
               setTagType(e.target.value)
             }}>
-              <option className="text-center text-black" value="all" selected>All Tags</option>
+              <option className="text-center text-black" defaultValue="all">All Tags</option>
               <option className="text-center text-black" value="university">University</option>
               <option className="text-center text-black" value="software-engineering">Software Engineering</option>
               <option className="text-center text-black" value="project-progress">Project Progress</option>
@@ -159,7 +156,7 @@ export default function Home() {
 
           <button
             onClick={handlePrevPage}
-            disabled={range.end < 10}
+            disabled={range.end < 10 || loading}
             className="bg-gray-500 text-white px-4 py-2 rounded disabled:opacity-50"
           >
             Prev
@@ -167,7 +164,7 @@ export default function Home() {
           <span className="text-white">Page {page}</span>
           <button
             onClick={handleNextPage}
-            disabled={posts.length < 10}
+            disabled={posts.length < 10 || loading}
             className="bg-gray-500 text-white px-4 py-2 rounded disabled:opacity-50"
           >
             Next
