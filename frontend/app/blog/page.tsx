@@ -24,15 +24,15 @@ async function fetchPosts(tagType: any, start: any, end: any) {
 }
 
 export default function Home() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [posts, setPosts] = useState([]);
-  const [tagType, setTagType] = useState("all");
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Authentication State
+  const [posts, setPosts] = useState([]); // Array to hold our blog posts
+  const [tagType, setTagType] = useState("all"); // Current Tags to show
   const [page, setPage] = useState(1); // Current page state
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(""); // Used for search query
   const postsPerPage = 10; // Number of posts per page]
-  const skeletons = [];
-  const [range, setRange] = useState({start: 0, end: 9})
-  const [loading, setLoading] = useState(true)
+  const skeletons = []; // Array to hold our skeleton componenets
+  const [range, setRange] = useState({start: 0, end: 9}) // Current range of posts for pagination
+  const [loading, setLoading] = useState(true) // Current page state
 
   for (let i = 0; i < 10; i++) {
     skeletons.push(
@@ -42,7 +42,8 @@ export default function Home() {
     );
   }
 
-  const getData = async (start: any, end: any) => {
+  const getData = async (start: number, end: number, tagType: string) => {
+    console.log(tagType)
     setLoading(true)
     const allPosts = await fetchPosts(tagType, start, end);
     setPosts(allPosts); // Fetch all posts at once
@@ -63,41 +64,53 @@ export default function Home() {
       setIsLoggedIn(data.loggedIn);
     };
     checkAuth();
-    getData(range.start, range.end);
+    getData(range.start, range.end, tagType);
   }, []);
 
   const handleTagChange = async (tag: any) => {
-    setPage(1);
+    // Retrieve new tag data for 1st page
+    await getData(0, 9, tag);
+    //Update State variables 
     setTagType(tag);
-    await getData(range.start, range.end);
+    setPage(1);
+    setRange({
+      start: 0, 
+      end: 9
+    })
   }
 
   const handleNextPage = async () => {
-
-    setRange({
-      start: range.end + 1,
-      end: range.end + postsPerPage
-    })
-
-    await getData(range.end + 1, range.end + postsPerPage)
+    // Calculate new range
+    const newStart = range.end + 1
+    const newEnd = range.end + postsPerPage
+    // Retrieve data in new range
+    await getData(newStart, newEnd, tagType)
+    // Set variable for new range and page
     setPage((page) => page + 1)
+    setRange({
+      start: newStart,
+      end: newEnd
+    })
   };
 
   const handlePrevPage = async () => {
+    // Calculate new range
+    const newStart = range.start - postsPerPage
+    const newEnd = range.start - 1
+    // Get data in new range
+    await getData(newStart, newEnd, tagType)
+    // Update range and page states
+    setPage((page) => page - 1)
     setRange({
       start: range.start - postsPerPage,
       end: range.start - 1
     })
-
-    await getData(range.start - postsPerPage, range.start - 1)
-    setPage((page) => page - 1)
   };
 
   return (
     <div className="flex justify-center">
       <div className="w-3/4">
         <h1 className="text-5xl font-bold pt-6 pb-12 text-center text-white">MY BLOG</h1>
-
         {/* New Post Section and AI RAG Search Bar*/}
         {isLoggedIn && 
         <>
@@ -134,7 +147,7 @@ export default function Home() {
 
         {/* Currently hidden tag selector*/}
         <div className="flex justify-center text-center">
-            <select className="mx-1 rounded p-1 text-center text-black" id="tags" name="tags" onChange={(e) => {
+            <select className="mx-1 rounded p-1 text-center text-black" id="tags" name="tags" disabled={loading} onChange={(e) => {
               handleTagChange(e.target.value)
             }}>
               <option className="text-center text-black" value="all">All Tags</option>
@@ -150,7 +163,6 @@ export default function Home() {
 
         {/* Pagination Controls */}
         <div className="flex justify-center items-center mt-6 space-x-4">
-
           <button
             onClick={handlePrevPage}
             disabled={range.end < 10 || loading}
