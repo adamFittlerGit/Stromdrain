@@ -48,6 +48,7 @@ export default function Home() {
   };
 
   useEffect(() => {
+    setLoading(true);
     const checkAuth = async () => {
       const res = await fetch("/api/checkAuth", {
         method: "GET",
@@ -140,7 +141,7 @@ export default function Home() {
             <select className="mx-1 rounded p-1 text-center text-black" id="tags" name="tags" onChange={(e) => {
               setTagType(e.target.value)
             }}>
-              <option className="text-center text-black" defaultValue="all">All Tags</option>
+              <option className="text-center text-black" value="all">All Tags</option>
               <option className="text-center text-black" value="university">University</option>
               <option className="text-center text-black" value="software-engineering">Software Engineering</option>
               <option className="text-center text-black" value="project-progress">Project Progress</option>
