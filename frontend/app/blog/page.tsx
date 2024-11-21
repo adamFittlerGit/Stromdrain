@@ -1,11 +1,12 @@
 'use client';
-
+// Importing Libraries
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import 'react-loading-skeleton/dist/skeleton.css';
 import Tilt from 'react-parallax-tilt';
 
+// Fetching the backend logic for the posts
 async function fetchPosts(tagType: any, start: any, end: any) {
   const response = await fetch("/api/getAllPosts", {
     method: "POST",
@@ -24,16 +25,22 @@ async function fetchPosts(tagType: any, start: any, end: any) {
 }
 
 export default function Home() {
+  // Constant Variables
+  const postsPerPage = 10; // Number of posts per page
+  const skeletons = []; // Array to hold our skeleton componenets
+  const startIdx = 0
+
+  // State Variables
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Authentication State
   const [posts, setPosts] = useState([]); // Array to hold our blog posts
   const [tagType, setTagType] = useState("all"); // Current Tags to show
   const [page, setPage] = useState(1); // Current page state
   const [query, setQuery] = useState(""); // Used for search query
-  const postsPerPage = 10; // Number of posts per page]
-  const skeletons = []; // Array to hold our skeleton componenets
-  const [range, setRange] = useState({start: 0, end: 9}) // Current range of posts for pagination
+  const [endIdx, setEndIdx] = useState(postsPerPage-1)
+  const [range, setRange] = useState({start: startIdx, end: endIdx}) // Current range of posts for pagination
   const [loading, setLoading] = useState(true) // Current page state
 
+  // Creation of skeletons
   for (let i = 0; i < 10; i++) {
     skeletons.push(
       <div key={i} className="flex justify-center col-span-1 p-4 m-4 bg-gray-600 rounded h-[200px] opacity-80">
@@ -42,43 +49,63 @@ export default function Home() {
     );
   }
 
+  // Getting the data from the backend
   const getData = async (start: number, end: number, tagType: string) => {
-    console.log(tagType)
+    // Set page to loading state
     setLoading(true)
+    // Retrieve Posts Asynchronously
     const allPosts = await fetchPosts(tagType, start, end);
-    setPosts(allPosts); // Fetch all posts at once
+    // Update Page State 
+    setPosts(allPosts); 
+    // Set to not loading
     setLoading(false)
   };
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      const res = await fetch("/api/checkAuth", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        credentials: "include"
-      });
+  // Check if the user is authenticated
+  const checkAuth = async () => {
+    // Check with backend if the cookie payload is valid
+    const res = await fetch("/api/checkAuth", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "include"
+    });
+    // Check the response
+    const data = await res.json();
+    // Set logged in status based on response
+    return data.loggedIn
 
-      const data = await res.json();
-      setIsLoggedIn(data.loggedIn);
-    };
-    checkAuth();
-    getData(range.start, range.end, tagType);
+  };
+
+  // Used for initial Setup on first render
+  useEffect(() => {
+    const setup = async () => {
+      // Check if logged in 
+      const loggedIn = await checkAuth();
+      // Get different amount of data on first page if logged in or not 
+      loggedIn ? getData(startIdx, postsPerPage - 2, tagType) : getData(startIdx, endIdx, tagType)
+      // Set the use state variables
+      setIsLoggedIn(loggedIn)
+      setEndIdx(postsPerPage - 2)
+    } 
+    setup()
   }, []);
 
+  // Changing the tag type on update
   const handleTagChange = async (tag: any) => {
     // Retrieve new tag data for 1st page
-    await getData(0, 9, tag);
+    await getData(startIdx, endIdx, tag);
     //Update State variables 
     setTagType(tag);
     setPage(1);
     setRange({
-      start: 0, 
-      end: 9
+      start: startIdx, 
+      end: endIdx
     })
   }
 
+  // Update data for next page
   const handleNextPage = async () => {
     // Calculate new range
     const newStart = range.end + 1
@@ -93,20 +120,22 @@ export default function Home() {
     })
   };
 
+  // Update data for previous page
   const handlePrevPage = async () => {
     // Calculate new range
     const newStart = range.start - postsPerPage
-    const newEnd = range.start - 1
+    const newEnd = (page - 1 === 1) ? range.start - 2 : range.start - 1
     // Get data in new range
     await getData(newStart, newEnd, tagType)
     // Update range and page states
     setPage((page) => page - 1)
     setRange({
-      start: range.start - postsPerPage,
-      end: range.start - 1
+      start: newStart,
+      end: newEnd
     })
   };
 
+  // UI Components  
   return (
     <div className="flex justify-center">
       <div className="w-3/4">
@@ -114,15 +143,6 @@ export default function Home() {
         {/* New Post Section and AI RAG Search Bar*/}
         {isLoggedIn && 
         <>
-          <div className="flex justify-center ">
-                <div  className="flex justify-center items-center col-span-1 p-1 m-4 bg-gray-300 rounded   hover:bg-sky-400">
-                  <Link href="/blog/new" > 
-                    <div className="flex justify-center items-center">
-                      <h1 className="text-lg font-bold text-center text-black p-1"> + New Post</h1>
-                    </div>
-                  </Link>
-                </div>
-          </div>
           <div className=" hidden flex justify-center items-center my-4">
             <Image
                 src="/storm-ai.png" // path to the image in the public folder
@@ -173,7 +193,7 @@ export default function Home() {
           <span className="text-white">Page {page}</span>
           <button
             onClick={handleNextPage}
-            disabled={posts.length < 10 || loading}
+            disabled={(isLoggedIn && page === 1) ? posts.length < 9 || loading : posts.length < 10 || loading}
             className="bg-gray-500 text-white px-4 py-2 rounded disabled:opacity-50"
           >
             Next
@@ -182,6 +202,24 @@ export default function Home() {
 
         {/* Section for the blog posts */}
         <div className="grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+          {isLoggedIn && page === 1 &&
+            <Tilt>
+              <div className="col-span-1 p-4 m-4 bg-white rounded-lg hover:border-sky-400 border-2 border-black h-5/6">
+                <Link href={`/blog/new`}>
+                  <div className="flex justify-center">
+                    <Image
+                      className="p-2"
+                      src={`/write.png`}
+                      width={100}
+                      height={100}
+                      alt="Post Image"
+                    />
+                  </div>
+                  <h1 className="text-lg font-bold text-center text-black">New Post</h1>
+                </Link>
+              </div>
+            </Tilt>
+          }
           {!loading  
             ? posts.map((postProps:any, index) => (
                 <Tilt key={index}>
@@ -202,7 +240,7 @@ export default function Home() {
                   </div>
                 </Tilt>
               ))
-            : skeletons}
+            : (page ===1 && isLoggedIn) ? skeletons.slice(0, -1) : skeletons}
         </div>
       </div>
     </div>
