@@ -43,12 +43,13 @@ export default function Home() {
   }
 
   const getData = async (start: any, end: any) => {
+    setLoading(true)
     const allPosts = await fetchPosts(tagType, start, end);
     setPosts(allPosts); // Fetch all posts at once
+    setLoading(false)
   };
 
   useEffect(() => {
-    setLoading(true);
     const checkAuth = async () => {
       const res = await fetch("/api/checkAuth", {
         method: "GET",
@@ -61,40 +62,34 @@ export default function Home() {
       const data = await res.json();
       setIsLoggedIn(data.loggedIn);
     };
-    console.log(range)
     checkAuth();
     getData(range.start, range.end);
-    setLoading(false);
-  }, [tagType]);
+  }, []);
 
+  const handleTagChange = async (tag: any) => {
+    setTagType(tag);
+    await getData(range.start, range.end);
+  }
 
   const handleNextPage = async () => {
-    setLoading(true);
 
     setRange({
       start: range.end + 1,
       end: range.end + postsPerPage
     })
-    console.log(range)
 
     await getData(range.end + 1, range.end + postsPerPage)
     setPage((page) => page + 1)
-    setLoading(false);
   };
 
   const handlePrevPage = async () => {
-    setLoading(true);
-
     setRange({
       start: range.start - postsPerPage,
       end: range.start - 1
     })
-    console.log(range)
 
     await getData(range.start - postsPerPage, range.start - 1)
     setPage((page) => page - 1)
-
-    setLoading(false);
   };
 
   return (
@@ -139,7 +134,7 @@ export default function Home() {
         {/* Currently hidden tag selector*/}
         <div className="flex justify-center text-center">
             <select className="mx-1 rounded p-1 text-center text-black" id="tags" name="tags" onChange={(e) => {
-              setTagType(e.target.value)
+              handleTagChange(e.target.value)
             }}>
               <option className="text-center text-black" value="all">All Tags</option>
               <option className="text-center text-black" value="university">University</option>
