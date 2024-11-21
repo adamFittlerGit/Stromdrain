@@ -34,6 +34,7 @@ const Page = () => {
   const [imageUrls, setImageUrls] = useState<string[]>([]); // For displaying locally
   const [imageFiles, setImageFiles] = useState<File[]>([]); // For sending to the supabase storage
   const [isImageSelected, setisImageSelected] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
 
   // Use router for changes pages
   const router = useRouter()
@@ -43,6 +44,7 @@ const Page = () => {
   
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setSubmitting(true)
     e.preventDefault();
 
     try {
@@ -51,6 +53,7 @@ const Page = () => {
     } catch (error) {
         console.error("Error making post:", error);
     }
+    setSubmitting(false)
 };
 
   // Handling the upload of mutliple files
@@ -105,6 +108,7 @@ const Page = () => {
             onChange={(e) => {setTitle(e.target.value)}} // Capture title input
             fullWidth
             required
+            disabled={submitting}
           />
           
           <TextField
@@ -115,6 +119,7 @@ const Page = () => {
             onChange={(e) => {setTag(e.target.value)}} // Capture tag input
             required
             fullWidth
+            disabled={submitting}
           />
           
           <TextField
@@ -125,9 +130,10 @@ const Page = () => {
             fullWidth
             required
             multiline
+            disabled={submitting}
           />
 
-          <Button variant="contained" color="primary" type="submit">
+          <Button variant="contained" color="primary" type="submit" disabled={submitting}>
             Post
           </Button>
         </form>
