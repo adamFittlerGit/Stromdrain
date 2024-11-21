@@ -67,6 +67,7 @@ export default function Home() {
   }, []);
 
   const handleTagChange = async (tag: any) => {
+    setPage(1);
     setTagType(tag);
     await getData(range.start, range.end);
   }
