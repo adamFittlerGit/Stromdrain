@@ -35,6 +35,7 @@ export default function Home() {
   const postsPerPage = 10; // Number of posts per page]
   const skeletons = [];
   const [range, setRange] = useState({start: 0, end: 9})
+  const [loading, setLoading] = useState(true)
 
   for (let i = 0; i < 10; i++) {
     skeletons.push(
@@ -65,30 +66,37 @@ export default function Home() {
     console.log(range)
     checkAuth();
     getData(range.start, range.end);
-    setIsMounted(true);
+    setLoading(false);
   }, [tagType]);
 
 
   const handleNextPage = async () => {
+    setLoading(true);
+
     setRange({
       start: range.end + 1,
       end: range.end + postsPerPage
     })
     console.log(range)
 
-    getData(range.end + 1, range.end + postsPerPage)
+    await getData(range.end + 1, range.end + postsPerPage)
     setPage((page) => page + 1)
+    setLoading(false);
   };
 
   const handlePrevPage = async () => {
+    setLoading(true);
+
     setRange({
       start: range.start - postsPerPage,
       end: range.start - 1
     })
     console.log(range)
 
-    getData(range.start - postsPerPage, range.start - 1)
+    await getData(range.start - postsPerPage, range.start - 1)
     setPage((page) => page - 1)
+
+    setLoading(false);
   };
 
   return (
@@ -96,28 +104,17 @@ export default function Home() {
       <div className="w-3/4">
         <h1 className="text-5xl font-bold pt-6 pb-12 text-center text-white">MY BLOG</h1>
 
-        
-
         {/* New Post Section and AI RAG Search Bar*/}
         {isLoggedIn && 
         <>
-          <div className="flex justify-center">
-            <Tilt className="w-64">
-                <div  className="flex justify-center items-center col-span-1 p-4 m-4 bg-white rounded-lg border-2 border-black ">
-                  <Link href="/blog/new"> 
-                    <div className="flex justify-center">
-                      <Image
-                        className="p-2"
-                        src="/write.png"
-                        width={100}
-                        height={100}
-                        alt="Post Image"
-                      />
+          <div className="flex justify-center ">
+                <div  className="flex justify-center items-center col-span-1 p-1 m-4 bg-gray-300 rounded   hover:bg-sky-400">
+                  <Link href="/blog/new" > 
+                    <div className="flex justify-center items-center">
+                      <h1 className="text-lg font-bold text-center text-black p-1"> + New Post</h1>
                     </div>
-                      <h1 className="text-lg font-bold text-center text-black">New Post</h1>
                   </Link>
                 </div>
-              </Tilt>
           </div>
           <div className=" hidden flex justify-center items-center my-4">
             <Image
@@ -159,6 +156,7 @@ export default function Home() {
 
         {/* Pagination Controls */}
         <div className="flex justify-center items-center mt-6 space-x-4">
+
           <button
             onClick={handlePrevPage}
             disabled={range.end < 10}
@@ -178,7 +176,7 @@ export default function Home() {
 
         {/* Section for the blog posts */}
         <div className="grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-          {isMounted
+          {!loading  
             ? posts.map((postProps:any, index) => (
                 <Tilt key={index}>
                   <div className="col-span-1 p-4 m-4 bg-white rounded-lg hover:border-sky-400 border-2 border-black h-5/6">
