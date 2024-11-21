@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
         ({ data, error } = await supabaseClient
             .from('posts')
             .select("post_id, date, title, body, tag, image_urls")
-            .order('date', { ascending: false })
+            .order('post_order', { ascending: false })
             .range(start, end)
         );
     } else if (tag === "software-engineering") {
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
         ({ data, error } = await supabaseClient
             .from('posts')
             .select("post_id, date, title, body, tag, image_urls")
-            .order('date', { ascending: false })
+            .order('post_order', { ascending: false })
             .in('tag', ['frontend-learning', 'backend-learning', 'cloud-learning', 'machine-learning', 'azure-data-engineer'])
             .range(start, end)
         );
@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
         ({ data, error } = await supabaseClient
             .from('posts')
             .select("post_id, date, title, body, tag, image_urls")
-            .order('date', { ascending: false })
+            .order('post_order', { ascending: false })
             .eq('tag', tag)
             .range(start, end)
         );

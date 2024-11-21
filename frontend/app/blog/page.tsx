@@ -84,10 +84,13 @@ export default function Home() {
       // Check if logged in 
       const loggedIn = await checkAuth();
       // Get different amount of data on first page if logged in or not 
-      loggedIn ? getData(startIdx, postsPerPage - 2, tagType) : getData(startIdx, endIdx, tagType)
+      let newEndIdx
+      loggedIn ? newEndIdx = postsPerPage - 2 : newEndIdx = endIdx
+      getData(startIdx, newEndIdx, tagType)
       // Set the use state variables
       setIsLoggedIn(loggedIn)
-      setEndIdx(postsPerPage - 2)
+      setRange({start: range.start, end: newEndIdx})
+      setEndIdx(newEndIdx)
     } 
     setup()
   }, []);
@@ -108,12 +111,16 @@ export default function Home() {
   // Update data for next page
   const handleNextPage = async () => {
     // Calculate new range
+    console.log(range.start)
+    console.log(range.end)
     const newStart = range.end + 1
     const newEnd = range.end + postsPerPage
+    console.log(newStart)
+    console.log(newEnd)
+    setPage((page) => page + 1)
     // Retrieve data in new range
     await getData(newStart, newEnd, tagType)
     // Set variable for new range and page
-    setPage((page) => page + 1)
     setRange({
       start: newStart,
       end: newEnd
@@ -123,12 +130,16 @@ export default function Home() {
   // Update data for previous page
   const handlePrevPage = async () => {
     // Calculate new range
-    const newStart = range.start - postsPerPage
-    const newEnd = (page - 1 === 1) ? range.start - 2 : range.start - 1
+    console.log(range.start)
+    console.log(range.end)
+    const newStart = Math.max(0, range.start - postsPerPage)
+    const newEnd = range.start - 1
+    console.log(newStart)
+    console.log(newEnd)
+    setPage((page) => page - 1)
     // Get data in new range
     await getData(newStart, newEnd, tagType)
     // Update range and page states
-    setPage((page) => page - 1)
     setRange({
       start: newStart,
       end: newEnd
@@ -240,7 +251,7 @@ export default function Home() {
                   </div>
                 </Tilt>
               ))
-            : (page ===1 && isLoggedIn) ? skeletons.slice(0, -1) : skeletons}
+            : (page === 1 && isLoggedIn) ? skeletons.slice(0, -1) : skeletons}
         </div>
       </div>
     </div>
