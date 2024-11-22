@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
 
     // Get specific non user inputted data
     const now = new Date();
-    const date = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
+    const date = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
     const user_id = "fbc72f17-b191-48a6-86ab-54ed20be6cf1"; // This should be dynamic later based on the current logged in user
 
     // Avoid uploading empty files array
