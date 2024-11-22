@@ -111,12 +111,8 @@ export default function Home() {
   // Update data for next page
   const handleNextPage = async () => {
     // Calculate new range
-    console.log(range.start)
-    console.log(range.end)
     const newStart = range.end + 1
     const newEnd = range.end + postsPerPage
-    console.log(newStart)
-    console.log(newEnd)
     setPage((page) => page + 1)
     // Retrieve data in new range
     await getData(newStart, newEnd, tagType)
@@ -130,12 +126,8 @@ export default function Home() {
   // Update data for previous page
   const handlePrevPage = async () => {
     // Calculate new range
-    console.log(range.start)
-    console.log(range.end)
     const newStart = Math.max(0, range.start - postsPerPage)
     const newEnd = range.start - 1
-    console.log(newStart)
-    console.log(newEnd)
     setPage((page) => page - 1)
     // Get data in new range
     await getData(newStart, newEnd, tagType)
@@ -246,7 +238,6 @@ export default function Home() {
                         />
                       </div>
                       <h1 className="text-lg font-bold text-center text-black">{postProps.title}</h1>
-                      <p className="text-base italic text-center text-black">{postProps.date}</p>
                     </Link>
                   </div>
                 </Tilt>
