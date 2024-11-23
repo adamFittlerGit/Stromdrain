@@ -33,12 +33,13 @@ export default function Home() {
   // State Variables
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Authentication State
   const [posts, setPosts] = useState([]); // Array to hold our blog posts
-  const [tagType, setTagType] = useState("all"); // Current Tags to show
+  const [tagType, setTagType] = useState("software-engineering"); // Current Tags to show
   const [page, setPage] = useState(1); // Current page state
   const [query, setQuery] = useState(""); // Used for search query
   const [endIdx, setEndIdx] = useState(postsPerPage-1)
   const [range, setRange] = useState({start: startIdx, end: endIdx}) // Current range of posts for pagination
   const [loading, setLoading] = useState(true) // Current page state
+  const [authChecked, setAuthChecked] = useState(false)
 
   // Creation of skeletons
   for (let i = 0; i < 10; i++) {
@@ -63,6 +64,7 @@ export default function Home() {
 
   // Check if the user is authenticated
   const checkAuth = async () => {
+    setAuthChecked(false)
     // Check with backend if the cookie payload is valid
     const res = await fetch("/api/checkAuth", {
       method: "GET",
@@ -73,7 +75,8 @@ export default function Home() {
     });
     // Check the response
     const data = await res.json();
-    // Set logged in status based on response
+    // Set logged in status based on response 
+    setAuthChecked(true)
     return data.loggedIn
 
   };
@@ -86,12 +89,14 @@ export default function Home() {
       // Get different amount of data on first page if logged in or not 
       let newEndIdx
       loggedIn ? newEndIdx = postsPerPage - 2 : newEndIdx = endIdx
+      loggedIn ? setTagType("all") : setTagType("software-engineering")
       getData(startIdx, newEndIdx, tagType)
       // Set the use state variables
       setIsLoggedIn(loggedIn)
       setRange({start: range.start, end: newEndIdx})
       setEndIdx(newEndIdx)
     } 
+
     setup()
   }, []);
 
@@ -169,19 +174,28 @@ export default function Home() {
         }
 
         {/* Currently hidden tag selector*/}
+        
         <div className="flex justify-center text-center">
+          {authChecked ? 
             <select className="mx-1 rounded p-1 text-center text-black" id="tags" name="tags" disabled={loading} onChange={(e) => {
               handleTagChange(e.target.value)
             }}>
-              <option className="text-center text-black" value="all">All Tags</option>
+              {isLoggedIn &&
+                <option className="text-center text-black" value="all">All Tags</option>
+              }
+              <option className="text-center text-black" value="software-engineering">Engineering</option>
               <option className="text-center text-black" value="university">University</option>
-              <option className="text-center text-black" value="software-engineering">Software Engineering</option>
               <option className="text-center text-black" value="project-progress">Project Progress</option>
-              <option className="text-center text-black" value="fitness">Fitness</option>
-              <option className="text-center text-black" value="martial-arts">Martial Arts</option>
-              <option className="text-center text-black" value="general-learning">General</option>
+              <option className="text-center text-black" value="fitness" hidden={!isLoggedIn}>Fitness</option>
+              <option className="text-center text-black" value="martial-arts" hidden={!isLoggedIn}>Martial Arts</option>
+              <option className="text-center text-black" value="general-learning">General Learning</option>
               <option className="text-center text-black" value="thoughts">Thoughts</option>
             </select>
+          : 
+            <div className="flex justify-center items-center p-2 bg-gray-600 rounded h-[20px] opacity-80 w-[150px]">
+              <div className="bg-gray-500 w-full h-[10px] opacity-50 rounded"></div>
+            </div>
+        }
         </div>
 
         {/* Pagination Controls */}

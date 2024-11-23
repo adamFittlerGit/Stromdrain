@@ -66,34 +66,6 @@ const TopNav = () => {
         <div className='flex justify-center'>
           <div className='flex w-3/4 justify-end'>
             <div className='absolute z-50 bg-gray-500 text-center font-bold text-lg rounded-b-lg opacity-90' >
-            { 
-              <>
-                <div className='hover:bg-gray-100 p-1 hover:text-black text-white bg-sky-400'>
-                    <Link className="flex items-center m-1" href="/stormai" onClick={toggleMenu}>
-                      <Image
-                            className="pr-1 mr-2"
-                            src="/storm-ai.png"
-                            width={40}
-                            height={20}
-                            alt="Habit Image"
-                      />
-                      <p>STORM AI</p>
-                    </Link>
-                </div>
-                <div className='hover:bg-gray-100 p-1 hover:text-black text-white bg-sky-400'>
-                    <Link className="flex items-center m-1" href="/habits" onClick={toggleMenu}>
-                      <Image
-                            className="pr-1 mr-2"
-                            src="/habits.png"
-                            width={40}
-                            height={20}
-                            alt="Habit Image"
-                      />
-                      <p>HABITS</p>
-                    </Link>
-                  </div>
-              </>
-              }
               <div className='hover:bg-gray-100 p-1 hover:text-black text-white'>
                 <Link className="flex items-center m-1" href="/about" onClick={toggleMenu}>
                   <Image
@@ -152,18 +124,6 @@ const TopNav = () => {
                         alt="Readings Image"
                   />
                   <p>EDUCATION</p>
-                </Link>
-              </div>
-              <div className='hover:bg-gray-100 p-1 hover:text-black text-white'>
-                <Link className="flex items-center m-1" href="/readings" onClick={toggleMenu}>
-                <Image
-                        className="pr-1 mr-2"
-                        src="/research.png"
-                        width={40}
-                        height={20}
-                        alt="Readings Image"
-                  />
-                  <p>READING LIST</p>
                 </Link>
               </div>
               <div className='hover:bg-gray-100 rounded-b-lg p-1 hover:text-black text-white' >
