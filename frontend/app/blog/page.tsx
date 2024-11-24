@@ -88,11 +88,13 @@ export default function Home() {
       const loggedIn = await checkAuth();
       // Get different amount of data on first page if logged in or not 
       let newEndIdx
+      let initialTagType
       loggedIn ? newEndIdx = postsPerPage - 2 : newEndIdx = endIdx
-      loggedIn ? setTagType("all") : setTagType("software-engineering")
-      getData(startIdx, newEndIdx, tagType)
+      loggedIn ? initialTagType = "all" : initialTagType = "software-engineering"
+      getData(startIdx, newEndIdx, initialTagType)
       // Set the use state variables
       setIsLoggedIn(loggedIn)
+      setTagType(initialTagType)
       setRange({start: range.start, end: newEndIdx})
       setEndIdx(newEndIdx)
     } 
