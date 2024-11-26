@@ -149,7 +149,21 @@ export default function Home() {
   return (
     <div className="flex justify-center">
       <div className="w-3/4">
-        <h1 className="text-5xl font-bold pt-6 pb-12 text-center text-white">MY BLOG</h1>
+        <div className="flex justify-center items-center pt-6 pb-12">
+          <h1 className="text-5xl font-bold text-center text-white pr-4">MY BLOG</h1> 
+          {/* Section to access stormai from the blog */}
+          {isLoggedIn &&
+            <Link href="/stormai">
+              <Image
+                  src="/storm-ai.png" // path to the image in the public folder
+                  alt="Storm AI Logo"
+                  width={50} // Adjust the width
+                  height={50} // Adjust the height
+                  className="mr-4"
+              />
+            </Link>
+          }
+         </div>
         {/* New Post Section and AI RAG Search Bar*/}
         {isLoggedIn && 
         <>
