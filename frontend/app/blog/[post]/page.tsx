@@ -40,7 +40,7 @@ const Post = () => {
   const params = useParams();
   const [isMounted, setIsMounted] = useState(false);
   const [post, setPost] = useState<post>();
-  const [summary, setSummary] = useState("");
+  const [summary, setSummary] = useState("Loading");
   const [showSummary, setShowSummary] = useState(false)
 
   useEffect(() => {
@@ -48,9 +48,9 @@ const Post = () => {
       const post = params.post
       if (typeof post === 'string') {
         const post_data = await fetchPost(post)
+        setSummary(post_data.summary)
         setPost(post_data)
       }
-
       setIsMounted(true);
     }
 
@@ -85,11 +85,12 @@ const Post = () => {
                   height={60}
               />
             </div>
+            <br></br>
             {showSummary ? (
-              <div className="mb-2 text-black">
+              <div className="mb-2 text-black italic">
                 <TypeAnimation 
                     sequence={[
-                      "Here is an example summary of the text within this post for the user to checkout if they have less time", 
+                      summary
                     ]}
                     cursor={true}
                     repeat={1}
@@ -106,6 +107,7 @@ const Post = () => {
                 ))}
               </div>
             )}
+            
             <Link href="/blog">
               <Image
                 src="/back-button.png"

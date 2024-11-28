@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
     // Use the supabase client to request the data
     let { data, error } = await supabaseClient
         .from('posts')
-        .select("post_id, date, title, body, tag, image_urls")
+        .select("post_id, date, title, body, tag, image_urls, summary")
         .eq("post_id", post_id)
     // Handle the error if the request fails 
     if (error) {

@@ -2,6 +2,7 @@ import { NextResponse, NextRequest } from 'next/server';
 import { supabaseClient } from '@/supabase/client';
 import * as dotenv from 'dotenv';
 import { AccordionSummary } from '@mui/material';
+import {OpenAI } from "openai";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -10,6 +11,7 @@ dotenv.config();
 const supabaseUrl: string = process.env.SUPABASE_URL!;
 const OPENAI_KEY: string = process.env.OPENAI_KEY!;
 
+// Upload the file to blob storage and return the url
 async function uploadImage(file: File) {
     const filePath = `${Date.now()}_${file.name}`;
     const { data, error } = await supabaseClient.storage.from('images').upload(filePath, file);
@@ -21,8 +23,47 @@ async function uploadImage(file: File) {
     return `${supabaseUrl}/storage/v1/object/public/images/${data.path}`
   }
 
+// Get the summary from GPT 4 mini model
+async function getSummary(combined: string) {
+
+  const openai = new OpenAI({
+    apiKey: OPENAI_KEY,
+  });
 
 
+  const prompt = `{Please provide a TLDR summary of the following content in one sentence: ${combined} The summary should capture the main points and give an overview of the key activities or plans mentioned.  The authors name is Adam for your references if needed}`
+  
+  const chatCompletion = await openai.chat.completions.create({
+      messages: [{ role: "user", content: prompt }],
+      model: "gpt-4o-mini",
+  });
+
+  const result = chatCompletion.choices[0].message.content
+
+  return result
+}
+
+// Get the embedding using text-embedding-3
+async function getEmbedding(combined: string) {
+
+  const openai = new OpenAI({
+    apiKey: OPENAI_KEY,
+  });
+
+  const response = await openai.embeddings.create({
+    model: 'text-embedding-3-small',
+    input: combined,
+  });
+
+  const embedding = response.data[0].embedding;
+  console.log(embedding)
+
+  return embedding 
+}
+
+
+
+// handle the route api request
 export async function POST(request: NextRequest) {
     // Parse the JSON body from the request
     const { title: title, body: content, tag: tag, images: images} = await request.json();
@@ -37,13 +78,14 @@ export async function POST(request: NextRequest) {
     if (images && images.length > 0) image_urls = await Promise.all(images.map(uploadImage)); // need to specifically check length due to javascript being a trash language with truthy etc
     
     // Use Openai Models to get the post embedding and summary make sure to apply same process as the other python scripting and cleaning
-    let gpt_summary = 0
-    let text_embedding = 0 
+    const combined = `{title:  ${title}; body: ${content};}`.replace("\n", " "); // remove the \n for better responses
+    const summary = await getSummary(combined);
+    const embedding = await getEmbedding(combined);
 
     // Use the supabase client to request the data
     let { data, error } = await supabaseClient
         .from('posts')
-        .insert([{ title: title, date: date, body: content, tag: tag, user_id: user_id, image_urls: image_urls}]); // Use 'content' here
+        .insert([{ title: title, date: date, body: content, tag: tag, user_id: user_id, image_urls: image_urls, summary: summary, embedding: embedding}]); // Use 'content' here
 
     if (error) {
         console.error("Error fetching posts:", error);
