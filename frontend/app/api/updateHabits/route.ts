@@ -2,7 +2,6 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseClient } from '@/supabase/client';
-import { Data3DTexture } from 'three';
 
 export async function POST(req: NextRequest) {
   // Parse the request body

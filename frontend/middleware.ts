@@ -13,7 +13,7 @@ export async function middleware(request: NextRequest) {
   // Define the path that needs authentication
   const protectedPaths = ['/blog/new', '/stormai', '/habits'];
 
-  const isProtectedPath = protectedPaths.some(path => path === request.nextUrl.pathname);
+  const isProtectedPath = protectedPaths.some(path => path === request.nextUrl.pathname); // Check if requested path is in that list .some returns true if at least one item in list equalates to true with this 
 
 
   if (isProtectedPath) {
