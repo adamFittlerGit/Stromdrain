@@ -102,7 +102,7 @@ async function getResponse() {
                 disabled={!!response}
               />
               {!response ?
-                <button type="submit" onClick={() => getResponse()} disabled={!query} className={`${query && "hover:bg-sky-400"} bg-gray-500 ml-2 p-3 text-white h-full rounded-lg border-black border-2`} >
+                <button type="submit" onClick={() => getResponse()} disabled={!query || !!response} className={`${query && "hover:bg-sky-400"} bg-gray-500 ml-2 p-3 text-white h-full rounded-lg border-black border-2`} >
                   Ask
                 </button>
               :
