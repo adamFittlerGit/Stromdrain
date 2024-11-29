@@ -28,14 +28,12 @@ export async function POST(request: NextRequest) {
 
   const embedding = response.data[0].embedding;
 
-  // Perform post cosine search 
+  // Perform post cosine search, CURRENTLY NOT WORKING
   const { data } = await supabaseClient.rpc('match_documents', {
     query_embedding: embedding,
-    match_threshold: 0.80, // Choose an appropriate threshold for your data
+    match_threshold: 0.3, // Choose an appropriate threshold for your data
     match_count: 10, // Choose the number of matches
   })
-
-  console.log(data)
 
   // Get the Combined Title and Body of each returned post
   let posts = ``
@@ -47,17 +45,17 @@ export async function POST(request: NextRequest) {
 
   // Create the necessary prompt we need to get the RAG response
   const prompt = `
-    You are a very enthusiastic assistant who loves
-    to help people! Given the following blog posts and the user query, answer the question using only that information. 
-    If you are unsure and the answer is not explicitly written in the documentation, say
-    "Sorry, I don't know how to help with that."
+    You are an enthusiastic assistant designed to help people by providing the best possible answers using the content from Adam's blog. Your task is to assist the user in answering their question by referencing the most relevant blog posts. Some posts might not be as relevant, so make sure to focus on the content that directly answers the query.
 
-    Context sections:
+    Context sections (relevant posts are presented first, followed by any additional posts that might help):
+
     ${posts}
 
-    Question: """
-    ${query}
-    """
+    Now, based on the given query, respond thoughtfully using the posts as your main context. If any of the posts don't seem directly related to the query, try to filter them out or only use them if needed for extra context.
+
+    Question: """ ${query} """
+
+    Return the answer in plain text with no markdown please, use /n in the response to add new line breaks where necessary to improve readability
   `
 
   // Get the response from the model
@@ -68,5 +66,6 @@ export async function POST(request: NextRequest) {
 
   const result = chatCompletion.choices[0].message.content
 
+  // I want to also return the posts to be linked too in the text output or something like that so they can be accessed easily
   return NextResponse.json(result)
 }

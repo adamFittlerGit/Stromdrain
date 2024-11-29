@@ -63,7 +63,7 @@ async function getResponse() {
                   ]}
                   cursor={true}
                   repeat={1}
-                  className="text-white"
+                  className="text-white leading-relaxed whitespace-pre-line"
                 />
               </div>
             )}
@@ -89,7 +89,6 @@ async function getResponse() {
           <form
             onSubmit={(e) => {
               e.preventDefault(); // Prevent form submission refresh
-              getResponse();
             }}
             className="w-full"
           >
@@ -99,10 +98,20 @@ async function getResponse() {
                 onChange={(e) => setQuery(e.target.value)} // Update query as user types
                 placeholder="Ask me anything?"
                 className="bg-white rounded-lg p-3 border-2 border-black w-2/3 sm:w-96 hover:border-sky-400"
+                disabled={!!response}
               />
-              <button type="submit" className="hover:bg-sky-400 bg-gray-500 ml-2 p-3 text-white h-full rounded-lg border-black border-2">
-                Ask
-              </button>
+              {!response ?
+                <button type="submit" onClick={() => getResponse()}className="hover:bg-sky-400 bg-gray-500 ml-2 p-3 text-white h-full rounded-lg border-black border-2" >
+                  Ask
+                </button>
+              :
+                <button onClick={() => {
+                  setResponse("") 
+                  setQuery("")
+                }} className="hover:bg-sky-400 bg-gray-500 ml-2 p-3 text-white h-full rounded-lg border-black border-2">
+                  New
+                </button>
+              }
             </div>
           </form>
         </main>
