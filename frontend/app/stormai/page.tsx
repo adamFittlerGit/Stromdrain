@@ -4,12 +4,30 @@ import React, { useEffect, useState } from "react";
 import { TypeAnimation } from 'react-type-animation';
 
 export default function Home() {
-  const [queries, setQueries] = useState("");
+  const [query, setQuery] = useState("");
   const [response, setResponse] = useState("");
 
-  async function getResponse() {
-    
+  // Fetching the backend logic for generating a response
+async function getResponse() {
+  console.log(query)
+  const response = await fetch("/api/generateResponse", {
+    method: "POST",
+    headers: {
+      Accept: "application/json"
+    },
+    body: JSON.stringify({query})
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to get response");
   }
+
+
+  const data = await response.json();
+  console.log(data)
+  setResponse(data)
+  return data;
+}
 
   // Handle "Enter" key press to trigger the submitQuery function
   useEffect(() => {
@@ -24,7 +42,7 @@ export default function Home() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [queries]); // Include query dependency to use the latest query when enter is pressed
+  }, [query, response]); // Include query dependency to use the latest query when enter is pressed
 
   return (
     <div className={`flex ${response ? "items-center" : ""} justify-center mt-10 h-screen pb-20`}>
@@ -77,8 +95,8 @@ export default function Home() {
           >
             <div className="flex justify-center items-center">
               <input
-                value={queries[-1]}
-                onChange={(e) => setQueries(e.target.value)} // Update query as user types
+                value={query}
+                onChange={(e) => setQuery(e.target.value)} // Update query as user types
                 placeholder="Ask me anything?"
                 className="bg-white rounded-lg p-3 border-2 border-black w-2/3 sm:w-96 hover:border-sky-400"
               />

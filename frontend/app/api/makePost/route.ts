@@ -1,7 +1,6 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { supabaseClient } from '@/supabase/client';
 import * as dotenv from 'dotenv';
-import { AccordionSummary } from '@mui/material';
 import {OpenAI } from "openai";
 
 // Load environment variables from .env file
@@ -78,7 +77,7 @@ export async function POST(request: NextRequest) {
     if (images && images.length > 0) image_urls = await Promise.all(images.map(uploadImage)); // need to specifically check length due to javascript being a trash language with truthy etc
     
     // Use Openai Models to get the post embedding and summary make sure to apply same process as the other python scripting and cleaning
-    const combined = `{title:  ${title}; body: ${content};}`.replace("\n", " "); // remove the \n for better responses
+    const combined = `title:  ${title}; body: ${content};`.replace(/\n/g, ' '); // remove the \n for better responses
     const summary = await getSummary(combined);
     const embedding = await getEmbedding(combined);
 

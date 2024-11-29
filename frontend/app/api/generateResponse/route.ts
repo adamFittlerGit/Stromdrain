@@ -11,7 +11,8 @@ export async function POST(request: NextRequest) {
 
   // Create clients
   dotenv.config();
-  const supabaseUrl: string = process.env.SUPABASE_URL!;
+
+  // Get the Openai api key
   const OPENAI_KEY: string = process.env.OPENAI_KEY!;
 
   // Create OPENAI Client wrapper
@@ -28,32 +29,35 @@ export async function POST(request: NextRequest) {
   const embedding = response.data[0].embedding;
 
   // Perform post cosine search 
-  const { data: posts } = await supabaseClient.rpc('match_documents', {
+  const { data } = await supabaseClient.rpc('match_documents', {
     query_embedding: embedding,
     match_threshold: 0.80, // Choose an appropriate threshold for your data
     match_count: 10, // Choose the number of matches
   })
 
+  console.log(data)
+
   // Get the Combined Title and Body of each returned post
-  const contextText = ""
+  let posts = ``
+
+  data.map((post: any) => {
+    const combined =`title:  ${post.title}; body: ${post.body};  `.replace(/\n/g, ' ');
+    posts += combined 
+  })
 
   // Create the necessary prompt we need to get the RAG response
   const prompt = `
-    You are a very enthusiastic Supabase representative who loves
-    to help people! Given the following sections from the Supabase
-    documentation, answer the question using only that information,
-    outputted in markdown format. If you are unsure and the answer
-    is not explicitly written in the documentation, say
+    You are a very enthusiastic assistant who loves
+    to help people! Given the following blog posts and the user query, answer the question using only that information. 
+    If you are unsure and the answer is not explicitly written in the documentation, say
     "Sorry, I don't know how to help with that."
 
     Context sections:
-    ${contextText}
+    ${posts}
 
     Question: """
     ${query}
     """
-
-    Answer as markdown (including related code snippets if available):
   `
 
   // Get the response from the model
