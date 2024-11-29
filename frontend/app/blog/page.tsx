@@ -200,6 +200,7 @@ export default function Home() {
                 <option className="text-center text-black" value="all">All Tags</option>
               }
               <option className="text-center text-black" value="software-engineering">Engineering</option>
+              <option className="text-center text-black" value="algorithms">Algorithms</option>
               <option className="text-center text-black" value="university">University</option>
               <option className="text-center text-black" value="project-progress">Project Progress</option>
               <option className="text-center text-black" value="fitness" hidden={!isLoggedIn}>Fitness</option>
