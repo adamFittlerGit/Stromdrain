@@ -64,6 +64,7 @@ async function getResponse() {
                   ]}
                   cursor={true}
                   repeat={1}
+                  speed={80}
                   className="text-white leading-relaxed whitespace-pre-line"
                 />
               </div>

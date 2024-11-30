@@ -232,6 +232,7 @@ export default function Home() {
           >
             Next
           </button>
+  
         </div>
 
         {/* Section for the blog posts */}

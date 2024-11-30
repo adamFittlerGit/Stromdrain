@@ -37,9 +37,10 @@ export async function POST(request: NextRequest) {
 
   // Get the Combined Title and Body of each returned post
   let posts = ``
+  console.log(data)
 
   data.map((post: any) => {
-    const combined =`title:  ${post.title}; body: ${post.body};  `.replace(/\n/g, ' ');
+    const combined = `title:  ${post.title}; tag: ${post.tag}; body: ${post.body};  `.replace(/\n/g, ' ');
     posts += combined 
   })
 
@@ -65,7 +66,7 @@ export async function POST(request: NextRequest) {
   });
 
   const result = chatCompletion.choices[0].message.content
-
+  console.log(result)
   // I want to also return the posts to be linked too in the text output or something like that so they can be accessed easily
   return NextResponse.json(result)
 }
