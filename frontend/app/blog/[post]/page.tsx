@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import { TypeAnimation } from 'react-type-animation';
+import Textarea from '@mui/joy/Textarea';
 
 type post = {
   title: string;
@@ -36,12 +37,39 @@ async function fetchPost(post_id: string) {
 }
 
 
+
 const Post = () => {
   const params = useParams();
   const [isMounted, setIsMounted] = useState(false);
   const [post, setPost] = useState<post>();
   const [summary, setSummary] = useState("Loading");
   const [showSummary, setShowSummary] = useState(false)
+  const [authCheecked, setAuthChecked] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [editMode, setEditMode] = useState(false)
+  const [title , setTitle] = useState("")
+  const [body, setBody] = useState("")
+
+
+
+  // The Post component  // Check if the user is authenticated
+  const checkAuth = async () => {
+    setAuthChecked(false)
+    // Check with backend if the cookie payload is valid
+    const res = await fetch("/api/checkAuth", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "include"
+    });
+    // Check the response
+    const data = await res.json();
+    // Set logged in status based on response 
+    setAuthChecked(true)
+    return data.loggedIn
+
+  };
 
   useEffect(() => {
     const getData = async() => {
@@ -99,7 +127,16 @@ const Post = () => {
               </div>
             ) : (
               <div className="mb-2">
-                {post?.body.split('\n').map((line, index) => (
+                {true && 
+                  <Textarea
+                    value={post?.body}
+                    onChange={(event) => setBody(event.currentTarget.value)}
+                    
+                  /> 
+                }
+
+                {false && 
+                  post?.body.split('\n').map((line, index) => (
                   <>
                     <p key={index} className="text-black">{line}</p>
                     <br/>
