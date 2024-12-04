@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 async function makePost(title: string, tag: string, body: string, images: File[]) {
-  const response = await fetch("/api/makePost", {
+  const response = await fetch("/api/newPost", {
       method: "POST",
       headers: {
           "Content-Type": "application/json",

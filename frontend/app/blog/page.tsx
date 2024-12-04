@@ -8,7 +8,7 @@ import Tilt from 'react-parallax-tilt';
 
 // Fetching the backend logic for the posts
 async function fetchPosts(tagType: any, start: any, end: any) {
-  const response = await fetch("/api/getAllPosts", {
+  const response = await fetch("/api/posts", {
     method: "POST",
     headers: {
       Accept: "application/json"
@@ -66,7 +66,7 @@ export default function Home() {
   const checkAuth = async () => {
     setAuthChecked(false)
     // Check with backend if the cookie payload is valid
-    const res = await fetch("/api/checkAuth", {
+    const res = await fetch("/api/clientAuth", {
       method: "GET",
       headers: {
         "Content-Type": "application/json"

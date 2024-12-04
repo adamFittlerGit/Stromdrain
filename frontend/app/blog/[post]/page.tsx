@@ -14,7 +14,7 @@ type post = {
 };
 
 async function fetchPost(post_id: string) {
-  const response = await fetch("/api/getPost", {
+  const response = await fetch("/api/post", {
     method: "POST",
     headers: {
       Accept: "application/json"
@@ -131,7 +131,7 @@ const Post = () => {
                   <Textarea
                     value={post?.body}
                     onChange={(event) => setBody(event.currentTarget.value)}
-                    
+
                   /> 
                 }
 

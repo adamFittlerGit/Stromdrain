@@ -10,7 +10,7 @@ export default function Home() {
   // Fetching the backend logic for generating a response
 async function getResponse() {
   console.log(query)
-  const response = await fetch("/api/generateResponse", {
+  const response = await fetch("/api/gptResponse", {
     method: "POST",
     headers: {
       Accept: "application/json"
