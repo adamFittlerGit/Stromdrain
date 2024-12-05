@@ -94,6 +94,8 @@ const Post = () => {
       const post_data = await fetchPost(post)
       setSummary(post_data.summary)
       setPost(post_data)
+      setTitle(post_data.title)
+      setBody(post_data.body)
     }
     setIsMounted(true);
   }
@@ -167,18 +169,16 @@ const Post = () => {
                 {editMode && 
                   <Textarea
                     onChange={(event) => setBody(event.currentTarget.value)}
+                    value={body}
+                    className="leading-relaxed whitespace-pre-line"
                   > 
-                  {post?.body}
                   </Textarea>
                 }
 
                 {!editMode && 
-                  post?.body.split('\n').map((line, index) => (
-                  <>
-                    <p key={index} className="text-black">{line}</p>
-                    <br/>
-                  </>
-                ))}
+                  <p className="leading-relaxed whitespace-pre-line">{post?.body}</p>
+                }
+
               </div>
             )}
             
