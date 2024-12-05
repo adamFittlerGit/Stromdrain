@@ -51,12 +51,29 @@ const Post = () => {
   const [body, setBody] = useState("")
 
 
+  // Delete post function, api not implemented yet will do in the future. 
+  const deletePost = async () => {
+    const post = params.post // get the post id from the url
+    if (typeof post === 'string') {
+      const response = await fetch("/api/deletePost", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ post })
+      });
+      if (response.ok) {
+        // Redirect to the blog page, use next navigation here
+        window.location.href = "/blog";
+      }
+    }
+  }
 
   // The Post component  // Check if the user is authenticated
   const checkAuth = async () => {
     setAuthChecked(false)
     // Check with backend if the cookie payload is valid
-    const res = await fetch("/api/checkAuth", {
+    const res = await fetch("/api/clientAuth", {
       method: "GET",
       headers: {
         "Content-Type": "application/json"
@@ -71,19 +88,23 @@ const Post = () => {
 
   };
 
-  useEffect(() => {
-    const getData = async() => {
-      const post = params.post
-      if (typeof post === 'string') {
-        const post_data = await fetchPost(post)
-        setSummary(post_data.summary)
-        setPost(post_data)
-      }
-      setIsMounted(true);
+  const getData = async() => {
+    const post = params.post
+    if (typeof post === 'string') {
+      const post_data = await fetchPost(post)
+      setSummary(post_data.summary)
+      setPost(post_data)
     }
+    setIsMounted(true);
+  }
 
-    getData();  
-  
+  useEffect(() => {
+    const setup = async() => {
+      const loggedIn = await checkAuth()
+      setLoggedIn(loggedIn)
+      getData()
+    }
+    setup()
   }, []);
 
   return (
@@ -114,6 +135,22 @@ const Post = () => {
               />
             </div>
             <br></br>
+            {loggedIn && !showSummary && (
+              <div className="flex justify-center mb-5">
+                <button
+                  className="border-2 border-black rounded p-1 bg-lime-200 hover:bg-lime-400 mr-auto"
+                  onClick={() => setEditMode(!editMode)}
+                >
+                  {editMode ? "Save" : "Update"}
+                </button>
+                <button 
+                  className="border-2 border-black rounded p-1 bg-red-200 hover:bg-red-400"
+                  onClick={() => deletePost()}>
+                  Delete
+                </button>
+              </div>
+            )}
+
             {showSummary ? (
               <div className="mb-2 text-black italic">
                 <TypeAnimation 
@@ -127,15 +164,15 @@ const Post = () => {
               </div>
             ) : (
               <div className="mb-2">
-                {true && 
+                {editMode && 
                   <Textarea
-                    value={post?.body}
                     onChange={(event) => setBody(event.currentTarget.value)}
-
-                  /> 
+                  > 
+                  {post?.body}
+                  </Textarea>
                 }
 
-                {false && 
+                {!editMode && 
                   post?.body.split('\n').map((line, index) => (
                   <>
                     <p key={index} className="text-black">{line}</p>
