@@ -204,9 +204,10 @@ const Post = () => {
               </div>
             )}
             
+            <br></br>
             <Link href="/blog">
               <Image
-                src="/back-button.png"
+                src="/back.png"
                 alt="back-button"
                 width={30}
                 height={30}
