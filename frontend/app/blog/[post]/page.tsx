@@ -137,6 +137,29 @@ const Post = () => {
               />
             </button>
           </div>
+          <div className="flex justify-end z-50 opacity-50">
+            {//loggedIn && !showSummary 
+              false && (
+                <div className="justify-center mb-5">
+                  <button
+                    className="border-2 border-black rounded p-1 bg-lime-200 hover:bg-lime-400 mr-2"
+                    onClick={!editMode ? () => setEditMode(!editMode): () => {
+                      setEditMode(!editMode)
+                      updatePost()
+                    }}
+                  >
+                    {editMode ? "+ Save" : " + Update"}
+                  </button>
+                  {!editMode && (
+                    <button 
+                      className="border-2 border-black rounded p-1 bg-red-200 hover:bg-red-400"
+                      onClick={() => deletePost()}>
+                      x Delete
+                    </button>
+                  )}
+                </div>
+              )}  
+          </div>
           <div className="px-12">
             {editMode ? (
               <input
@@ -145,7 +168,7 @@ const Post = () => {
                 className="text-3xl font-bold text-center text-gray-500 border-gray-300 border-2 rounded p-1"
               />
             ) : (
-              <h1 className="text-3xl font-bold text-center text-black">{title}</h1>
+              <h1 className="text-3xl font-bold text-center text-black p-1">{title}</h1>
             )}
             <p className="text-xl italic text-center text-black">{post?.date}</p>
             <br></br>
@@ -159,21 +182,23 @@ const Post = () => {
             </div>
             <br></br>
             {loggedIn && !showSummary && (
-              <div className="flex justify-center mb-5">
+              <div className="justify-center mb-5">
                 <button
-                  className="border-2 border-black rounded p-1 bg-lime-200 hover:bg-lime-400 mr-auto"
+                  className="border-2 border-black rounded p-1 bg-lime-200 hover:bg-lime-400 mr-2"
                   onClick={!editMode ? () => setEditMode(!editMode): () => {
                     setEditMode(!editMode)
                     updatePost()
                   }}
                 >
-                  {editMode ? "Save" : "Update"}
+                  {editMode ? "+ Save" : " + Update"}
                 </button>
-                <button 
-                  className="border-2 border-black rounded p-1 bg-red-200 hover:bg-red-400"
-                  onClick={() => deletePost()}>
-                  Delete
-                </button>
+                {!editMode && (
+                  <button 
+                    className="border-2 border-black rounded p-1 bg-red-200 hover:bg-red-400"
+                    onClick={() => deletePost()}>
+                    x Delete
+                  </button>
+                )}
               </div>
             )}
 
@@ -194,11 +219,11 @@ const Post = () => {
                   <Textarea
                     onChange={(event) => setBody(event.currentTarget.value)}
                     value={body}
-                    className="leading-relaxed whitespace-pre-line"
+                    className="text-black text-lg leading-relaxed whitespace-pre-line p-4"
                   > 
                   </Textarea>
                 ) : (
-                  <p className="leading-relaxed whitespace-pre-line">{body}</p>
+                  <p className="text-black text-lg leading-relaxed whitespace-pre-line border-2 border-black rounded-lg p-4">{body}</p>
                 )}
 
               </div>
