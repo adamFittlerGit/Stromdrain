@@ -44,7 +44,7 @@ const Post = () => {
   const [post, setPost] = useState<post>();
   const [summary, setSummary] = useState("Loading");
   const [showSummary, setShowSummary] = useState(false)
-  const [authCheecked, setAuthChecked] = useState(false)
+  const [authChecked, setAuthChecked] = useState(false)
   const [loggedIn, setLoggedIn] = useState(false)
   const [editMode, setEditMode] = useState(false)
   const [title , setTitle] = useState("")
@@ -66,6 +66,19 @@ const Post = () => {
         // Redirect to the blog page, use next navigation here
         window.location.href = "/blog";
       }
+    }
+  }
+
+  const updatePost = async () => {
+    const post = params.post // get the post id from the url
+    if (typeof post === 'string') {
+      const response = await fetch("/api/updatePost", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ title, body })
+      });
     }
   }
 
@@ -125,7 +138,15 @@ const Post = () => {
             </button>
           </div>
           <div className="px-12">
-            <h1 className="text-3xl font-bold text-center text-black">{post?.title}</h1>
+            {editMode ? (
+              <input
+                value={title}
+                onChange={(event) => setTitle(event.currentTarget.value)}
+                className="text-3xl font-bold text-center text-gray-500 border-gray-300 border-2 rounded p-1"
+              />
+            ) : (
+              <h1 className="text-3xl font-bold text-center text-black">{title}</h1>
+            )}
             <p className="text-xl italic text-center text-black">{post?.date}</p>
             <br></br>
             <div className="text-black flex items-center justify-center my-2">
@@ -141,7 +162,10 @@ const Post = () => {
               <div className="flex justify-center mb-5">
                 <button
                   className="border-2 border-black rounded p-1 bg-lime-200 hover:bg-lime-400 mr-auto"
-                  onClick={() => setEditMode(!editMode)}
+                  onClick={!editMode ? () => setEditMode(!editMode): () => {
+                    setEditMode(!editMode)
+                    updatePost()
+                  }}
                 >
                   {editMode ? "Save" : "Update"}
                 </button>
@@ -166,18 +190,16 @@ const Post = () => {
               </div>
             ) : (
               <div className="mb-2">
-                {editMode && 
+                {editMode ? (
                   <Textarea
                     onChange={(event) => setBody(event.currentTarget.value)}
                     value={body}
                     className="leading-relaxed whitespace-pre-line"
                   > 
                   </Textarea>
-                }
-
-                {!editMode && 
-                  <p className="leading-relaxed whitespace-pre-line">{post?.body}</p>
-                }
+                ) : (
+                  <p className="leading-relaxed whitespace-pre-line">{body}</p>
+                )}
 
               </div>
             )}
