@@ -203,8 +203,12 @@ export default function Home() {
               <option className="text-center text-black" value="algorithms">Algorithms</option>
               <option className="text-center text-black" value="university">University</option>
               <option className="text-center text-black" value="project-progress">Project Progress</option>
-              <option className="text-center text-black" value="fitness" hidden={!isLoggedIn}>Fitness</option>
-              <option className="text-center text-black" value="martial-arts" hidden={!isLoggedIn}>Martial Arts</option>
+              {isLoggedIn && (
+                <>
+                  <option className="text-center text-black" value="fitness" >Fitness</option>
+                  <option className="text-center text-black" value="martial-arts" >Martial Arts</option>
+                </>
+              )}
               <option className="text-center text-black" value="general-learning">General Learning</option>
               <option className="text-center text-black" value="thoughts">Thoughts</option>
             </select>
