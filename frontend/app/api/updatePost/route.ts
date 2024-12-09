@@ -1,14 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseClient } from '@/supabase/client';
+import { stat } from "fs";
 
 export async function POST(res: NextRequest) {
-  const {id, title, body} = await res.json()
-  
-  const { data } = await supabaseClient.rpc('update_post', {
-    update_id: id,
-    new_title: title, // Choose an appropriate threshold for your data
-    new_body: body, // Choose the number of matches
-  })
+    const {id, title, body} = await res.json()
+    console.log(id, title, body)
 
-  return NextResponse.json({ data })
+    try {
+    
+        const { data, error } = await supabaseClient.rpc('update_post', {
+            update_id: id,
+            new_title: title, 
+            new_body: body, 
+        })
+        console.log(error)
+        console.log("success")
+
+        return NextResponse.json({ status: 'updated successfully'})
+
+    } catch (error) {
+            return NextResponse.json({ status: 'Update failed'})
+    }
 }

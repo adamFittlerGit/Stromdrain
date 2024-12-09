@@ -70,14 +70,15 @@ const Post = () => {
   }
 
   const updatePost = async () => {
-    const post = params.post // get the post id from the url
-    if (typeof post === 'string') {
+    console.log("updating post")
+    const id = params.post // get the post id from the url
+    if (typeof id === 'string') {
       const response = await fetch("/api/updatePost", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ title, body })
+        body: JSON.stringify({ id, title, body })
       });
     }
   }
@@ -109,6 +110,7 @@ const Post = () => {
       setPost(post_data)
       setTitle(post_data.title)
       setBody(post_data.body)
+      console.log(post_data)
     }
     setIsMounted(true);
   }
@@ -143,7 +145,9 @@ const Post = () => {
                 <div className="justify-center mb-5">
                   <button
                     className="border-2 border-black rounded p-1 bg-lime-200 hover:bg-lime-400 mr-2"
-                    onClick={!editMode ? () => setEditMode(!editMode): () => {
+                    onClick={!editMode ? () => {
+                      setEditMode(!editMode) 
+                    } : () => {
                       setEditMode(!editMode)
                       updatePost()
                     }}
