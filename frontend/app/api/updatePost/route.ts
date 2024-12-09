@@ -7,14 +7,13 @@ export async function POST(res: NextRequest) {
     console.log(id, title, body)
 
     try {
-    
         const { data, error } = await supabaseClient.rpc('update_post', {
             update_id: id,
             new_title: title, 
             new_body: body, 
         })
         console.log(error)
-        console.log("success")
+        console.log(data)
 
         return NextResponse.json({ status: 'updated successfully'})
 
