@@ -1,5 +1,5 @@
 'use client';
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from 'react';
 import Image from "next/image";
 import Link from "next/link";
@@ -40,6 +40,7 @@ async function fetchPost(post_id: string) {
 
 const Post = () => {
   const params = useParams();
+  const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
   const [post, setPost] = useState<post>();
   const [summary, setSummary] = useState("Loading");
@@ -53,18 +54,18 @@ const Post = () => {
 
   // Delete post function, api not implemented yet will do in the future. 
   const deletePost = async () => {
-    const post = params.post // get the post id from the url
-    if (typeof post === 'string') {
+    const id = params.post // get the post id from the url
+    if (typeof id === 'string') {
       const response = await fetch("/api/deletePost", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ post })
+        body: JSON.stringify({ id })
       });
       if (response.ok) {
         // Redirect to the blog page, use next navigation here
-        window.location.href = "/blog";
+        router.push("/blog");
       }
     }
   }
