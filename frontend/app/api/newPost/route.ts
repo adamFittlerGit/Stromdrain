@@ -2,7 +2,15 @@ import { NextResponse, NextRequest } from 'next/server';
 import { supabaseClient } from '@/supabase/client';
 import * as dotenv from 'dotenv';
 import {OpenAI } from "openai";
+import formidable from "formidable";
+import fs from "fs";
 
+// Disable the default body parser to use formidable
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
 // Load environment variables from .env file
 dotenv.config();
 
@@ -66,7 +74,6 @@ async function getEmbedding(combined: string) {
 export async function POST(request: NextRequest) {
     // Parse the JSON body from the request
     const { title: title, body: content, tag: tag, images: images} = await request.json();
-
     // Get specific non user inputted data
     const now = new Date();
     const date = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
