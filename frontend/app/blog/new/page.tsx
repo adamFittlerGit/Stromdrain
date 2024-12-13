@@ -7,23 +7,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 async function makePost(title: string, tag: string, body: string, images: File[]) {
-
-  // Leverage a formdata object to send the data to the server especially for the images
-  const formData = new FormData();
-  formData.append("title", title);
-  formData.append("tag", tag);
-  formData.append("body", body);
-  images.forEach((image) => {
-      formData.append("images", image);
-  });
-
   const response = await fetch("/api/newPost", {
       method: "POST",
       headers: {
           "Content-Type": "application/json",
           Accept: "application/json"
       },
-      body: formData
+      body: JSON.stringify({
+          title,
+          body, // Consider renaming this to 'content' to avoid confusion
+          tag,
+          images, // Include image_urls,
+      })
   });
 
   if (!response.ok) {
@@ -41,7 +36,7 @@ const Page = () => {
   const [isImageSelected, setisImageSelected] = useState(false)
   const [submitting, setSubmitting] = useState(false)
 
-
+  
 
   // Use router for changes pages
   const router = useRouter()
