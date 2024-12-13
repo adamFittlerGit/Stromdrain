@@ -5,12 +5,6 @@ import {OpenAI } from "openai";
 import formidable from "formidable";
 import fs from "fs";
 
-// Disable the default body parser to use formidable
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
 // Load environment variables from .env file
 dotenv.config();
 
