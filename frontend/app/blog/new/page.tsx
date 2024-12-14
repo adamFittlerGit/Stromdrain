@@ -19,6 +19,7 @@ async function makePost(title: string, tag: string, body: string, images: File[]
           tag,
           images, // Include image_urls,
       })
+      
   });
 
   if (!response.ok) {

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseClient } from '@/supabase/client';
-import { stat } from "fs";
 
 export async function POST(res: NextRequest) {
     const {id, title, body} = await res.json()
