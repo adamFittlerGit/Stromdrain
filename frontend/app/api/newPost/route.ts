@@ -73,7 +73,14 @@ async function getEmbedding(combined: string) {
 // handle the route api request
 export async function POST(request: NextRequest) {
     // Parse the JSON body from the request
-    const { title: title, body: content, tag: tag, images: images} = await request.json();
+    //const { title: title, body: content, tag: tag, images: images} = await request.json();
+    // Log the entire request for debugging
+    console.log('Request Method:', request.method);
+    console.log('Request Headers:');
+    request.headers.forEach((value, key) => {
+        console.log(`${key}: ${value}`);
+    });
+    console.log(await request.json());
     // Get specific non user inputted data
     const now = new Date();
     const date = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
@@ -81,7 +88,7 @@ export async function POST(request: NextRequest) {
 
     // Avoid uploading empty files array
     let image_urls = []
-    if (images && images.length > 0) image_urls = await Promise.all(images.map(uploadImage)); // need to specifically check length due to javascript being a trash language with truthy etc
+    /*if (images && images.length > 0) image_urls = await Promise.all(images.map(uploadImage)); // need to specifically check length due to javascript being a trash language with truthy etc
     
     // Use Openai Models to get the post embedding and summary make sure to apply same process as the other python scripting and cleaning
     const combined = `title:  ${title}; body: ${content};`.replace(/\n/g, ' '); // remove the \n for better responses
@@ -92,12 +99,13 @@ export async function POST(request: NextRequest) {
     let { data, error } = await supabaseClient
         .from('posts')
         .insert([{ title: title, date: date, body: content, tag: tag, user_id: user_id, image_urls: image_urls, summary: summary, embedding: embedding}]); // Use 'content' here
-
+  
     if (error) {
         console.error("Error fetching posts:", error);
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
-
-    return NextResponse.json(data);
+    */
+    //return NextResponse.json(data);
+    return NextResponse.json({ status: 'posted successfully'})
     
 }

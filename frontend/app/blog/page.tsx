@@ -6,6 +6,7 @@ import Link from "next/link";
 import 'react-loading-skeleton/dist/skeleton.css';
 import Tilt from 'react-parallax-tilt';
 
+
 // Fetching the backend logic for the posts
 async function fetchPosts(tagType: any, start: any, end: any) {
   const response = await fetch("/api/posts", {

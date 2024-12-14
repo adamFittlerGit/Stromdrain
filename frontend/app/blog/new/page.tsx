@@ -7,19 +7,24 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 async function makePost(title: string, tag: string, body: string, images: File[]) {
+
+  const form = new FormData();
+  form.append("title", title);
+  form.append("body", body);
+  form.append("tag", tag);
+  images.forEach((image) => {
+      form.append("images", image);
+  });
+
   const response = await fetch("/api/newPost", {
       method: "POST",
       headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
+          "Content-Type": "multipart/form-data"
       },
-      body: JSON.stringify({
-          title,
-          body, // Consider renaming this to 'content' to avoid confusion
-          tag,
-          images, // Include image_urls,
-      })
-  });
+      body: form
+  });b
+
+  console.log(form)
 
   if (!response.ok) {
       throw new Error("Failed to fetch posts");
@@ -86,7 +91,7 @@ const Page = () => {
             onChange={handleUpload}
           />
 
-          {/*<Button className="hidden" variant="outlined" onClick={() => {imageInputRef.current?.click()}}>{isImageSelected ? "Select Another Image" : "Select Image"}</Button> */}
+          <Button className="hidden" variant="outlined" onClick={() => {imageInputRef.current?.click()}}>{isImageSelected ? "Select Another Image" : "Select Image"}</Button> 
           
           <div className='flex gap-4'>
             
