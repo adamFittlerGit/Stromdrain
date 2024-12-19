@@ -1,0 +1,1 @@
+// I will add all of my code for checking authentication here to make sure that it is secure and that the user is able to access the correct pages.
