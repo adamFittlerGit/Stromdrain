@@ -10,7 +10,7 @@ export default function Home() {
   // Fetching the backend logic for generating a response
 async function getResponse() {
   console.log(query)
-  const response = await fetch("/api/gptResponse", {
+  const response = await fetch("/api/openai", {
     method: "POST",
     headers: {
       Accept: "application/json"
@@ -21,10 +21,8 @@ async function getResponse() {
   if (!response.ok) {
     throw new Error("Failed to get response");
   }
-
-
+  
   const data = await response.json();
-
   setResponse(data)
 
   return data;

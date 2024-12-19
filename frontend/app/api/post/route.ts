@@ -30,7 +30,7 @@ async function getSummary(combined: string) {
   const openai = new OpenAI({
     apiKey: OPENAI_KEY,
   });
-  
+
   const prompt = `{Please provide a TLDR summary of the following content in one sentence: ${combined} The summary should capture the main points and give an overview of the key activities or plans mentioned.  The authors name is Adam for your references if needed}`
   
   const chatCompletion = await openai.chat.completions.create({
@@ -112,7 +112,7 @@ export async function GET(request: NextRequest) {
 }
 
 // Updating an existing post
-export async function POST(res: NextRequest) {
+export async function UPDATE(res: NextRequest) {
     const {id, title, body} = await res.json()
     console.log(id, title, body)
 

@@ -15,7 +15,7 @@ type post = {
 
 async function fetchPost(post_id: string) {
   const response = await fetch("/api/post", {
-    method: "POST",
+    method: "GET",
     headers: {
       Accept: "application/json"
     }, 
@@ -56,8 +56,8 @@ const Post = () => {
   const deletePost = async () => {
     const id = params.post // get the post id from the url
     if (typeof id === 'string') {
-      const response = await fetch("/api/deletePost", {
-        method: "POST",
+      const response = await fetch("/api/post", {
+        method: "DELETE",
         headers: {
           "Content-Type": "application/json"
         },
@@ -74,8 +74,8 @@ const Post = () => {
     console.log("updating post")
     const id = params.post // get the post id from the url
     if (typeof id === 'string') {
-      const response = await fetch("/api/updatePost", {
-        method: "POST",
+      const response = await fetch("/api/post", {
+        method: "UPDATE",
         headers: {
           "Content-Type": "application/json"
         },
@@ -88,7 +88,7 @@ const Post = () => {
   const checkAuth = async () => {
     setAuthChecked(false)
     // Check with backend if the cookie payload is valid
-    const res = await fetch("/api/clientAuth", {
+    const res = await fetch("/api/auth", {
       method: "GET",
       headers: {
         "Content-Type": "application/json"

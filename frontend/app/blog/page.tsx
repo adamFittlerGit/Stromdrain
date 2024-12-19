@@ -66,7 +66,7 @@ export default function Home() {
   const checkAuth = async () => {
     setAuthChecked(false)
     // Check with backend if the cookie payload is valid
-    const res = await fetch("/api/clientAuth", {
+    const res = await fetch("/api/auth", {
       method: "GET",
       headers: {
         "Content-Type": "application/json"
