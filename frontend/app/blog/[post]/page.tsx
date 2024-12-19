@@ -15,7 +15,7 @@ type post = {
 
 async function fetchPost(post_id: string) {
   const response = await fetch("/api/post", {
-    method: "GET",
+    method: "POST",
     headers: {
       Accept: "application/json"
     }, 
@@ -75,7 +75,7 @@ const Post = () => {
     const id = params.post // get the post id from the url
     if (typeof id === 'string') {
       const response = await fetch("/api/post", {
-        method: "UPDATE",
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json"
         },

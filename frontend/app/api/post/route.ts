@@ -94,8 +94,8 @@ export async function PUT(request: NextRequest) {
     
 }
 
-// Retrieving a single exisitng post, upgrade to rpc call
-export async function GET(request: NextRequest) {
+// Retrieving a single exisitng post, upgrade to rpc call, also remember GET cannot have a body its a pure get request
+export async function POST(request: NextRequest) {
     const {post_id: post_id} = await request.json();
     // Use the supabase client to request the data
     let { data, error } = await supabaseClient
@@ -111,8 +111,8 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(data);
 }
 
-// Updating an existing post
-export async function UPDATE(res: NextRequest) {
+// Updating an existing post -- remember update isnt a http method so we use patch :)
+export async function PATCH(res: NextRequest) {
     const {id, title, body} = await res.json()
     console.log(id, title, body)
 
