@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { TypeAnimation } from 'react-type-animation';
 import Textarea from '@mui/joy/Textarea';
+import { checkAuth } from '@services/auth';
 
 type post = {
   title: string;
@@ -84,25 +85,6 @@ const Post = () => {
     }
   }
 
-  // The Post component  // Check if the user is authenticated
-  const checkAuth = async () => {
-    setAuthChecked(false)
-    // Check with backend if the cookie payload is valid
-    const res = await fetch("/api/auth", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      credentials: "include"
-    });
-    // Check the response
-    const data = await res.json();
-    // Set logged in status based on response 
-    setAuthChecked(true)
-    return data.loggedIn
-
-  };
-
   const getData = async() => {
     const post = params.post
     if (typeof post === 'string') {
@@ -118,7 +100,9 @@ const Post = () => {
 
   useEffect(() => {
     const setup = async() => {
+      setAuthChecked(false)
       const loggedIn = await checkAuth()
+      setAuthChecked(true)
       setLoggedIn(loggedIn)
       getData()
     }
