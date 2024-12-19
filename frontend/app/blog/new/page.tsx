@@ -30,11 +30,10 @@ async function makePost(title: string, tag: string, body: string, images: File[]
 const Page = () => {
   // useStates for our data
   const [title, setTitle] = useState('');
-  const [tag, setTag] = useState('');
+  const [tag, setTag] = useState('general-learning');
   const [content, setContent] = useState('');
   const [imageUrls, setImageUrls] = useState<string[]>([]); // For displaying locally
   const [imageFiles, setImageFiles] = useState<File[]>([]); // For sending to the supabase storage
-  const [isImageSelected, setisImageSelected] = useState(false)
   const [submitting, setSubmitting] = useState(false)
 
   
@@ -67,7 +66,6 @@ const Page = () => {
       
       setImageUrls([...imageUrls, ...newImageUrls])
       setImageFiles([...imageFiles, ...newImageFiles])
-      setisImageSelected(true)
     }
   } 
 
@@ -103,6 +101,21 @@ const Page = () => {
             ))}
           </div>
 
+          <select className="rounded p-1 text-center text-black border-gray-300 border-2 hover:border-black" id="tags" name="tags" onChange={(e) => {
+            setTag(e.target.value)
+          }}>
+            <option className="text-center text-black" value="general-learning">General Learning</option>
+            <option className="text-center text-black" value="machine-learning">Machine Learning</option>
+            <option className="text-center text-black" value="frontend-learning">Frontend Learning</option>
+            <option className="text-center text-black" value="backend-learning">Backend Learning</option>
+            <option className="text-center text-black" value="algorithms">Algorithms</option>
+            <option className="text-center text-black" value="university">University</option>
+            <option className="text-center text-black" value="project-progress">Project Progress</option>
+            <option className="text-center text-black" value="fitness" >Fitness</option>
+            <option className="text-center text-black" value="martial-arts" >Martial Arts</option>
+            <option className="text-center text-black" value="thoughts">Thoughts</option>
+          </select>
+
           <TextField
             type="text"
             variant='outlined'
@@ -114,16 +127,6 @@ const Page = () => {
             disabled={submitting}
           />
           
-          <TextField
-            type="text"
-            variant='outlined'
-            color='primary'
-            label="Tag"
-            onChange={(e) => {setTag(e.target.value)}} // Capture tag input
-            required
-            fullWidth
-            disabled={submitting}
-          />
           
           <TextField
             variant='outlined'
