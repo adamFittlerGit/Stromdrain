@@ -126,7 +126,7 @@ const Post = () => {
   }, []);
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center text-black">
       {isMounted && params?.post ? (// create a post type to remove typescript error
         <div className="grid p-4 m-4 bg-white border-2 border-black rounded  w-3/4 sm:w-128 ">
           <div className="flex justify-start absolute z-50 opacity-50">
@@ -143,7 +143,7 @@ const Post = () => {
           <div className="flex justify-end z-50 opacity-50">
             {//loggedIn && !showSummary 
               false && (
-                <div className="justify-center mb-5">
+                <div className="justify-center mb-5 text-black">
                   <button
                     className="border-2 border-black rounded p-1 bg-lime-200 hover:bg-lime-400 mr-2"
                     onClick={!editMode ? () => {
@@ -165,7 +165,7 @@ const Post = () => {
                 </div>
               )}  
           </div>
-          <div className="px-12">
+          <div className="px-12 text-black">
             {editMode ? (
               <input
                 value={title}
@@ -187,7 +187,7 @@ const Post = () => {
             </div>
             <br></br>
             {loggedIn && !showSummary && (
-              <div className="justify-center mb-5">
+              <div className="justify-center mb-5 text-black">
                 <button
                   className="border-2 border-black rounded p-1 bg-lime-200 hover:bg-lime-400 mr-2"
                   onClick={!editMode ? () => setEditMode(!editMode): () => {
