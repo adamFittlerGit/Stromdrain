@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import { useRouter } from 'next/navigation'
 import Image from 'next/image';
 import Link from 'next/link';
+import { uploadImage } from '@/services/storage';
 
 async function makePost(title: string, tag: string, body: string, images: File[]) {
   const response = await fetch("/api/post", {
@@ -50,6 +51,7 @@ const Page = () => {
     e.preventDefault();
 
     try {
+
         await makePost(title, tag, content, imageFiles); // Await the makePost function
         router.push("/blog"); // Redirect only after the post has been made
     } catch (error) {
