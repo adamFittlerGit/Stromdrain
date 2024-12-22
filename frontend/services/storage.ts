@@ -2,7 +2,7 @@ import { supabaseClient } from '@/supabase/client';
 import * as dotenv from 'dotenv';
 
 // Upload the file to blob storage and return the url
-const uploadImage = async (file: File) {
+const uploadImage = async (file: File) => {
     // Load environment variables from .env file
     dotenv.config();
     // Now you can access your environment variables using process.env
