@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import 'react-loading-skeleton/dist/skeleton.css';
 import Tilt from 'react-parallax-tilt';
+import { checkAuth } from '@services/auth';
 
 
 // Fetching the backend logic for the posts
@@ -63,30 +64,14 @@ export default function Home() {
     setLoading(false)
   };
 
-  // Check if the user is authenticated
-  const checkAuth = async () => {
-    setAuthChecked(false)
-    // Check with backend if the cookie payload is valid
-    const res = await fetch("/api/clientAuth", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      credentials: "include"
-    });
-    // Check the response
-    const data = await res.json();
-    // Set logged in status based on response 
-    setAuthChecked(true)
-    return data.loggedIn
-
-  };
 
   // Used for initial Setup on first render
   useEffect(() => {
     const setup = async () => {
       // Check if logged in 
+      setAuthChecked(false)
       const loggedIn = await checkAuth();
+      setAuthChecked(true)
       // Get different amount of data on first page if logged in or not 
       let newEndIdx
       let initialTagType

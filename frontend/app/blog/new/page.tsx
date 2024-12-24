@@ -5,26 +5,22 @@ import Button from '@mui/material/Button';
 import { useRouter } from 'next/navigation'
 import Image from 'next/image';
 import Link from 'next/link';
+import  uploadImage  from '@/services/storage';
 
 async function makePost(title: string, tag: string, body: string, images: File[]) {
-
-  const form = new FormData();
-  form.append("title", title);
-  form.append("body", body);
-  form.append("tag", tag);
-  images.forEach((image) => {
-      form.append("images", image);
-  });
-
-  const response = await fetch("/api/newPost", {
-      method: "POST",
+  // Upload images to storage
+  const response = await fetch("/api/post", {
+      method: "PUT",
       headers: {
           "Content-Type": "multipart/form-data"
       },
-      body: form
+      body: JSON.stringify({
+          title,
+          body, // Consider renaming this to 'content' to avoid confusion
+          tag,
+          images, // Include image_urls,
+      })
   });
-
-  console.log(form)
 
   if (!response.ok) {
       throw new Error("Failed to fetch posts");
@@ -34,12 +30,12 @@ async function makePost(title: string, tag: string, body: string, images: File[]
 const Page = () => {
   // useStates for our data
   const [title, setTitle] = useState('');
-  const [tag, setTag] = useState('');
+  const [tag, setTag] = useState('general-learning');
   const [content, setContent] = useState('');
   const [imageUrls, setImageUrls] = useState<string[]>([]); // For displaying locally
   const [imageFiles, setImageFiles] = useState<File[]>([]); // For sending to the supabase storage
-  const [isImageSelected, setisImageSelected] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+  const [isImageSelected, setIsImageSelected] = useState(false)
 
   
 
@@ -55,6 +51,7 @@ const Page = () => {
     e.preventDefault();
 
     try {
+
         await makePost(title, tag, content, imageFiles); // Await the makePost function
         router.push("/blog"); // Redirect only after the post has been made
     } catch (error) {
@@ -71,7 +68,7 @@ const Page = () => {
       
       setImageUrls([...imageUrls, ...newImageUrls])
       setImageFiles([...imageFiles, ...newImageFiles])
-      setisImageSelected(true)
+      setIsImageSelected(true)
     }
   } 
 
@@ -107,6 +104,21 @@ const Page = () => {
             ))}
           </div>
 
+          <select className="rounded p-1 text-center text-black border-gray-300 border-2 hover:border-black" id="tags" name="tags" onChange={(e) => {
+            setTag(e.target.value)
+          }}>
+            <option className="text-center text-black" value="general-learning">General Learning</option>
+            <option className="text-center text-black" value="machine-learning">Machine Learning</option>
+            <option className="text-center text-black" value="frontend-learning">Frontend Learning</option>
+            <option className="text-center text-black" value="backend-learning">Backend Learning</option>
+            <option className="text-center text-black" value="algorithms">Algorithms</option>
+            <option className="text-center text-black" value="university">University</option>
+            <option className="text-center text-black" value="project-progress">Project Progress</option>
+            <option className="text-center text-black" value="fitness" >Fitness</option>
+            <option className="text-center text-black" value="martial-arts" >Martial Arts</option>
+            <option className="text-center text-black" value="thoughts">Thoughts</option>
+          </select>
+
           <TextField
             type="text"
             variant='outlined'
@@ -118,16 +130,6 @@ const Page = () => {
             disabled={submitting}
           />
           
-          <TextField
-            type="text"
-            variant='outlined'
-            color='primary'
-            label="Tag"
-            onChange={(e) => {setTag(e.target.value)}} // Capture tag input
-            required
-            fullWidth
-            disabled={submitting}
-          />
           
           <TextField
             variant='outlined'
@@ -147,7 +149,7 @@ const Page = () => {
         <br></br>
         <Link href="/blog">
               <Image
-                src="/back-button.png"
+                src="/back.png"
                 alt="back-button"
                 width={30}
                 height={30}

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { TypeAnimation } from 'react-type-animation';
 import Textarea from '@mui/joy/Textarea';
+import { checkAuth } from '@services/auth';
 
 type post = {
   title: string;
@@ -56,8 +57,8 @@ const Post = () => {
   const deletePost = async () => {
     const id = params.post // get the post id from the url
     if (typeof id === 'string') {
-      const response = await fetch("/api/deletePost", {
-        method: "POST",
+      const response = await fetch("/api/post", {
+        method: "DELETE",
         headers: {
           "Content-Type": "application/json"
         },
@@ -74,8 +75,8 @@ const Post = () => {
     console.log("updating post")
     const id = params.post // get the post id from the url
     if (typeof id === 'string') {
-      const response = await fetch("/api/updatePost", {
-        method: "POST",
+      const response = await fetch("/api/post", {
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json"
         },
@@ -83,25 +84,6 @@ const Post = () => {
       });
     }
   }
-
-  // The Post component  // Check if the user is authenticated
-  const checkAuth = async () => {
-    setAuthChecked(false)
-    // Check with backend if the cookie payload is valid
-    const res = await fetch("/api/clientAuth", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      credentials: "include"
-    });
-    // Check the response
-    const data = await res.json();
-    // Set logged in status based on response 
-    setAuthChecked(true)
-    return data.loggedIn
-
-  };
 
   const getData = async() => {
     const post = params.post
@@ -118,7 +100,9 @@ const Post = () => {
 
   useEffect(() => {
     const setup = async() => {
+      setAuthChecked(false)
       const loggedIn = await checkAuth()
+      setAuthChecked(true)
       setLoggedIn(loggedIn)
       getData()
     }
@@ -126,7 +110,7 @@ const Post = () => {
   }, []);
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center text-black">
       {isMounted && params?.post ? (// create a post type to remove typescript error
         <div className="grid p-4 m-4 bg-white border-2 border-black rounded  w-3/4 sm:w-128 ">
           <div className="flex justify-start absolute z-50 opacity-50">
@@ -143,7 +127,7 @@ const Post = () => {
           <div className="flex justify-end z-50 opacity-50">
             {//loggedIn && !showSummary 
               false && (
-                <div className="justify-center mb-5">
+                <div className="justify-center mb-5 text-black">
                   <button
                     className="border-2 border-black rounded p-1 bg-lime-200 hover:bg-lime-400 mr-2"
                     onClick={!editMode ? () => {
@@ -165,7 +149,7 @@ const Post = () => {
                 </div>
               )}  
           </div>
-          <div className="px-12">
+          <div className="px-12 text-black">
             {editMode ? (
               <input
                 value={title}
@@ -187,7 +171,7 @@ const Post = () => {
             </div>
             <br></br>
             {loggedIn && !showSummary && (
-              <div className="justify-center mb-5">
+              <div className="justify-center mb-5 text-black">
                 <button
                   className="border-2 border-black rounded p-1 bg-lime-200 hover:bg-lime-400 mr-2"
                   onClick={!editMode ? () => setEditMode(!editMode): () => {

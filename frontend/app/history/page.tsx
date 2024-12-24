@@ -2,7 +2,6 @@
 
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
-import { useInView } from "react-intersection-observer";
 
 
 const History = () => {
@@ -17,6 +16,22 @@ const History = () => {
       <div className='flex justify-center'>
         <div>
           <VerticalTimeline>
+          <VerticalTimelineElement
+              className="m-10"
+              contentArrowStyle={{ borderRight: '7px solid white' }}
+              date="December 2024 - Current"
+              dateClassName="mx-4 text-white text-lg"
+              iconStyle={{ background: 'gray', color: '#fff' }}
+              icon={<div className='flex justify-center pt-1'><img src="/AthenaAI.png" width={50} height={50} className='rounded-full'/></div>}
+            >
+              <h3 className="text-xl text-black">Integration Support Intern</h3>
+              <h4 className="text-md text-gray-400">Athena AI</h4>
+              <p className='text-sm text-black'>
+                 I interacted with international clients, providing product support in their integration of Athena's products into their own systems.  I also spent time working on integration programming between different components of the systems.
+                <br/><br/>
+                This included the integration between in house machine learning pipelines with user interfaces in order to ensure clean data transfer and performance for the end users. 
+              </p>
+            </VerticalTimelineElement>
             <VerticalTimelineElement
               className="m-10"
               contentArrowStyle={{ borderRight: '7px solid white' }}
