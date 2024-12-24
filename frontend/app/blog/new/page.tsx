@@ -22,7 +22,7 @@ async function makePost(title: string, tag: string, body: string, images: File[]
           "Content-Type": "multipart/form-data"
       },
       body: form
-  });b
+  });
 
   console.log(form)
 
