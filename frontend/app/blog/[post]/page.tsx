@@ -12,6 +12,7 @@ type post = {
   body: string;
   tag: string;
   date: string;  
+  image_urls: string[];
 };
 
 async function fetchPost(post_id: string) {

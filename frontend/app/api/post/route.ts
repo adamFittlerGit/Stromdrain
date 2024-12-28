@@ -72,8 +72,8 @@ export async function PUT(request: NextRequest) {
     const user_id = "fbc72f17-b191-48a6-86ab-54ed20be6cf1"; // This should be dynamic later based on the current logged in user
 
     // Avoid uploading empty files array
-    let image_urls = []
-    if (images && images.length > 0) image_urls = await Promise.all(images.map(uploadImage)); // need to specifically check length due to javascript being a trash language with truthy etc
+    let image_urls = images
+    //if (images && images.length > 0) image_urls = await Promise.all(images.map(uploadImage)); // need to specifically check length due to javascript being a trash language with truthy etc
     
     // Use Openai Models to get the post embedding and summary make sure to apply same process as the other python scripting and cleaning
     const combined = `title:  ${title}; body: ${content};`.replace(/\n/g, ' '); // remove the \n for better responses

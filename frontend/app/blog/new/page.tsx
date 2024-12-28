@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import  uploadImage  from '@/services/storage';
 
-async function makePost(title: string, tag: string, body: string, images: File[]) {
+async function makePost(title: string, tag: string, body: string, images: string[]) {
   const response = await fetch("/api/post", {
       method: "PUT",
       headers: {
@@ -36,6 +36,7 @@ const Page = () => {
   const [imageUrls, setImageUrls] = useState<string[]>([]); // For displaying locally
   const [imageFiles, setImageFiles] = useState<File[]>([]); // For sending to the supabase storage
   const [submitting, setSubmitting] = useState(false)
+  const [isImageSelected, setIsImageSelected] = useState(false)
 
   
 
@@ -51,8 +52,10 @@ const Page = () => {
     e.preventDefault();
 
     try {
-
-        await makePost(title, tag, content, imageFiles); // Await the makePost function
+        const imageUrls = await Promise.all(imageFiles.map(uploadImage)); // Upload images to storage
+        console.log(imageFiles)
+        console.log(imageUrls)
+        await makePost(title, tag, content, imageUrls.filter((url): url is string => url !== null)); // Await the makePost function, ensure to filter to nulls
         router.push("/blog"); // Redirect only after the post has been made
     } catch (error) {
         console.error("Error making post:", error);
@@ -63,6 +66,7 @@ const Page = () => {
   // Handling the upload of mutliple files
   const handleUpload = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
+      setIsImageSelected(true)
       const newImageFiles = Array.from(e.target.files)
       const newImageUrls = newImageFiles.map((file) => URL.createObjectURL(file))
       
@@ -87,7 +91,7 @@ const Page = () => {
             onChange={handleUpload}
           />
 
-          {/*<Button className="hidden" variant="outlined" onClick={() => {imageInputRef.current?.click()}}>{isImageSelected ? "Select Another Image" : "Select Image"}</Button> */}
+          <Button className="" variant="outlined" onClick={() => {imageInputRef.current?.click()}}>{isImageSelected ? "Select Another Image" : "Select Image"}</Button>
           
           <div className='flex gap-4'>
             

@@ -17,23 +17,6 @@ const TopNav = () => {
     setMobileMenu(false)
   }
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      const res = await fetch("/api/checkAuth", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        credentials: "include"
-      });
-
-      const data = await res.json();
-      setIsLoggedIn(data.loggedIn);
-    }
-
-    checkAuth()
-  }, [])
-
   return (
     <>
       <div className='flex w-full bg-gray-500 text-xl font-extrabold p-6 justify-center'>
