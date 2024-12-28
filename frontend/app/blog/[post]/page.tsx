@@ -164,7 +164,7 @@ const Post = () => {
             <br></br>
             <div className="text-black flex items-center justify-center my-2">
               <Image
-                  src={`/${showSummary ? "storm-ai" : post?.tag}.png`}
+                  src={`${showSummary ? "/storm-ai.png" : post?.image_urls[0]}`}
                   alt="Me Logo"
                   width={60}
                   height={60}
