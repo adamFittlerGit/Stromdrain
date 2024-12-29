@@ -9,20 +9,7 @@ import {OpenAI } from "openai";
 dotenv.config();
 
 // Now you can access your environment variables using process.env
-const supabaseUrl: string = process.env.SUPABASE_URL!;
 const OPENAI_KEY: string = process.env.OPENAI_KEY!;
-
-// Upload the file to blob storage and return the url
-async function uploadImage(file: File) {
-    const filePath = `${Date.now()}_${file.name}`;
-    const { data, error } = await supabaseClient.storage.from('images').upload(filePath, file);
-  
-    if (error) {
-      console.error('Error uploading image:', error);
-      return null;
-    }
-    return `${supabaseUrl}/storage/v1/object/public/images/${data.path}`
-  }
 
 // Get the summary from GPT 4 mini model
 async function getSummary(combined: string) {
