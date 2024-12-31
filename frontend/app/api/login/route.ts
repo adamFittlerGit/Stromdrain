@@ -6,8 +6,8 @@ export async function POST(request: Request) {
   const { username, password } = await request.json();
 
   // Load environment variables
-  const storedUsername = process.env.USERNAME;
-  const storedPassword = process.env.PASSWORD;
+  const storedUsername = "Stormed";
+  const storedPassword = "7135";
   const jwtSecret = process.env.JWT_SECRET; // Add a JWT_SECRET to your .env file
 
   // Hash the incoming password to compare with the stored hash
