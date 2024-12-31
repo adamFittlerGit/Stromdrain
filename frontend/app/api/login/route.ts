@@ -1,20 +1,29 @@
 import { NextResponse } from 'next/server';
-import CryptoJS from 'crypto-js';
 import { SignJWT } from 'jose';
+import { supabaseClient } from '@/supabase/client';
+
+const jwtSecret = process.env.JWT_SECRET; // Add a JWT_SECRET to your .env file
 
 export async function POST(request: Request) {
   const { username, password } = await request.json();
 
-  // Load environment variables
-  const storedUsername = "Stormed";
-  const storedPassword = "7135";
-  const jwtSecret = process.env.JWT_SECRET; // Add a JWT_SECRET to your .env file
+  // Get the hashed pasword for that user
+  const { data, error } = await supabaseClient
+    .from('users')
+    .select('password')
+    .eq('name', username);
+    
+    console.log(username)
+    console.log(data);
 
-  // Hash the incoming password to compare with the stored hash
-  const hashedPassword = CryptoJS.SHA256(storedPassword!).toString();
+  if (!data || data.length === 0) {
+    return NextResponse.json({ success: false, message: 'User not found' }, { status: 404 });
+  }
+  
+  const hashedPassword = data[0].password;
 
   // Check if the credentials match the stored values
-  if (username === storedUsername && password === hashedPassword) {
+  if (password === hashedPassword) {
     // Generate a JWT token
     const token = await new SignJWT({ username })
       .setProtectedHeader({ alg: 'HS256' })
