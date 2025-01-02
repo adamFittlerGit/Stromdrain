@@ -91,7 +91,9 @@ const Page = () => {
             onChange={handleUpload}
           />
 
-          <Button className="" variant="outlined" onClick={() => {imageInputRef.current?.click()}}>{isImageSelected ? "Select Another Image" : "Select Image"}</Button>
+          {!isImageSelected && 
+              <Button className="" variant="outlined" onClick={() => {imageInputRef.current?.click()}}>{isImageSelected ? "Select Another Image" : "Select Image"}</Button>
+          }
           
           <div className='flex gap-4'>
             
