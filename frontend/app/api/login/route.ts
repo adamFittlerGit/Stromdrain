@@ -10,7 +10,7 @@ export async function POST(request: Request) {
   // Get the hashed pasword for that user
   const { data, error } = await supabaseClient
     .from('users')
-    .select('password')
+    .select('password, user_id')
     .eq('name', username);
     
     console.log(username)
@@ -22,10 +22,12 @@ export async function POST(request: Request) {
   
   const hashedPassword = data[0].password;
 
+  const user_id = data[0].user_id;  
+
   // Check if the credentials match the stored values
   if (password === hashedPassword) {
     // Generate a JWT token
-    const token = await new SignJWT({ username })
+    const token = await new SignJWT({ username, user_id})
       .setProtectedHeader({ alg: 'HS256' })
       .setIssuedAt()
       .setExpirationTime('1h')
