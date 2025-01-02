@@ -7,27 +7,26 @@ const jwtSecret = process.env.JWT_SECRET; // Add a JWT_SECRET to your .env file
 export async function POST(request: Request) {
   const { username, password } = await request.json();
 
-  // Get the hashed pasword for that user
+  // Get the hashed password for that user
   const { data, error } = await supabaseClient
     .from('users')
     .select('password, user_id')
     .eq('name', username);
     
-    console.log(username)
-    console.log(data);
+  console.log(username);
+  console.log(data);
 
   if (!data || data.length === 0) {
     return NextResponse.json({ success: false, message: 'User not found' }, { status: 404 });
   }
   
   const hashedPassword = data[0].password;
-
   const user_id = data[0].user_id;  
 
   // Check if the credentials match the stored values
   if (password === hashedPassword) {
     // Generate a JWT token
-    const token = await new SignJWT({ username, user_id})
+    const token = await new SignJWT({ sub: user_id })  // Use `sub` for user_id (standard claim for user ID)
       .setProtectedHeader({ alg: 'HS256' })
       .setIssuedAt()
       .setExpirationTime('1h')
