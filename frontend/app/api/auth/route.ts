@@ -1,23 +1,15 @@
+import { supabaseClient } from '@/supabase/client';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { jwtVerify } from 'jose'
 
 export async function GET(request: NextRequest) {
-    const token = request.cookies.get('auth_token')?.value;
+    
+    const { data, error } = await supabaseClient.auth.getSession()
 
-    // Define the secret from your environment variables
-    const jwtSecret = process.env.JWT_SECRET;
-
-    const encodedKey = new TextEncoder().encode(jwtSecret)
-
-    try {
-        const { payload } = await jwtVerify(token!, encodedKey, {
-          algorithms: ['HS256'],
-        })
-  
+    if (!error) {
         return NextResponse.json({ loggedIn: true })
         
-    } catch (error) {
+    }  else{
         return NextResponse.json({ loggedIn: false });
     }
 
