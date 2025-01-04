@@ -5,43 +5,13 @@ import { supabaseClient } from '@/supabase/client';
 const jwtSecret = process.env.JWT_SECRET; // Add a JWT_SECRET to your .env file
 
 export async function POST(request: Request) {
-  const { username, password } = await request.json();
+  const { email, password } = await request.json();
 
-  // Get the hashed password for that user
-  const { data, error } = await supabaseClient
-    .from('users')
-    .select('password, user_id')
-    .eq('name', username);
-    
-  console.log(username);
-  console.log(data);
-
-  if (!data || data.length === 0) {
-    return NextResponse.json({ success: false, message: 'User not found' }, { status: 404 });
-  }
-  
-  const hashedPassword = data[0].password;
-  const user_id = data[0].user_id;  
-
+  const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+  console.log(data, error);
   // Check if the credentials match the stored values
-  if (password === hashedPassword) {
-    // Generate a JWT token
-    const token = await new SignJWT({ sub: user_id })  // Use `sub` for user_id (standard claim for user ID)
-      .setProtectedHeader({ alg: 'HS256' })
-      .setIssuedAt()
-      .setExpirationTime('1h')
-      .sign(new TextEncoder().encode(jwtSecret));
-
-    // Set the JWT as an HTTP-only cookie
-    const response = NextResponse.json({ success: true, message: 'Login successful' });
-    response.cookies.set('auth_token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
-      sameSite: 'strict', // Helps mitigate CSRF
-      maxAge: 60 * 60, // 1 hour
-      path: '/', // Cookie available site-wide
-    });
-    return response;
+  if (!error) {
+    return NextResponse.json({ success: true, message: 'Login successful' });
   } else {
     return NextResponse.json({ success: false, message: 'Invalid username or password' }, { status: 401 });
   }

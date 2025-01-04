@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 
 const Page = () => {
   const router = useRouter();
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(''); // State for error messages
   const [success, setSuccess] = useState(''); // State for success messages
@@ -25,7 +25,7 @@ const Page = () => {
     const res = await fetch('/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password: hashedPassword }),
+      body: JSON.stringify({ email, password }),
     });
 
     const data = await res.json();
@@ -33,7 +33,7 @@ const Page = () => {
     if (data.success) {
       setSuccess('Login successful!'); // Set success message
       router.refresh()
-      setTimeout(() => router.back(), 1000); // Redirect after a short delay
+      setTimeout(() => router.push('/blog'), 1000); // Redirect after a short delay
     } else {
       setError('Invalid username or password. Please try again.'); // Set error message
       console.error(data.message); // Log the error message for debugging
@@ -49,8 +49,8 @@ const Page = () => {
           type="text"
           variant="outlined"
           color="primary"
-          label="Username"
-          onChange={(e) => setUsername(e.target.value)}
+          label="Email"
+          onChange={(e) => setEmail(e.target.value)}
           fullWidth
           required
         />
