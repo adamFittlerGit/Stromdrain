@@ -31,7 +31,7 @@ async function makePost(title: string, tag: string, body: string, images: string
 const Page = () => {
   // useStates for our data
   const [title, setTitle] = useState('');
-  const [tag, setTag] = useState('general-learning');
+  const [tag, setTag] = useState('relationship');
   const [content, setContent] = useState('');
   const [imageUrls, setImageUrls] = useState<string[]>([]); // For displaying locally
   const [imageFiles, setImageFiles] = useState<File[]>([]); // For sending to the supabase storage

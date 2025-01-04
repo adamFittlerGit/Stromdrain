@@ -109,8 +109,6 @@ export async function PATCH(res: NextRequest) {
             new_title: title, 
             new_body: body, 
         })
-        console.log(error)
-        console.log(data)
 
         return NextResponse.json({ status: 'updated successfully'})
 
@@ -127,8 +125,6 @@ export async function DELETE(res: NextRequest) {
         const { data, error } = await supabaseClient.rpc('delete_post', {
             delete_id: id
         })
-        console.log(error)
-        console.log(data)
 
         return NextResponse.json({ status: 'deleted successfully'})
 
