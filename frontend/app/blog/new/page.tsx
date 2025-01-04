@@ -112,6 +112,7 @@ const Page = () => {
           <select className="rounded p-1 text-center text-black border-gray-300 border-2 hover:border-black" id="tags" name="tags" onChange={(e) => {
             setTag(e.target.value)
           }}>
+            <option className="text-center text-black" value="relationship">Relationship</option>
             <option className="text-center text-black" value="general-learning">General Learning</option>
             <option className="text-center text-black" value="machine-learning">Machine Learning</option>
             <option className="text-center text-black" value="frontend-learning">Frontend Learning</option>
