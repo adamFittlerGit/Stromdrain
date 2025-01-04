@@ -56,7 +56,7 @@ export async function PUT(request: NextRequest) {
     // Get specific non user inputted data
     const now = new Date();
     const date = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
-    const user_id = "fbc72f17-b191-48a6-86ab-54ed20be6cf1"; // This should be dynamic later based on the current logged in user
+    const user_id = "1109a3ec-bc9c-4c8b-b145-7ec02bc3967f"; // This should be dynamic later based on the current logged in user
 
     // Avoid uploading empty files array
     let image_urls = images
