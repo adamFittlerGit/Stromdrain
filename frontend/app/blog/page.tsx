@@ -190,6 +190,7 @@ export default function Home() {
               <option className="text-center text-black" value="project-progress">Project Progress</option>
               {isLoggedIn && (
                 <>
+                  <option className="text-center text-black" value="relationship" >Relationship</option>
                   <option className="text-center text-black" value="fitness" >Fitness</option>
                   <option className="text-center text-black" value="martial-arts" >Martial Arts</option>
                 </>
