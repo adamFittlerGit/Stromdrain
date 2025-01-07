@@ -1,22 +1,19 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
-import { supabaseClient } from '@/supabase/client';
+import { type NextRequest } from 'next/server'
+import { updateSession } from '@/supabase/middleware'
 
 export async function middleware(request: NextRequest) {
-  
-  // Define the path that needs authentication
-  //const protectedPaths = ['/blog/new', '/stormai'];
+  return await updateSession(request)
+}
 
-  //const isProtectedPath = protectedPaths.some(path => path === request.nextUrl.pathname); // Check if requested path is in that list .some returns true if at least one item in list equalates to true with this 
-
-  //const { data, error } = await supabaseClient.auth.getSession()
-
-  //if (isProtectedPath) {
-   // if (!error) {
-      // Redirect to login if there's no token
-   //   return NextResponse.redirect(new URL('/login', request.url));
-  //  } else {
-      return NextResponse.next();
-   // }
- // }
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * Feel free to modify this pattern to include more paths.
+     */
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+  ],
 }

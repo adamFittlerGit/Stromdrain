@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
-import CryptoJS from 'crypto-js';
 import { useRouter } from 'next/navigation';
 
 const Page = () => {
@@ -13,22 +12,21 @@ const Page = () => {
   const [success, setSuccess] = useState(''); // State for success messages
 
   const handleLogin = async (e: React.FormEvent) => {
+    
     e.preventDefault();
 
     // Reset messages
     setError('');
     setSuccess('');
 
-    // Hash the password using SHA-256
-    const hashedPassword = CryptoJS.SHA256(password).toString();
-
     const res = await fetch('/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
     });
-
+    console.log("test")
     const data = await res.json();
+    console.log(data)
 
     if (data.success) {
       setSuccess('Login successful!'); // Set success message
