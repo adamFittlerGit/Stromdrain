@@ -1,12 +1,14 @@
-import { supabaseClient } from '@/supabase/client';
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server'
+import { NextRequest } from 'next/server'
+import { createClient } from '@/supabase/server'
 
 export async function GET(request: NextRequest) {
     
-    const { data, error } = await supabaseClient.auth.getSession()
-    console.log(`supabase.auth:${data.session}`)
-    if (data.session === null) {
+    const supabase = await createClient()
+
+    const { data, error } = await supabase.auth.getUser()
+
+    if (error) {
         return NextResponse.json({ loggedIn: false })
         
     }  else{

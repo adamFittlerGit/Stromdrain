@@ -2,6 +2,8 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { TypeAnimation } from 'react-type-animation';
+import { redirect } from 'next/navigation'
+import { createClient } from '@/supabase/server'
 
 export default function Home() {
   const [query, setQuery] = useState("");

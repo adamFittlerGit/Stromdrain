@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import  uploadImage  from '@/services/storage';
 
+
 async function makePost(title: string, tag: string, body: string, images: string[]) {
   const response = await fetch("/api/post", {
       method: "PUT",
