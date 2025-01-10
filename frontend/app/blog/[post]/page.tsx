@@ -140,7 +140,8 @@ const Post = () => {
                   >
                     {editMode ? "+ Save" : " + Update"}
                   </button>
-                  {!editMode && (
+                  
+                  {editMode && (
                     <button 
                       className="border-2 border-black rounded p-1 bg-red-200 hover:bg-red-400"
                       onClick={() => deletePost()}>
@@ -182,7 +183,7 @@ const Post = () => {
                 >
                   {editMode ? "+ Save" : " + Update"}
                 </button>
-                {!editMode && (
+                {editMode && (
                   <button 
                     className="border-2 border-black rounded p-1 bg-red-200 hover:bg-red-400"
                     onClick={() => deletePost()}>
