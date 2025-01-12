@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { TypeAnimation } from 'react-type-animation';
 import Textarea from '@mui/joy/Textarea';
-import { checkAuth } from '@services/auth';
+import { checkAuth } from '@/utils/services/auth';
 
 type post = {
   title: string;

@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import { useRouter } from 'next/navigation'
 import Image from 'next/image';
 import Link from 'next/link';
-import  uploadImage  from '@/services/storage';
+import  uploadImage  from '@/utils/services/storage';
 
 
 async function makePost(title: string, tag: string, body: string, images: string[]) {
