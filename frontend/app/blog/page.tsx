@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import 'react-loading-skeleton/dist/skeleton.css';
 import Tilt from 'react-parallax-tilt';
-import { checkAuth } from '@services/auth';
+import { checkAuth } from '@/utils/services/auth';
 
 // Fetching the backend logic for the posts
 async function fetchPosts(tagType: any, start: any, end: any) {

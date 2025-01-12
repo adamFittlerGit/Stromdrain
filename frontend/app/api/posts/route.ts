@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { supabaseClient } from '@/supabase/client';
+import { supabaseClient } from '@/utils/supabase/client';
 import { NextRequest } from 'next/server';
 
 // Updated API route
