@@ -125,32 +125,6 @@ const Post = () => {
               />
             </button>
           </div>
-          <div className="flex justify-end z-50 opacity-50">
-            {//loggedIn && !showSummary 
-              false && (
-                <div className="justify-center mb-5 text-black">
-                  <button
-                    className="border-2 border-black rounded p-1 bg-lime-200 hover:bg-lime-400 mr-2"
-                    onClick={!editMode ? () => {
-                      setEditMode(!editMode) 
-                    } : () => {
-                      setEditMode(!editMode)
-                      updatePost()
-                    }}
-                  >
-                    {editMode ? "+ Save" : " + Update"}
-                  </button>
-                  
-                  {editMode && (
-                    <button 
-                      className="border-2 border-black rounded p-1 bg-red-200 hover:bg-red-400"
-                      onClick={() => deletePost()}>
-                      x Delete
-                    </button>
-                  )}
-                </div>
-              )}  
-          </div>
           <div className="px-12 text-black">
             {editMode ? (
               <input

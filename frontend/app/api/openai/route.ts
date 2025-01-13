@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from 'next/server';
-import { supabaseClient } from '@/supabase/client';
+import { supabaseClient } from '@/utils/supabase/client';
 import * as dotenv from 'dotenv';
 import {OpenAI } from "openai";
 
