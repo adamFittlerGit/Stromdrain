@@ -7,6 +7,14 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import Tilt from 'react-parallax-tilt';
 import { checkAuth } from '@/utils/services/auth';
 
+export async function getServerSideProps(context: any) {
+  const isLoggedIn = await checkAuth();
+
+  return {
+    props: { isLoggedIn }, // will be passed to the page component as props
+  };
+}
+
 // Fetching the backend logic for the posts
 async function fetchPosts(tagType: any, start: any, end: any) {
   const response = await fetch("/api/posts", {
@@ -25,14 +33,12 @@ async function fetchPosts(tagType: any, start: any, end: any) {
   return data;
 }
 
-export default function Home() {
+export default function Home({ isLoggedIn }: { isLoggedIn: boolean }) {
   // Constant Variables
   const postsPerPage = 10; // Number of posts per page
   const skeletons = []; // Array to hold our skeleton componenets
   const startIdx = 0
-
   // State Variables
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Authentication State
   const [posts, setPosts] = useState([]); // Array to hold our blog posts
   const [tagType, setTagType] = useState("software-engineering"); // Current Tags to show
   const [page, setPage] = useState(1); // Current page state
@@ -68,17 +74,12 @@ export default function Home() {
   useEffect(() => {
     const setup = async () => {
       // Check if logged in 
-      setAuthChecked(false)
-      const loggedIn = await checkAuth();
-      setAuthChecked(true)
       // Get different amount of data on first page if logged in or not 
       let newEndIdx
       let initialTagType
-      loggedIn ? newEndIdx = postsPerPage - 2 : newEndIdx = endIdx
-      loggedIn ? initialTagType = "all" : initialTagType = "software-engineering"
+      isLoggedIn ? newEndIdx = postsPerPage - 2 : newEndIdx = endIdx
+      isLoggedIn ? initialTagType = "all" : initialTagType = "software-engineering"
       getData(startIdx, newEndIdx, initialTagType)
-      // Set the use state variables
-      setIsLoggedIn(loggedIn)
       setTagType(initialTagType)
       setRange({start: range.start, end: newEndIdx})
       setEndIdx(newEndIdx)
