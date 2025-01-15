@@ -1,19 +1,12 @@
-'use client';
+'use client'
 // Importing Libraries
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import 'react-loading-skeleton/dist/skeleton.css';
 import Tilt from 'react-parallax-tilt';
-import { checkAuth } from '@/utils/services/auth';
+import { serverAuthCheck } from './actions'
 
-export async function getServerSideProps(context: any) {
-  const isLoggedIn = await checkAuth();
-
-  return {
-    props: { isLoggedIn }, // will be passed to the page component as props
-  };
-}
 
 // Fetching the backend logic for the posts
 async function fetchPosts(tagType: any, start: any, end: any) {
@@ -33,7 +26,9 @@ async function fetchPosts(tagType: any, start: any, end: any) {
   return data;
 }
 
-export default function Home({ isLoggedIn }: { isLoggedIn: boolean }) {
+export default function Home() {
+  // Server Variables
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   // Constant Variables
   const postsPerPage = 10; // Number of posts per page
   const skeletons = []; // Array to hold our skeleton componenets
@@ -74,6 +69,9 @@ export default function Home({ isLoggedIn }: { isLoggedIn: boolean }) {
   useEffect(() => {
     const setup = async () => {
       // Check if logged in 
+      const isloggedIn = await serverAuthCheck()
+      setIsLoggedIn(isloggedIn)
+      console.log(isLoggedIn)
       // Get different amount of data on first page if logged in or not 
       let newEndIdx
       let initialTagType
