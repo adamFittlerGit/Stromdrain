@@ -38,6 +38,12 @@ async function fetchPost(post_id: string) {
   return data[0];
 }
 
+const isVideo = (url: any) => {
+  const videoExtensions = ['mp4', 'webm', 'ogg', 'avi', 'mov'];
+  const extension = url.split('.').pop();
+  return videoExtensions.includes(extension);
+};
+
 
 
 const Post = () => {
@@ -138,12 +144,20 @@ const Post = () => {
             <p className="text-xl italic text-center text-black">{post?.date}</p>
             <br></br>
             <div className="text-black flex items-center justify-center my-2">
+              {!(!!post?.image_urls[0] && isVideo(post?.image_urls[0])) ? (
               <Image
                   src={`${showSummary ? "/storm-ai.png" : (post?.image_urls[0] || `/${post?.tag}.png`)}`}
                   alt="Me Logo"
                   width={200}
                   height={200}
               />
+              ) : (
+                <video width="320" height="240" controls>
+                  <source src={post?.image_urls[0]} type={`video/${post?.image_urls[0].split('.').pop()}`} />
+                  Your browser does not support the video tag.
+                </video>
+              )}
+
             </div>
             <br></br>
             {loggedIn && !showSummary && (

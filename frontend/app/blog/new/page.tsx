@@ -87,13 +87,13 @@ const Page = () => {
             type="file" 
             id="image_uploads"
             name="image_uploads"
-            accept=".jpg, .jpeg, .png"
+            accept="image/*,video/*"
             multiple
             onChange={handleUpload}
           />
 
           {!isImageSelected &&
-              <Button className="" variant="outlined" onClick={() => {imageInputRef.current?.click()}}>Select Image</Button>
+              <Button className="" variant="outlined" onClick={() => {imageInputRef.current?.click()}}>Select Image or Video</Button>
           }
 
           <div className='flex gap-4'>

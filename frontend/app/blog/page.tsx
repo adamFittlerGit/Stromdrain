@@ -28,7 +28,7 @@ async function fetchPosts(tagType: any, start: any, end: any) {
 
 export default function Home() {
   // Server Variables
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(true)
   // Constant Variables
   const postsPerPage = 10; // Number of posts per page
   const skeletons = []; // Array to hold our skeleton componenets
@@ -41,7 +41,7 @@ export default function Home() {
   const [endIdx, setEndIdx] = useState(postsPerPage-1)
   const [range, setRange] = useState({start: startIdx, end: endIdx}) // Current range of posts for pagination
   const [loading, setLoading] = useState(true) // Current page state
-  const [authChecked, setAuthChecked] = useState(false)
+  const [authChecked, setAuthChecked] = useState(true)
 
   // Creation of skeletons
   for (let i = 0; i < 10; i++) {
