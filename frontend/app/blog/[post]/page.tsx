@@ -144,7 +144,7 @@ const Post = () => {
             <p className="text-xl italic text-center text-black">{post?.date}</p>
             <br></br>
             <div className="text-black flex items-center justify-center my-2">
-              {!(!!post?.image_urls[0] && isVideo(post?.image_urls[0])) ? (
+              {!(!!post?.image_urls[0] && isVideo(post?.image_urls[0]) || true) ? (
               <Image
                   src={`${showSummary ? "/storm-ai.png" : (post?.image_urls[0] || `/${post?.tag}.png`)}`}
                   alt="Me Logo"
@@ -153,7 +153,7 @@ const Post = () => {
               />
               ) : (
                 <video width="320" height="240" controls>
-                  <source src={post?.image_urls[0]} type={`video/${post?.image_urls[0].split('.').pop()}`} />
+                  <source src={post?.image_urls[0]} />
                   Your browser does not support the video tag.
                 </video>
               )}
