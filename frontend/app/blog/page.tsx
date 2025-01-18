@@ -1,12 +1,11 @@
-'use client'
+'use client';
 // Importing Libraries
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import 'react-loading-skeleton/dist/skeleton.css';
 import Tilt from 'react-parallax-tilt';
-import { serverAuthCheck } from './actions'
-
+import { checkAuth } from '@/utils/services/auth';
 
 // Fetching the backend logic for the posts
 async function fetchPosts(tagType: any, start: any, end: any) {
@@ -27,13 +26,13 @@ async function fetchPosts(tagType: any, start: any, end: any) {
 }
 
 export default function Home() {
-  // Server Variables
-  const [isLoggedIn, setIsLoggedIn] = useState(true)
   // Constant Variables
   const postsPerPage = 10; // Number of posts per page
   const skeletons = []; // Array to hold our skeleton componenets
   const startIdx = 0
+
   // State Variables
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Authentication State
   const [posts, setPosts] = useState([]); // Array to hold our blog posts
   const [tagType, setTagType] = useState("software-engineering"); // Current Tags to show
   const [page, setPage] = useState(1); // Current page state
@@ -41,7 +40,7 @@ export default function Home() {
   const [endIdx, setEndIdx] = useState(postsPerPage-1)
   const [range, setRange] = useState({start: startIdx, end: endIdx}) // Current range of posts for pagination
   const [loading, setLoading] = useState(true) // Current page state
-  const [authChecked, setAuthChecked] = useState(true)
+  const [authChecked, setAuthChecked] = useState(false)
 
   // Creation of skeletons
   for (let i = 0; i < 10; i++) {
@@ -69,15 +68,17 @@ export default function Home() {
   useEffect(() => {
     const setup = async () => {
       // Check if logged in 
-      const isloggedIn = await serverAuthCheck()
-      setIsLoggedIn(isloggedIn)
-      console.log(isLoggedIn)
+      setAuthChecked(false)
+      const loggedIn = await checkAuth();
+      setAuthChecked(true)
       // Get different amount of data on first page if logged in or not 
       let newEndIdx
       let initialTagType
-      isLoggedIn ? newEndIdx = postsPerPage - 2 : newEndIdx = endIdx
-      isLoggedIn ? initialTagType = "all" : initialTagType = "software-engineering"
+      loggedIn ? newEndIdx = postsPerPage - 2 : newEndIdx = endIdx
+      loggedIn ? initialTagType = "all" : initialTagType = "software-engineering"
       getData(startIdx, newEndIdx, initialTagType)
+      // Set the use state variables
+      setIsLoggedIn(loggedIn)
       setTagType(initialTagType)
       setRange({start: range.start, end: newEndIdx})
       setEndIdx(newEndIdx)
