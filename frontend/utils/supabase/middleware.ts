@@ -40,8 +40,7 @@ export async function updateSession(request: NextRequest) {
  
   if (
     !user &&
-    request.nextUrl.pathname.startsWith('/blog/new') ||
-    request.nextUrl.pathname.startsWith('/stormai')
+    (request.nextUrl.pathname.startsWith('/blog/new') || request.nextUrl.pathname.startsWith('/stormai'))
   ) {
     // no user, potentially respond by redirecting the user to the login page
     const url = request.nextUrl.clone()

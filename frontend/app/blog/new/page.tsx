@@ -92,11 +92,21 @@ const Page = () => {
             onChange={handleUpload}
           />
 
-          {!isImageSelected &&
-              <Button className="" variant="outlined" onClick={() => {imageInputRef.current?.click()}}>Select Image or Video</Button>
-          }
+          {!isImageSelected ? (
+             <>
+              <Button className="gap-4" variant="outlined" onClick={() => {imageInputRef.current?.click()}}>Select File</Button>
+              <br/>
+            </>
+          ) : (
+            <Image 
+                src="/file.png"
+                width={50}
+                height={50}
+                alt="file image"
+            />
+          )}
 
-          <div className='flex gap-4'>
+          <div className='flex gap-4 hidden'>
             
             {imageUrls.map((url, index) => (
             
@@ -110,7 +120,7 @@ const Page = () => {
             ))}
           </div>
 
-          <select className="rounded p-1 text-center text-black border-gray-300 border-2 hover:border-black" id="tags" name="tags" onChange={(e) => {
+          <select disabled={submitting} className="rounded p-1 text-center text-black border-gray-300 border-2 hover:border-black" id="tags" name="tags" onChange={(e) => {
             setTag(e.target.value)
           }}>
             <option className="text-center text-black" value="relationship">Relationship</option>

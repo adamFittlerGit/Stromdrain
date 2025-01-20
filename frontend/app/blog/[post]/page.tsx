@@ -144,7 +144,7 @@ const Post = () => {
             <p className="text-xl italic text-center text-black">{post?.date}</p>
             <br></br>
             <div className="text-black flex items-center justify-center my-2">
-              {!(!!post?.image_urls[0] && isVideo(post?.image_urls[0]) || true) ? (
+              {!(!!post?.image_urls[0] && isVideo(post?.image_urls[0])) ? (
               <Image
                   src={`${showSummary ? "/storm-ai.png" : (post?.image_urls[0] || `/${post?.tag}.png`)}`}
                   alt="Me Logo"
