@@ -125,13 +125,13 @@ const Post = () => {
               <Image
                 src={`/${showSummary ? post?.tag : "storm-ai"}.png`}
                 alt="Logo"
-                width={30}
-                height={30}
+                width={20}
+                height={20}
                 onClick={() => {setShowSummary(!showSummary)}}
               />
             </button>
           </div>
-          <div className="ml-1 px-6 text-black">
+          <div className="px-6 text-black">
             {editMode ? (
               <input
                 value={title}
@@ -139,7 +139,7 @@ const Post = () => {
                 className="text-3xl font-bold text-center text-gray-500 border-gray-300 border-2 rounded p-1"
               />
             ) : (
-              <h1 className="text-3xl font-bold text-center text-black p-1">{title}</h1>
+              <h1 className="text-3xl font-bold text-center text-black">{title}</h1>
             )}
             <p className="text-xl italic text-center text-black">{post?.date}</p>
             <br></br>
@@ -163,7 +163,7 @@ const Post = () => {
             {loggedIn && !showSummary && (
               <div className="justify-center mb-5 text-black">
                 <button
-                  className="border-2 border-black rounded p-1 bg-lime-200 hover:bg-lime-400 mr-2"
+                  className="border-2 border-black rounded bg-lime-200 hover:bg-lime-400 mr-2"
                   onClick={!editMode ? () => setEditMode(!editMode): () => {
                     setEditMode(!editMode)
                     updatePost()
