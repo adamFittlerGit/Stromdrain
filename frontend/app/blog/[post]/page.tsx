@@ -119,8 +119,8 @@ const Post = () => {
   return (
     <div className="flex justify-center text-black">
       {isMounted && params?.post ? (// create a post type to remove typescript error
-        <div className="grid my-4 bg-white border-2 border-black rounded  w-3/4 sm:w-128 ">
-          <div className="hidden flex justify-start absolute z-50 opacity-50">
+        <div className="grid py-4 my-4 bg-white border-2 border-black rounded  w-3/4 sm:w-128 ">
+          <div className="flex justify-start absolute z-50 opacity-50">
             <button className={`border-2 border-black rounded-full p-1 bg-gray-300 ${!showSummary ? "hover:bg-sky-400": ""}`}>
               <Image
                 src={`/${showSummary ? post?.tag : "storm-ai"}.png`}
@@ -131,7 +131,7 @@ const Post = () => {
               />
             </button>
           </div>
-          <div className="px-12 text-black">
+          <div className="px-4 text-black">
             {editMode ? (
               <input
                 value={title}
