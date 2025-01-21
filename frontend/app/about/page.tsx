@@ -71,10 +71,6 @@ const About = () => {
               <Image src="/briefcase.png" width={20} height={20} alt="Projects Image" className="mr-2" />
               Projects
             </Link>
-            <Link href="/education" className="flex items-center bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-100 hover:text-black transition duration-300">
-              <Image src="/reading-list.png" width={20} height={20} alt="Education Image" className="mr-2" />
-              Education
-            </Link>
             <Link href="/contact" className="flex items-center bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-100 hover:text-black transition duration-300">
               <Image src="/contact.png" width={20} height={20} alt="Contact Image" className="mr-2" />
               Contact
