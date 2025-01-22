@@ -133,11 +133,13 @@ const Post = () => {
           </div>
           <div className="px-6 text-black">
             {editMode ? (
-              <input
-                value={title}
-                onChange={(event) => setTitle(event.currentTarget.value)}
-                className="text-3xl font-bold text-center text-gray-500 border-gray-300 border-2 rounded p-1"
-              />
+              <div className="flex justify-center items-center">
+                <input
+                  value={title}
+                  onChange={(event) => setTitle(event.currentTarget.value)}
+                  className="w-3/4  text-3xl font-bold text-center text-gray-500 border-gray-300 border-2 rounded p-1"
+                />
+              </div>
             ) : (
               <h1 className="text-3xl font-bold text-center text-black">{title}</h1>
             )}
@@ -152,7 +154,7 @@ const Post = () => {
                   height={200}
               />
               ) : (
-                <video width="320" height="240" controls muted autoPlay>
+                <video width="320" height="240" controls muted autoPlay loop>
                   <source src={post?.image_urls[0]} />
                   Your browser does not support the video tag.
                 </video>
@@ -163,7 +165,7 @@ const Post = () => {
             {loggedIn && !showSummary && (
               <div className="justify-center mb-5 text-black">
                 <button
-                  className="border-2 border-black rounded bg-lime-200 hover:bg-lime-400 mr-2"
+                  className="border-2 p-1 border-black rounded bg-lime-200 hover:bg-lime-400 mr-2"
                   onClick={!editMode ? () => setEditMode(!editMode): () => {
                     setEditMode(!editMode)
                     updatePost()
@@ -182,7 +184,7 @@ const Post = () => {
             )}
 
             {showSummary ? (
-              <div className="mb-2 text-black italic">
+              <div className="mb-2 text-black text-blue-500 font-bold">
                 <TypeAnimation 
                     sequence={[
                       summary
@@ -193,12 +195,12 @@ const Post = () => {
                 />
               </div>
             ) : (
-              <div className="mb-2">
+              <div className="flex mb-2">
                 {editMode ? (
                   <Textarea
                     onChange={(event) => setBody(event.currentTarget.value)}
                     value={body}
-                    className="text-black text-lg leading-relaxed whitespace-pre-line p-4"
+                    className="text-black text-lg leading-relaxed whitespace-pre-line p-4 w-full"
                   > 
                   </Textarea>
                 ) : (
