@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
 
     Question: """ ${query} """
 
-    Return the answer in plain text with no markdown please, use /n in the response to add new line breaks where necessary to improve readability
+    Return the answer in plain text with no markdown please, use /n in the response to add new line breaks where necessary to improve readability. Furthermore, please respond in australian english.
   `
 
   // Get the response from the model
