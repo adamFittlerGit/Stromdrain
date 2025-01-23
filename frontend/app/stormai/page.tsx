@@ -31,9 +31,9 @@ async function getResponse() {
 
   // Handle "Enter" key press to trigger the submitQuery function
   useEffect(() => {
-    const handleKeyDown = (event: any) => {
+    const handleKeyDown = async (event: any) => {
       if (event.key === "Enter") {
-        getResponse();
+        await getResponse();
       }
     };
 
