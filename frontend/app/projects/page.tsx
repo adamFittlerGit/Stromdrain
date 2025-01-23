@@ -43,7 +43,13 @@ const ProjectCard = ({index, name, status, description, tags, image, source_code
         </div>
         <div className="mt-5">
           <h3 className="text-black font-bold text-[24px]">{name}</h3>
-          <h4 className={`text-${status.color}-400 opacity-75`}>{status.name}</h4>
+          {status.name === "Completed" && (
+            <h4 className={`text-green-400 opacity-75`}>{status.name}</h4>
+          )}
+
+          {status.name === "In Development" && (
+            <h4 className={`text-orange-400 opacity-75`}>{status.name}</h4>
+          )}
           <p className="mt-2 text-secondary text-[14px] text-black">{description}</p>
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
