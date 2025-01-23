@@ -60,7 +60,7 @@ export default function Home() {
                   cursor={true}
                   repeat={1}
                   speed={80}
-                  className="text-white leading-relaxed whitespace-pre-line"
+                  className="text-white leading-relaxed whitespace-pre-line text-bold"
                 />
               </div>
             )}
