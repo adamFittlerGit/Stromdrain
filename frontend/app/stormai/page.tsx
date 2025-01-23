@@ -3,33 +3,29 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { TypeAnimation } from 'react-type-animation';
 
-export default async function Home() {
-
+export default function Home() {
   const [query, setQuery] = useState("");
   const [response, setResponse] = useState("");
 
-  // Fetching the backend logic for generating a response
-async function getResponse() {
-  console.log(query)
-  const response = await fetch("/api/openai", {
-    method: "POST",
-    headers: {
-      Accept: "application/json"
-    },
-    body: JSON.stringify({query})
-  });
+  // Move async function outside of component
+  const getResponse = async () => {
+    const res = await fetch("/api/openai", {
+      method: "POST",
+      headers: {
+        Accept: "application/json"
+      },
+      body: JSON.stringify({query})
+    });
 
-  if (!response.ok) {
-    throw new Error("Failed to get response");
+    if (!res.ok) {
+      throw new Error("Failed to get response");
+    }
+    
+    const data = await res.json();
+    setResponse(data)
+    return data;
   }
-  
-  const data = await response.json();
-  setResponse(data)
 
-  return data;
-}
-
-  // Handle "Enter" key press to trigger the submitQuery function
   useEffect(() => {
     const handleKeyDown = async (event: any) => {
       if (event.key === "Enter") {
@@ -42,7 +38,7 @@ async function getResponse() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [query, response]); // Include query dependency to use the latest query when enter is pressed
+  }, [query, response]); 
 
   return (
     <div className={`flex ${response ? "items-center" : ""} justify-center mt-10 h-screen pb-20`}>
