@@ -94,7 +94,7 @@ const page = () => {
   const stormdrain: Project = {
     index: "001",
     name: "Stormdrain",
-    status: development,
+    status: completed,
     description: "My personal hub, blog and portfolio site, I will constantly be updating and upgrading its capabilities in order to develop my skills in Fullstack Web Development and maybe even add in some AI integrations.  The purpose is to provide a hub to track what I am learning and developing for myself as well as other to see what I am passionate about.",
     tags: ["NextJS", "Supabase", "SQL"],
     image: "/storm-drain.png",
@@ -135,7 +135,7 @@ const page = () => {
     index: "001",
     name: "Powerforge",
     status: development,
-    description: "My goal is to build a fullstack web app powered by AI that allows tayla and I to track our workouts and control them via the application, We should be able to track lifts overtime with metrics and have an AI coach we can customise to help us plana dnd create workouts.",
+    description: "My goal is to build a fullstack web app powered by AI that allows tayla and I to track our workouts and control them via the application, We should be able to track lifts overtime with metrics and have an AI coach we can customise to help us plan and create workout. I also want to incorperate computer vision for tracking bar speed to estimate RPE for powerlifts using pose estimation to ensure that technique meets comp standard.  Actually an awesome idea is to make it have power lifitng coach features for calls, so start, press, rack for bench etc.  Also could incorperate computer vision adn pose estimation for shadow sparring and bag work.",
     tags: ["LLM", "Finetuning", "RAG"],
     image: "/storm-ai.png",
     source_code_link: "",
@@ -230,7 +230,7 @@ const page = () => {
     image: "/ml.png",
     source_code_link: "https://github.com/adamFittlerGit/DataReport",
   } 
-  const projects: Project[] = [stormdrain, myllm, thesis, OpenStat, fft, RAGPaper, OASIS, MLreport]
+  const projects: Project[] = [Powerforge, myllm, thesis, stormdrain, OpenStat, fft, RAGPaper, OASIS, MLreport]
 
   return (
     <>
