@@ -79,7 +79,7 @@ const page = () => {
     index: "001",
     name: "My LLM",
     status: development,
-    description: "My goal for this project is to create an train a small LLM from scratch by reimplementing the attention is all you need paper on transformers and training on google collab.  I will implement it in pytroch and this will give me a lot of insight into the model innerworking and I will fail and learn so much about LLM's. I think a basic seq-2-seq model focusing on text summarization",
+    description: "My goal for this project is to create an train a small LLM from scratch by reimplementing the llama paper on transformers and training on google collab.  I will implement it in pytroch and this will give me a lot of insight into the model innerworking and I will fail and learn so much about LLM's.",
     tags: ["Attention", "Pytorch", "transformer"],
     image: "/storm-ai.png",
     source_code_link: "",
@@ -224,7 +224,7 @@ const page = () => {
     image: "/ml.png",
     source_code_link: "https://github.com/adamFittlerGit/DataReport",
   } 
-  const projects: Project[] = [stormdrain, TAXRAG, thesis, OpenStat, fft, RAGPaper, OASIS, MLreport]
+  const projects: Project[] = [stormdrain, myllm, thesis, OpenStat, fft, RAGPaper, OASIS, MLreport]
 
   return (
     <>
