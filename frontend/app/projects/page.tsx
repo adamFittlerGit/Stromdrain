@@ -136,9 +136,9 @@ const page = () => {
     name: "Powerforge",
     status: development,
     description: "My goal is to build a fullstack web app powered by AI that allows tayla and I to track our workouts and control them via the application, We should be able to track lifts overtime with metrics and have an AI coach we can customise to help us plan and create workout. I also want to incorperate computer vision for tracking bar speed to estimate RPE for powerlifts using pose estimation to ensure that technique meets comp standard.  Actually an awesome idea is to make it have power lifitng coach features for calls, so start, press, rack for bench etc.  Also could incorperate computer vision adn pose estimation for shadow sparring and bag work.",
-    tags: ["LLM", "Finetuning", "RAG"],
-    image: "/storm-ai.png",
-    source_code_link: "",
+    tags: ["Supabase", "NextJS", "Computer Vision"],
+    image: "/pf.png",
+    source_code_link: "https://github.com/adamFittlerGit/powerforge",
   } 
 
   const TadamBlog: Project = {
