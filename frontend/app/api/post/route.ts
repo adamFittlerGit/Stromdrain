@@ -18,7 +18,7 @@ async function getSummary(combined: string) {
     apiKey: OPENAI_KEY,
   });
 
-  const prompt = `{Please provide a TLDR summary of the following content in one sentence: ${combined} The summary should capture the main points and give an overview of the key activities or plans mentioned.  The authors name is Adam for your references if needed}`
+  const prompt = `{Please provide a TLDR summary of the following content in one sentence: ${combined} The summary should capture the main points and give an overview of the key activities or plans mentioned.  The authors name is Adam for your references if needed. Please seperate line with the \n character to improve readability and ensure that the response is in australian english.}`
   
   const chatCompletion = await openai.chat.completions.create({
       messages: [{ role: "user", content: prompt }],

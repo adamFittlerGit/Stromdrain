@@ -43,7 +43,13 @@ const ProjectCard = ({index, name, status, description, tags, image, source_code
         </div>
         <div className="mt-5">
           <h3 className="text-black font-bold text-[24px]">{name}</h3>
-          <h4 className={`text-green-400 opacity-75`}>{status.name}</h4>
+          {status.name === "Completed" && (
+            <h4 className={`text-green-400 opacity-75 font-bold`}>{status.name}</h4>
+          )}
+
+          {status.name === "In Development" && (
+            <h4 className={`text-orange-400 opacity-75 font-bold`}>{status.name}</h4>
+          )}
           <p className="mt-2 text-secondary text-[14px] text-black">{description}</p>
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
@@ -79,7 +85,7 @@ const page = () => {
     index: "001",
     name: "My LLM",
     status: development,
-    description: "My goal for this project is to create an train a small LLM from scratch by reimplementing the attention is all you need paper on transformers and training on google collab.  I will implement it in pytroch and this will give me a lot of insight into the model innerworking and I will fail and learn so much about LLM's. I think a basic seq-2-seq model focusing on text summarization",
+    description: "My goal for this project is to create an train a small LLM from scratch by reimplementing the llama paper on transformers and training on google collab.  I will implement it in pytroch and this will give me a lot of insight into the model innerworking and I will fail and learn so much about LLM's.",
     tags: ["Attention", "Pytorch", "transformer"],
     image: "/storm-ai.png",
     source_code_link: "",
@@ -88,7 +94,7 @@ const page = () => {
   const stormdrain: Project = {
     index: "001",
     name: "Stormdrain",
-    status: development,
+    status: completed,
     description: "My personal hub, blog and portfolio site, I will constantly be updating and upgrading its capabilities in order to develop my skills in Fullstack Web Development and maybe even add in some AI integrations.  The purpose is to provide a hub to track what I am learning and developing for myself as well as other to see what I am passionate about.",
     tags: ["NextJS", "Supabase", "SQL"],
     image: "/storm-drain.png",
@@ -129,10 +135,10 @@ const page = () => {
     index: "001",
     name: "Powerforge",
     status: development,
-    description: "My goal is to build a fullstack web app powered by AI that allows tayla and I to track our workouts and control them via the application, We should be able to track lifts overtime with metrics and have an AI coach we can customise to help us plana dnd create workouts.",
-    tags: ["LLM", "Finetuning", "RAG"],
-    image: "/storm-ai.png",
-    source_code_link: "",
+    description: "My goal is to build a fullstack web app powered by AI that allows tayla and I to track our workouts and control them via the application, We should be able to track lifts overtime with metrics and have an AI coach we can customise to help us plan and create workout. I also want to incorperate computer vision for tracking bar speed to estimate RPE for powerlifts using pose estimation to ensure that technique meets comp standard.  Actually an awesome idea is to make it have power lifitng coach features for calls, so start, press, rack for bench etc.  Also could incorperate computer vision adn pose estimation for shadow sparring and bag work.",
+    tags: ["Supabase", "NextJS", "Computer Vision"],
+    image: "/pf.png",
+    source_code_link: "https://github.com/adamFittlerGit/powerforge",
   } 
 
   const TadamBlog: Project = {
@@ -224,7 +230,7 @@ const page = () => {
     image: "/ml.png",
     source_code_link: "https://github.com/adamFittlerGit/DataReport",
   } 
-  const projects: Project[] = [stormdrain, TAXRAG, thesis, OpenStat, fft, RAGPaper, OASIS, MLreport]
+  const projects: Project[] = [Powerforge, myllm, thesis, stormdrain, OpenStat, fft, RAGPaper, OASIS, MLreport]
 
   return (
     <>
