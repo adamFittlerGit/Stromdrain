@@ -164,14 +164,17 @@ const Page = () => {
           </Button>
         </form>
         <br></br>
-        <Link href="/blog">
+        {!submitting && (
+          <Link href="/blog">
               <Image
                 src="/back.png"
                 alt="back-button"
                 width={30}
                 height={30}
               />
-        </Link>
+          </Link>
+        )}
+        
       </div>
     </div>
   );
