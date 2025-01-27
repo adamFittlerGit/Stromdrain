@@ -227,7 +227,7 @@ export default function Home() {
 
         {/* Section for the blog posts */}
         <div className="grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-          {isLoggedIn && page === 1 &&
+          {isLoggedIn && page === 1 && !loading &&
             <Tilt>
               <div className="col-span-1 p-4 m-4 bg-white rounded-lg hover:border-sky-400 border-2 border-black h-5/6">
                 <Link href={`/blog/new`}>
