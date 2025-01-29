@@ -92,7 +92,7 @@ const Page = () => {
             onChange={handleUpload}
           />
 
-          {!isImageSelected ? (
+          {!submitting && (!isImageSelected ? (
              <>
               <Button className="gap-4" variant="outlined" onClick={() => {imageInputRef.current?.click()}}>Select File</Button>
               <br/>
@@ -104,7 +104,7 @@ const Page = () => {
                 height={50}
                 alt="file image"
             />
-          )}
+          ))}
 
           <div className='flex gap-4 hidden'>
             
