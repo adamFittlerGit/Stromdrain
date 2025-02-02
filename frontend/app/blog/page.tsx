@@ -264,7 +264,7 @@ export default function Home() {
                   </div>
                 </Tilt>
               ))
-            : (page === 1 && isLoggedIn) ? skeletons.slice(0, -1) : skeletons}
+            : skeletons}
         </div>
       </div>
     </div>
