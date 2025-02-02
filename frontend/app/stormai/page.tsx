@@ -97,7 +97,7 @@ export default function Home() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)} // Update query as user types
                 placeholder="Ask me anything?"
-                className={`${(query && !loading) && "hover:border-sky-400"}bg-white rounded-lg p-3 border-2 border-black w-2/3 sm:w-96 `}
+                className={`${(query && !loading) && "hover:border-sky-400"} bg-white rounded-lg p-3 border-2 border-black w-2/3 sm:w-96 `}
                 disabled={!!response || loading}
               />
               {!response ?
