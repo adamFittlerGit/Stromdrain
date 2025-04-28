@@ -64,13 +64,15 @@ export async function PUT(request: NextRequest) {
     
     // Use Openai Models to get the post embedding and summary make sure to apply same process as the other python scripting and cleaning
     const combined = `title:  ${title}; body: ${content};`.replace(/\n/g, ' '); // remove the \n for better responses
-    const summary = await getSummary(combined);
-    const embedding = await getEmbedding(combined);
+    //const summary = await getSummary(combined);
+    const summary = "This is a test summary";
+    //const embedding = await getEmbedding(combined);
+    const embedding = [0.001, 0.002, 0.003];
 
     // Use the supabase client to insert the data
     let { data, error } = await supabaseClient
         .from('posts')
-        .insert([{ title: title, date: date, body: content, tag: tag, user_id: user_id, image_urls: image_urls, summary: summary, embedding: embedding}]); // Use 'content' here
+        .insert([{ title: title, date: date, body: content, tag: tag, user_id: user_id, image_urls: image_urls, summary: summary}]); // Use 'content' here
 
     if (error) {
         console.error("Error fetching posts:", error);
